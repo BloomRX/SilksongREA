@@ -77,6 +77,8 @@ test('integração: fixture PE/CLI válida percorre todas as inspeções estáti
   assert.equal(summary.inventory.fileCount, 2);
   assert.ok(summary.managed.commands.length >= 5);
   assert.ok(summary.managed.commands.every((command) => command.status === 'success'));
+  const complete = summary.managed.commands.find((command) => command.command === 'inspect-managed-members');
+  assert.equal(complete.coverage.state, 'complete');
   const focused = summary.managed.commands.find((command) => command.target?.includes('HeroControllerStates'));
   assert.equal(focused.collections.types, 1);
   const validation = await validateReportDirectory(path.join(work, 'reports', 'latest'));

@@ -11,6 +11,7 @@ import {
   safeFileName,
   tail,
   walkFiles,
+  writeFileAtomic,
   writeJsonAtomic,
 } from './utils.mjs';
 
@@ -94,15 +95,22 @@ export async function runRea({
 
   let message;
   const stderrDiagnostic = result.stderr?.trim();
+  const coverage = data?.normalized_result?.coverage;
+  const coverageState = typeof coverage?.state === 'string' ? coverage.state : undefined;
+  const incompleteCoverage = ['partial', 'unavailable'].includes(coverageState);
+  const coverageIssue = incompleteCoverage && Array.isArray(coverage?.issues) ? coverage.issues[0] : undefined;
+  const coverageMessage = incompleteCoverage
+    ? `Cobertura REA ${coverageState}${coverageIssue ? `: ${coverageIssue.detail || coverageIssue.code || 'problema não detalhado'}` : '.'}`
+    : undefined;
   if (!result.ok) {
     message = data?.error?.message || data?.message || tail(result.stderr || result.stdout, 1500) || errorMessage(result.error);
     if (result.timedOut) message = `Tempo limite excedido após ${Math.round(timeoutMs / 1000)} s.`;
-  } else if (stderrDiagnostic) {
-    message = tail(stderrDiagnostic, 1500);
+  } else {
+    message = [coverageMessage, stderrDiagnostic && tail(stderrDiagnostic, 1200)].filter(Boolean).join(' | ') || undefined;
   }
   return {
     command,
-    status: result.ok ? ((parseError || stderrDiagnostic) ? 'warning' : 'success') : 'failed',
+    status: result.ok ? ((parseError || stderrDiagnostic || incompleteCoverage) ? 'warning' : 'success') : 'failed',
     exitCode: result.code,
     timedOut: result.timedOut,
     durationMs: result.durationMs,
@@ -128,44 +136,97 @@ async function findExecutable(names, knownPaths = []) {
   return first && await isFile(first) ? first : undefined;
 }
 
-async function findDotnet() {
-  const known = [
-    process.env.DOTNET_EXE,
-    process.env.ProgramFiles ? path.join(process.env.ProgramFiles, 'dotnet', 'dotnet.exe') : undefined,
-    process.env['ProgramFiles(x86)'] ? path.join(process.env['ProgramFiles(x86)'], 'dotnet', 'dotnet.exe') : undefined,
-  ];
-  const executable = await findExecutable(['dotnet'], known);
-  if (!executable) return undefined;
-  const result = await runProcess({ command: executable, args: ['--list-sdks'], timeoutMs: 20000 });
-  const sdks = result.ok ? result.stdout.split(/\r?\n/).map((line) => line.trim()).filter(Boolean) : [];
-  return { executable, sdks, suitable: sdks.some((line) => {
-    const match = line.match(/^(\d+)\.(\d+)\.(\d+)/);
-    return match && (Number(match[1]) > 10 || (Number(match[1]) === 10 && (Number(match[2]) > 0 || Number(match[3]) >= 100)));
-  }) };
+function dotnetEnvironment(dotnet) {
+  return {
+    DOTNET_CLI_TELEMETRY_OPTOUT: '1',
+    DOTNET_NOLOGO: '1',
+    DOTNET_SKIP_FIRST_TIME_EXPERIENCE: '1',
+    ...(dotnet?.executable ? { DOTNET_ROOT: path.dirname(dotnet.executable) } : {}),
+  };
 }
 
-async function installDotnet(rawDirectory) {
+async function inspectDotnet(executable) {
+  const result = await runProcess({ command: executable, args: ['--list-sdks'], timeoutMs: 20000 });
+  const sdks = result.ok ? result.stdout.split(/\r?\n/).map((line) => line.trim()).filter(Boolean) : [];
+  return {
+    executable,
+    sdks,
+    suitable: sdks.some((line) => {
+      const match = line.match(/^(\d+)\.(\d+)\.(\d+)/);
+      return match && (Number(match[1]) > 10 || (Number(match[1]) === 10 && (Number(match[2]) > 0 || Number(match[3]) >= 100)));
+    }),
+  };
+}
+
+async function findDotnet(repositoryRoot) {
+  const executableName = process.platform === 'win32' ? 'dotnet.exe' : 'dotnet';
+  const candidates = [
+    process.env.DOTNET_EXE,
+    repositoryRoot ? path.join(repositoryRoot, '.tools', 'dotnet', executableName) : undefined,
+    process.env.ProgramFiles ? path.join(process.env.ProgramFiles, 'dotnet', 'dotnet.exe') : undefined,
+    process.env['ProgramFiles(x86)'] ? path.join(process.env['ProgramFiles(x86)'], 'dotnet', 'dotnet.exe') : undefined,
+    await findExecutable(['dotnet']),
+  ];
+  const seen = new Set();
+  let first;
+  for (const candidate of candidates) {
+    if (!candidate || !(await isFile(candidate))) continue;
+    const normalized = path.resolve(candidate);
+    const key = process.platform === 'win32' ? normalized.toLowerCase() : normalized;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    const detected = await inspectDotnet(candidate);
+    first ||= detected;
+    if (detected.suitable) return detected;
+  }
+  return first;
+}
+
+async function installDotnet(repositoryRoot, rawDirectory) {
   if (process.platform !== 'win32') {
     throw new Error('.NET SDK 10.0.100+ não encontrado. Instale-o para habilitar o ILSpy.');
   }
   if (process.env.SILKSONG_REA_SKIP_INSTALL === '1') {
     throw new Error('.NET SDK 10.0.100+ ausente e a instalação automática está desativada.');
   }
-  const winget = await findExecutable(['winget'], [
-    process.env.LOCALAPPDATA ? path.join(process.env.LOCALAPPDATA, 'Microsoft', 'WindowsApps', 'winget.exe') : undefined,
-  ]);
-  if (!winget) throw new Error('winget não encontrado; instale o .NET SDK 10 manualmente ou use --no-decompile.');
+
+  const scriptPath = path.join(rawDirectory, 'dotnet-install.ps1');
+  const installDirectory = path.join(repositoryRoot, '.tools', 'dotnet');
+  let response;
+  try {
+    response = await fetch('https://dot.net/v1/dotnet-install.ps1', {
+      redirect: 'follow',
+      signal: AbortSignal.timeout(60000),
+      headers: { 'User-Agent': 'SilksongREA/1.0' },
+    });
+  } catch (error) {
+    throw new Error(`Falha ao baixar o script oficial do .NET: ${errorMessage(error)}`);
+  }
+  if (!response.ok) throw new Error(`Download do script do .NET retornou HTTP ${response.status}.`);
+  const script = await response.text();
+  if (script.length < 1000 || script.length > 4 * 1024 * 1024 || !/dotnet-install/i.test(script) || !/param\s*\(/i.test(script)) {
+    throw new Error('O download do instalador do .NET não contém um script PowerShell reconhecível.');
+  }
+  await writeFileAtomic(scriptPath, script);
+
   const result = await runProcess({
-    command: winget,
+    command: 'powershell.exe',
     args: [
-      'install', '--exact', '--id', 'Microsoft.DotNet.SDK.10',
-      '--accept-package-agreements', '--accept-source-agreements', '--disable-interactivity',
+      '-NoLogo', '-NoProfile', '-ExecutionPolicy', 'Bypass',
+      '-File', scriptPath,
+      '-Channel', '10.0',
+      '-InstallDir', installDirectory,
+      '-NoPath',
     ],
+    env: dotnetEnvironment(),
     timeoutMs: 20 * 60 * 1000,
     stdoutPath: path.join(rawDirectory, 'dotnet-install.log'),
     stderrPath: path.join(rawDirectory, 'dotnet-install.stderr.log'),
   });
-  if (!result.ok) throw new Error(`Falha ao instalar .NET SDK 10: ${tail(result.stderr || result.stdout, 1500)}`);
+  const executable = path.join(installDirectory, 'dotnet.exe');
+  if (!result.ok || !(await isFile(executable))) {
+    throw new Error(`Falha ao instalar o .NET SDK 10 localmente: ${tail(result.stderr || result.stdout, 1500)}`);
+  }
 }
 
 export async function ensureIlspyCmd(repositoryRoot, rawDirectory) {
@@ -178,26 +239,38 @@ export async function ensureIlspyCmd(repositoryRoot, rawDirectory) {
   if (override && await isFile(override)) {
     return { executable: override, version: ILSPY_VERSION, overridden: true };
   }
-  if (await isFile(localExecutable)) {
+
+  let dotnet = await findDotnet(repositoryRoot);
+  const detectExisting = async () => {
+    if (!dotnet?.suitable || !(await isFile(localExecutable))) return undefined;
     const marker = await readJson(markerPath, {});
     if (marker.version === ILSPY_VERSION) {
-      return { executable: localExecutable, version: ILSPY_VERSION };
+      return { executable: localExecutable, version: ILSPY_VERSION, dotnetRoot: path.dirname(dotnet.executable) };
     }
-    const versionResult = await runProcess({ command: localExecutable, args: ['--version'], timeoutMs: 20000 });
+    const versionResult = await runProcess({
+      command: localExecutable,
+      args: ['--version'],
+      env: dotnetEnvironment(dotnet),
+      timeoutMs: 20000,
+    });
     if (versionResult.ok && versionResult.stdout.includes(ILSPY_VERSION)) {
       await writeJsonAtomic(markerPath, { version: ILSPY_VERSION });
-      return { executable: localExecutable, version: ILSPY_VERSION };
+      return { executable: localExecutable, version: ILSPY_VERSION, dotnetRoot: path.dirname(dotnet.executable) };
     }
-  }
+    return undefined;
+  };
 
-  let dotnet = await findDotnet();
+  let existing = await detectExisting();
+  if (existing) return existing;
   if (!dotnet?.suitable) {
-    await installDotnet(rawDirectory);
-    dotnet = await findDotnet();
+    await installDotnet(repositoryRoot, rawDirectory);
+    dotnet = await findDotnet(repositoryRoot);
   }
   if (!dotnet?.suitable) {
     throw new Error(`.NET SDK 10.0.100+ continua indisponível. SDKs detectados: ${dotnet?.sdks?.join(', ') || 'nenhum'}`);
   }
+  existing = await detectExisting();
+  if (existing) return existing;
 
   await ensureDir(toolDirectory);
   const alreadyInstalled = await isFile(localExecutable);
@@ -208,6 +281,7 @@ export async function ensureIlspyCmd(repositoryRoot, rawDirectory) {
   const result = await runProcess({
     command: dotnet.executable,
     args,
+    env: dotnetEnvironment(dotnet),
     timeoutMs: 15 * 60 * 1000,
     stdoutPath: path.join(rawDirectory, 'ilspy-install.log'),
     stderrPath: path.join(rawDirectory, 'ilspy-install.stderr.log'),
@@ -216,7 +290,7 @@ export async function ensureIlspyCmd(repositoryRoot, rawDirectory) {
     throw new Error(`Falha ao instalar ilspycmd ${ILSPY_VERSION}: ${tail(result.stderr || result.stdout, 1500)}`);
   }
   await writeJsonAtomic(markerPath, { version: ILSPY_VERSION });
-  return { executable: localExecutable, version: ILSPY_VERSION };
+  return { executable: localExecutable, version: ILSPY_VERSION, dotnetRoot: path.dirname(dotnet.executable) };
 }
 
 export async function decompileWithIlspy({ ilspy, assembly, referencePath, outputDirectory, rawDirectory }) {
@@ -224,6 +298,11 @@ export async function decompileWithIlspy({ ilspy, assembly, referencePath, outpu
   await ensureDir(outputDirectory);
   const result = await runProcess({
     command: ilspy.executable,
+    env: {
+      DOTNET_CLI_TELEMETRY_OPTOUT: '1',
+      DOTNET_NOLOGO: '1',
+      ...(ilspy.dotnetRoot ? { DOTNET_ROOT: ilspy.dotnetRoot } : {}),
+    },
     args: [
       assembly,
       '--project',

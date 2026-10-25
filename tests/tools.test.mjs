@@ -32,6 +32,23 @@ test('REA com JSON válido e diagnóstico em stderr produz warning', async () =>
   assert.deepEqual(result.data.normalized_result.types, []);
 });
 
+test('REA com cobertura indisponível e exit zero produz warning', async () => {
+  const evidence = {
+    normalized_result: {
+      coverage: { state: 'unavailable', issues: [{ code: 'resource-limit', detail: 'limite de representação' }] },
+      types: [],
+      limitations: ['Inspeção indisponível.'],
+    },
+  };
+  const result = await withFakeRea(
+    `console.log(${JSON.stringify(JSON.stringify(evidence))});\n`,
+    (options) => runRea(options),
+  );
+  assert.equal(result.status, 'warning');
+  assert.match(result.message, /unavailable/);
+  assert.match(result.message, /limite de representação/);
+});
+
 test('REA com saída inválida e exit zero não é tratado como sucesso', async () => {
   const result = await withFakeRea(
     "console.log('comando desconhecido');\n",

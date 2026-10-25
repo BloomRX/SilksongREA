@@ -146,7 +146,7 @@ function commandRows(commands = []) {
   return commands.map((result) => {
     const label = [result.command, result.target].filter(Boolean).join(' — ');
     const counts = Object.entries(result.collections || {})
-      .filter(([key]) => ['types', 'fields', 'methods', 'call_edges', 'resources', 'pinvoke_imports'].includes(key))
+      .filter(([key]) => ['types', 'fields', 'methods', 'member_refs', 'call_edges', 'user_strings', 'resources', 'pinvoke_imports'].includes(key))
       .map(([key, count]) => `${key}=${count}`)
       .join(', ');
     const unmatched = result.unmatchedTypes?.length ? `tipos não encontrados: ${result.unmatchedTypes.join(', ')}` : '';
@@ -165,6 +165,7 @@ function renderManaged(run) {
     `- REA: **${code(run.environment?.reaVersion || 'indisponível')}**\n` +
     `- ILSpyCmd: **${code(run.environment?.ilspyVersion || 'indisponível')}**\n\n` +
     `## Comandos REA\n\n| Alvo/comando | Status | Saída local | Observação |\n|---|---|---:|---|\n${commandRows(managed.commands)}\n\n` +
+    `Cobertura partial ou unavailable representa limite/indisponibilidade da inspeção, não ausência dos membros no jogo. O JSON bruto e o CIL recuperado ficam somente no computador local.\n\n` +
     `## Decompilação local com ILSpy\n\n` +
     `- Status: **${statusLabel(decompilation.status || 'skipped')}**\n` +
     `- Arquivos produzidos: **${decompilation.fileCount ?? 0}**\n` +
@@ -183,7 +184,7 @@ function renderCoverage(run) {
     ['Inventário de arquivos e tamanhos', 'inventory', 'Metadados do layout; o conteúdo dos assets não é extraído.'],
     ['SHA-256 dos arquivos principais', 'inventory', 'Usado para identificar exatamente a build analisada.'],
     ['Identidade de todos os assemblies .NET', 'managed-artifacts', 'Somente arquivos admitidos pelo parser do REA.'],
-    ['Membros/CIL do Assembly-CSharp', 'managed-members', 'Saída completa local; o resumo público não contém corpos.'],
+    ['Membros/CIL do Assembly-CSharp', 'managed-members', 'Saída bruta local; cobertura partial/unavailable é avisada e complementada pela inspeção focada e pelo ILSpy.'],
     ['Fronteiras nativas gerenciadas', 'managed-native', 'P/Invoke e indicadores de implementação nativa, quando suportados.'],
     ['Decompilação C# com ILSpy', 'decompile', 'Saída completa somente local.'],
     ['Recursos PE', 'native-pe', 'Apenas comandos existentes no REA publicado; não equivale a descompilação nativa.'],

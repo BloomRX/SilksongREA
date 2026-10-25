@@ -18,7 +18,7 @@ import {
 import path from 'node:path';
 import { finished } from 'node:stream/promises';
 
-export const TOOL_VERSION = '1.0.0';
+export const TOOL_VERSION = '1.1.0';
 
 export async function pathExists(target) {
   try {

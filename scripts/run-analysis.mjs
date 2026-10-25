@@ -157,9 +157,12 @@ function compactReaResult(result, target, gameRoot) {
   if (normalized && typeof normalized === 'object') {
     for (const [key, value] of Object.entries(normalized)) {
       if (Array.isArray(value)) collections[key] = value.length;
+      if (key === 'user_strings' && Array.isArray(value?.literals)) collections.user_strings = value.literals.length;
     }
   }
   const unmatchedTypes = normalized?.selection?.unmatched_type_names;
+  const coverageState = typeof normalized?.coverage?.state === 'string' ? normalized.coverage.state : undefined;
+  const coverageIssues = Array.isArray(normalized?.coverage?.issues) ? normalized.coverage.issues : [];
   return {
     command: result.command,
     target: target && gameRoot ? relativePosix(gameRoot, target) : target,
@@ -173,6 +176,17 @@ function compactReaResult(result, target, gameRoot) {
     outputBytes: result.outputBytes,
     collections,
     unmatchedTypes: Array.isArray(unmatchedTypes) ? unmatchedTypes : undefined,
+    coverage: coverageState ? {
+      state: coverageState,
+      issues: coverageIssues.slice(0, 8).map((issue) => issue && typeof issue === 'object' ? ({
+        code: issue.code,
+        scope: issue.scope,
+        detail: issue.detail,
+      }) : { detail: String(issue ?? 'problema não detalhado') }),
+    } : undefined,
+    limitations: coverageState && coverageState !== 'complete' && Array.isArray(normalized?.limitations)
+      ? normalized.limitations.slice(0, 4)
+      : undefined,
     stdoutPath: result.stdoutPath,
     stderrPath: result.stderrPath,
   };
@@ -410,7 +424,7 @@ async function main() {
           rawDirectory: rawReaDirectory,
           outputName: 'assembly-csharp-members-focused',
           timeoutMs: 20 * 60 * 1000,
-          maxParseBytes: 8 * 1024 * 1024,
+          maxParseBytes: 64 * 1024 * 1024,
         });
         run.managed.commands.push(compactReaResult(result, FOCUS_TYPES.join(', ')));
         return { status: result.status, message: result.message || result.parseError };

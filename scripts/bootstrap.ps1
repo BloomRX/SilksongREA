@@ -1,10 +1,17 @@
-[CmdletBinding()]
+﻿[CmdletBinding()]
 param(
     [Parameter(ValueFromRemainingArguments = $true)]
     [string[]]$RemainingArgs
 )
 
 $ErrorActionPreference = 'Stop'
+$utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+try {
+    [Console]::OutputEncoding = $utf8NoBom
+    $OutputEncoding = $utf8NoBom
+} catch {
+    # O conteúdo UTF-8 do script continua válido mesmo em hosts redirecionados.
+}
 $RepositoryRoot = Split-Path -Parent $PSScriptRoot
 $LocalRoot = Join-Path $RepositoryRoot '.local'
 $ExpectedReaVersion = '6.7.0'
@@ -69,7 +76,7 @@ function Write-BootstrapFailure {
     [IO.File]::WriteAllText((Join-Path $report 'errors.md'), $contents, $encoding)
     $summary = @{
         schemaVersion = 1
-        toolVersion = '1.0.0'
+        toolVersion = '1.1.0'
         startedAt = $timestamp
         status = 'failed'
         stages = @(@{ id = 'bootstrap'; title = 'Bootstrap'; status = 'failed'; message = $safe })

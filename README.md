@@ -24,7 +24,7 @@ A primeira execução pode demorar bastante. Reserve alguns gigabytes para resul
 - Node.js 22.19+, 24.11+ ou 26+; se necessário, tenta instalar o Node LTS com `winget`.
 - Git, somente se a publicação estiver ativada e o Git não estiver disponível.
 - Dependências do repositório com `npm ci`, incluindo **REA 6.7.0** fixado no lockfile.
-- .NET SDK 10 e **ILSpyCmd 11.1.0.9782**, somente quando a decompilação for executada.
+- .NET SDK 10 local em `.tools/dotnet`, pelo script oficial da Microsoft e sem depender de `winget`, além de **ILSpyCmd 11.1.0.9782**, somente quando a decompilação for executada.
 
 O `winget` e instaladores podem apresentar solicitações do Windows. Nenhuma política de execução do PowerShell é alterada permanentemente: o `Bypass` vale apenas para o processo iniciado pelo `.bat`.
 
@@ -64,7 +64,7 @@ O pipeline **não executa o jogo, não substitui DLLs, não instala mods e não 
 
 ### Mantido somente em `.local/` (ignorado pelo Git)
 
-- JSON/Evidence completo do REA e CIL;
+- JSON/Evidence brutos do REA e CIL recuperado;
 - código C# decompilado pelo ILSpy;
 - CSV com todos os arquivos;
 - logs brutos e saídas de comandos;
@@ -141,14 +141,15 @@ scripts/run-analysis.mjs    # orquestração e recuperação por etapa
 scripts/lib/               # detecção, ferramentas, relatórios e Git
 reports/latest/            # único resultado publicado automaticamente
 .local/                    # resultados completos locais; nunca commitar
-.tools/                    # ILSpyCmd local; nunca commitar
+.tools/                    # .NET/ILSpyCmd locais; nunca commitar
 ```
 
 ## Solução de problemas
 
 - **Jogo não encontrado:** use `--game-path` ou cole a pasta quando solicitado. Não aponte para `steamapps`; aponte para a pasta que contém o executável e `Hollow Knight Silksong_Data`.
 - **Outra análise em execução:** aguarde. Se uma execução anterior foi encerrada à força, o lock obsoleto é detectado e removido na próxima tentativa.
-- **Falha no .NET/NuGet:** confira internet e execute novamente, ou use `--no-decompile` para manter as outras análises.
+- **Falha no .NET/NuGet:** confira internet e execute novamente, ou use `--no-decompile` para manter as outras análises. O .NET é instalado localmente pelo script oficial da Microsoft, sem `winget` e sem administrador.
+- **Cobertura REA partial/unavailable:** o assembly pode exceder o orçamento de representação do REA. Isso não significa que os tipos estejam ausentes; use a inspeção focada e a decompilação ILSpy complementares.
 - **Falha de autenticação Git:** configure a conexão Git/GitHub fora do executor. Nenhum token deve ser colocado em arquivos, argumentos ou chat.
 - **Push rejeitado:** sincronize a branch e execute novamente. O executor não força o push nem sobrescreve trabalho remoto.
 - **Relatório bloqueado:** leia o motivo na janela e em `.local/last-publication.json`; a proteção impede publicação de segredos/caminhos privados.
