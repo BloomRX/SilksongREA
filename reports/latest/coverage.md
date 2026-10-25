@@ -5,7 +5,7 @@
 | Inventário de arquivos e tamanhos | ✅ OK | Metadados do layout; o conteúdo dos assets não é extraído. |
 | SHA-256 dos arquivos principais | ✅ OK | Usado para identificar exatamente a build analisada. |
 | Identidade de todos os assemblies .NET | ✅ OK | Somente arquivos admitidos pelo parser do REA. |
-| Membros/CIL do Assembly-CSharp | ✅ OK | Saída completa local; o resumo público não contém corpos. |
+| Membros/CIL do Assembly-CSharp | ⚠️ AVISO | Saída bruta local; cobertura partial/unavailable é avisada e complementada pela inspeção focada e pelo ILSpy. |
 | Fronteiras nativas gerenciadas | ✅ OK | P/Invoke e indicadores de implementação nativa, quando suportados. |
 | Decompilação C# com ILSpy | ❌ FALHOU | Saída completa somente local. |
 | Recursos PE | ✅ OK | Apenas comandos existentes no REA publicado; não equivale a descompilação nativa. |

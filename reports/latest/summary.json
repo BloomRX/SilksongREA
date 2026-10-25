@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "toolVersion": "1.0.0",
-  "runId": "20261025T015402Z",
-  "startedAt": "2026-10-25T01:54:02.472Z",
-  "finishedAt": "2026-10-25T02:01:20.822Z",
+  "toolVersion": "1.1.0",
+  "runId": "20261025T023917Z",
+  "startedAt": "2026-10-25T02:39:17.180Z",
+  "finishedAt": "2026-10-25T02:47:44.900Z",
   "status": "failed",
   "options": {
     "publish": true,
@@ -19,12 +19,8 @@
   },
   "game": {
     "runtime": "Unity Mono",
-    "source": "steam-manifest",
-    "manifest": {
-      "buildid": "22479045",
-      "LastUpdated": "1792888642",
-      "StateFlags": "4"
-    },
+    "source": "config-local",
+    "manifest": {},
     "dataDirectoryCount": 1,
     "hasMainExecutable": true,
     "hasManagedAssembly": true,
@@ -37,60 +33,61 @@
       "status": "success",
       "branch": "arena/d5686468-silksongrea",
       "message": "Branch atual sincronizada antes da análise.",
-      "durationMs": 1784
+      "durationMs": 1631
     },
     {
       "id": "tools",
       "title": "Verificação das ferramentas",
       "status": "success",
       "message": "REA 6.7.0; 162 comandos detectados.",
-      "durationMs": 1567
+      "durationMs": 1747
     },
     {
       "id": "game",
       "title": "Localização e identificação do jogo",
       "status": "success",
       "message": "Unity Mono; 152 assemblies gerenciados.",
-      "durationMs": 1440
+      "durationMs": 605
     },
     {
       "id": "inventory",
       "title": "Inventário completo e hashes da build",
       "status": "success",
       "message": "2268 arquivos; 0 entradas ilegíveis.",
-      "durationMs": 1271
+      "durationMs": 957
     },
     {
       "id": "managed-artifacts",
       "title": "Identidade de todos os assemblies .NET",
       "status": "success",
       "message": "152/152 assemblies identificados; 0 com aviso.",
-      "durationMs": 413962
+      "durationMs": 415763
     },
     {
       "id": "managed-members",
       "title": "Membros e CIL do Assembly-CSharp",
-      "status": "success",
-      "durationMs": 4341
+      "status": "warning",
+      "message": "Cobertura REA unavailable: Managed metadata exceeds the 67108864 byte representation budget",
+      "durationMs": 4567
     },
     {
       "id": "managed-focus",
       "title": "Tipos prioritários para mecânicas",
       "status": "success",
-      "durationMs": 4985
+      "durationMs": 4965
     },
     {
       "id": "managed-native",
       "title": "Fronteiras nativas do código gerenciado",
       "status": "success",
-      "durationMs": 3391
+      "durationMs": 3335
     },
     {
       "id": "native-pe",
       "title": "Recursos dos executáveis PE",
       "status": "success",
       "message": "2/2 imagens PE examinadas; 0 com aviso.",
-      "durationMs": 5333
+      "durationMs": 5395
     },
     {
       "id": "il2cpp",
@@ -103,15 +100,15 @@
       "id": "decompile",
       "title": "Decompilação completa do Assembly-CSharp com ILSpy",
       "status": "failed",
-      "message": "winget não encontrado; instale o .NET SDK 10 manualmente ou use --no-decompile.",
-      "durationMs": 270
+      "message": "Falha ao instalar ilspycmd 11.1.0.9782: No NuGet sources are defined or enabled",
+      "durationMs": 68740
     },
     {
       "id": "player-logs",
       "title": "Análise de Player.log",
       "status": "skipped",
       "reason": "Nenhum Player.log convencional encontrado.",
-      "durationMs": 3
+      "durationMs": 1
     }
   ],
   "inventory": {
@@ -264,7 +261,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2140,
+        "durationMs": 1819,
         "outputBytes": 9387,
         "collections": {
           "target_frameworks": 0,
@@ -272,6 +269,10 @@
           "resources": 0,
           "attributes": 20,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -280,7 +281,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2213,
+        "durationMs": 1790,
         "outputBytes": 70315,
         "collections": {
           "target_frameworks": 0,
@@ -288,6 +289,10 @@
           "resources": 0,
           "attributes": 231,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -296,7 +301,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2710,
+        "durationMs": 2275,
         "outputBytes": 9870125,
         "collections": {}
       },
@@ -306,7 +311,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2169,
+        "durationMs": 1738,
         "outputBytes": 18413,
         "collections": {
           "target_frameworks": 0,
@@ -314,6 +319,10 @@
           "resources": 0,
           "attributes": 49,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -322,7 +331,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2311,
+        "durationMs": 1756,
         "outputBytes": 31164,
         "collections": {
           "target_frameworks": 0,
@@ -330,6 +339,10 @@
           "resources": 0,
           "attributes": 89,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -338,7 +351,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2258,
+        "durationMs": 1743,
         "outputBytes": 40610,
         "collections": {
           "target_frameworks": 0,
@@ -346,6 +359,10 @@
           "resources": 0,
           "attributes": 133,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -354,7 +371,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2076,
+        "durationMs": 1760,
         "outputBytes": 107864,
         "collections": {
           "target_frameworks": 0,
@@ -362,6 +379,10 @@
           "resources": 0,
           "attributes": 381,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -370,7 +391,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2037,
+        "durationMs": 1739,
         "outputBytes": 39107,
         "collections": {
           "target_frameworks": 0,
@@ -378,6 +399,10 @@
           "resources": 0,
           "attributes": 120,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -386,7 +411,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 1826,
+        "durationMs": 1802,
         "outputBytes": 95772,
         "collections": {
           "target_frameworks": 0,
@@ -394,6 +419,10 @@
           "resources": 0,
           "attributes": 309,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -402,7 +431,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 1887,
+        "durationMs": 1778,
         "outputBytes": 7170,
         "collections": {
           "target_frameworks": 0,
@@ -410,6 +439,10 @@
           "resources": 0,
           "attributes": 8,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -418,7 +451,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 1977,
+        "durationMs": 1743,
         "outputBytes": 6522,
         "collections": {
           "target_frameworks": 0,
@@ -426,6 +459,10 @@
           "resources": 0,
           "attributes": 7,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -434,7 +471,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2011,
+        "durationMs": 1734,
         "outputBytes": 38708,
         "collections": {
           "target_frameworks": 0,
@@ -442,6 +479,10 @@
           "resources": 0,
           "attributes": 113,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -450,7 +491,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 1862,
+        "durationMs": 1886,
         "outputBytes": 1282828,
         "collections": {
           "target_frameworks": 1,
@@ -458,6 +499,10 @@
           "resources": 1,
           "attributes": 4304,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -466,7 +511,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 1931,
+        "durationMs": 2255,
         "outputBytes": 225351,
         "collections": {
           "target_frameworks": 1,
@@ -474,6 +519,10 @@
           "resources": 0,
           "attributes": 753,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -482,7 +531,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2457,
+        "durationMs": 2082,
         "outputBytes": 106653,
         "collections": {
           "target_frameworks": 1,
@@ -490,6 +539,10 @@
           "resources": 0,
           "attributes": 332,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -498,7 +551,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3356,
+        "durationMs": 1972,
         "outputBytes": 80657,
         "collections": {
           "target_frameworks": 1,
@@ -506,6 +559,10 @@
           "resources": 0,
           "attributes": 255,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -514,7 +571,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3278,
+        "durationMs": 1879,
         "outputBytes": 7335,
         "collections": {
           "target_frameworks": 0,
@@ -522,6 +579,10 @@
           "resources": 0,
           "attributes": 11,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -530,7 +591,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3462,
+        "durationMs": 1961,
         "outputBytes": 165116,
         "collections": {
           "target_frameworks": 0,
@@ -538,6 +599,10 @@
           "resources": 1,
           "attributes": 542,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -546,7 +611,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2705,
+        "durationMs": 1735,
         "outputBytes": 30871,
         "collections": {
           "target_frameworks": 0,
@@ -554,6 +619,10 @@
           "resources": 0,
           "attributes": 93,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -562,7 +631,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2665,
+        "durationMs": 1906,
         "outputBytes": 63794,
         "collections": {
           "target_frameworks": 0,
@@ -570,6 +639,10 @@
           "resources": 0,
           "attributes": 208,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -578,7 +651,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2565,
+        "durationMs": 2929,
         "outputBytes": 6671,
         "collections": {
           "target_frameworks": 0,
@@ -586,6 +659,10 @@
           "resources": 0,
           "attributes": 11,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -594,7 +671,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2932,
+        "durationMs": 3677,
         "outputBytes": 566338,
         "collections": {
           "target_frameworks": 0,
@@ -602,6 +679,10 @@
           "resources": 0,
           "attributes": 1913,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -610,7 +691,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2877,
+        "durationMs": 3006,
         "outputBytes": 22416,
         "collections": {
           "target_frameworks": 0,
@@ -618,6 +699,10 @@
           "resources": 0,
           "attributes": 60,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -626,7 +711,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2723,
+        "durationMs": 3446,
         "outputBytes": 366361,
         "collections": {
           "target_frameworks": 0,
@@ -634,6 +719,10 @@
           "resources": 1,
           "attributes": 1218,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -642,7 +731,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2869,
+        "durationMs": 3177,
         "outputBytes": 103158,
         "collections": {
           "target_frameworks": 0,
@@ -650,6 +739,10 @@
           "resources": 6,
           "attributes": 340,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -658,7 +751,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2749,
+        "durationMs": 3059,
         "outputBytes": 110067,
         "collections": {
           "target_frameworks": 0,
@@ -666,6 +759,10 @@
           "resources": 0,
           "attributes": 381,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -674,7 +771,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2658,
+        "durationMs": 3106,
         "outputBytes": 6704,
         "collections": {
           "target_frameworks": 0,
@@ -682,6 +779,10 @@
           "resources": 0,
           "attributes": 11,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -690,7 +791,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2911,
+        "durationMs": 3047,
         "outputBytes": 10767,
         "collections": {
           "target_frameworks": 0,
@@ -698,6 +799,10 @@
           "resources": 0,
           "attributes": 22,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -706,7 +811,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2780,
+        "durationMs": 3006,
         "outputBytes": 25726,
         "collections": {
           "target_frameworks": 0,
@@ -714,6 +819,10 @@
           "resources": 0,
           "attributes": 73,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -722,7 +831,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2795,
+        "durationMs": 3019,
         "outputBytes": 6979,
         "collections": {
           "target_frameworks": 0,
@@ -730,6 +839,10 @@
           "resources": 0,
           "attributes": 11,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -738,7 +851,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3044,
+        "durationMs": 3047,
         "outputBytes": 80697,
         "collections": {
           "target_frameworks": 0,
@@ -746,6 +859,10 @@
           "resources": 0,
           "attributes": 253,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -754,7 +871,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2909,
+        "durationMs": 2867,
         "outputBytes": 33237,
         "collections": {
           "target_frameworks": 0,
@@ -762,6 +879,10 @@
           "resources": 0,
           "attributes": 103,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -770,7 +891,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2785,
+        "durationMs": 3163,
         "outputBytes": 6741,
         "collections": {
           "target_frameworks": 0,
@@ -778,6 +899,10 @@
           "resources": 0,
           "attributes": 11,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -786,7 +911,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2436,
+        "durationMs": 3170,
         "outputBytes": 6688,
         "collections": {
           "target_frameworks": 0,
@@ -794,6 +919,10 @@
           "resources": 0,
           "attributes": 11,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -802,7 +931,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2537,
+        "durationMs": 3187,
         "outputBytes": 6761,
         "collections": {
           "target_frameworks": 0,
@@ -810,6 +939,10 @@
           "resources": 0,
           "attributes": 11,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -818,7 +951,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2906,
+        "durationMs": 3128,
         "outputBytes": 7034,
         "collections": {
           "target_frameworks": 0,
@@ -826,6 +959,10 @@
           "resources": 0,
           "attributes": 11,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -834,7 +971,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2726,
+        "durationMs": 2635,
         "outputBytes": 7395,
         "collections": {
           "target_frameworks": 0,
@@ -842,6 +979,10 @@
           "resources": 0,
           "attributes": 11,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -850,7 +991,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2585,
+        "durationMs": 2460,
         "outputBytes": 11292,
         "collections": {
           "target_frameworks": 0,
@@ -858,6 +999,10 @@
           "resources": 0,
           "attributes": 25,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -866,7 +1011,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2833,
+        "durationMs": 2565,
         "outputBytes": 322540,
         "collections": {
           "target_frameworks": 0,
@@ -874,6 +1019,10 @@
           "resources": 0,
           "attributes": 1086,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -882,7 +1031,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2807,
+        "durationMs": 2994,
         "outputBytes": 7661,
         "collections": {
           "target_frameworks": 0,
@@ -890,6 +1039,10 @@
           "resources": 0,
           "attributes": 11,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -898,7 +1051,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2977,
+        "durationMs": 2992,
         "outputBytes": 125114,
         "collections": {
           "target_frameworks": 0,
@@ -906,6 +1059,10 @@
           "resources": 0,
           "attributes": 402,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -914,7 +1071,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2966,
+        "durationMs": 2537,
         "outputBytes": 153682,
         "collections": {
           "target_frameworks": 0,
@@ -922,6 +1079,10 @@
           "resources": 0,
           "attributes": 507,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -930,7 +1091,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2607,
+        "durationMs": 2655,
         "outputBytes": 38067,
         "collections": {
           "target_frameworks": 0,
@@ -938,6 +1099,10 @@
           "resources": 0,
           "attributes": 115,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -946,7 +1111,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2704,
+        "durationMs": 2973,
         "outputBytes": 24070,
         "collections": {
           "target_frameworks": 0,
@@ -954,6 +1119,10 @@
           "resources": 0,
           "attributes": 71,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -962,7 +1131,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3286,
+        "durationMs": 3154,
         "outputBytes": 1919147,
         "collections": {
           "target_frameworks": 0,
@@ -970,6 +1139,10 @@
           "resources": 58,
           "attributes": 6509,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -978,7 +1151,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3018,
+        "durationMs": 3168,
         "outputBytes": 118518,
         "collections": {
           "target_frameworks": 0,
@@ -986,6 +1159,10 @@
           "resources": 0,
           "attributes": 393,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -994,7 +1171,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2938,
+        "durationMs": 3197,
         "outputBytes": 503850,
         "collections": {
           "target_frameworks": 0,
@@ -1002,6 +1179,10 @@
           "resources": 0,
           "attributes": 1692,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1010,7 +1191,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2979,
+        "durationMs": 3079,
         "outputBytes": 1042546,
         "collections": {
           "target_frameworks": 0,
@@ -1018,6 +1199,10 @@
           "resources": 5,
           "attributes": 3512,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1026,7 +1211,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2569,
+        "durationMs": 2906,
         "outputBytes": 7906,
         "collections": {
           "target_frameworks": 0,
@@ -1034,6 +1219,10 @@
           "resources": 0,
           "attributes": 13,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1042,7 +1231,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2657,
+        "durationMs": 3102,
         "outputBytes": 14061,
         "collections": {
           "target_frameworks": 0,
@@ -1050,6 +1239,10 @@
           "resources": 0,
           "attributes": 33,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1058,7 +1251,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2657,
+        "durationMs": 2883,
         "outputBytes": 8842,
         "collections": {
           "target_frameworks": 0,
@@ -1066,6 +1259,10 @@
           "resources": 0,
           "attributes": 14,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1074,7 +1271,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2737,
+        "durationMs": 2893,
         "outputBytes": 30236,
         "collections": {
           "target_frameworks": 0,
@@ -1082,6 +1279,10 @@
           "resources": 0,
           "attributes": 88,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1090,7 +1291,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2653,
+        "durationMs": 2746,
         "outputBytes": 48564,
         "collections": {
           "target_frameworks": 0,
@@ -1098,6 +1299,10 @@
           "resources": 0,
           "attributes": 151,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1106,7 +1311,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2593,
+        "durationMs": 2714,
         "outputBytes": 32007,
         "collections": {
           "target_frameworks": 0,
@@ -1114,6 +1319,10 @@
           "resources": 0,
           "attributes": 96,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1122,7 +1331,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2595,
+        "durationMs": 2867,
         "outputBytes": 67485,
         "collections": {
           "target_frameworks": 0,
@@ -1130,6 +1339,10 @@
           "resources": 0,
           "attributes": 219,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1138,7 +1351,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2432,
+        "durationMs": 2683,
         "outputBytes": 60244,
         "collections": {
           "target_frameworks": 0,
@@ -1146,6 +1359,10 @@
           "resources": 0,
           "attributes": 186,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1154,7 +1371,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2666,
+        "durationMs": 2689,
         "outputBytes": 18101,
         "collections": {
           "target_frameworks": 0,
@@ -1162,6 +1379,10 @@
           "resources": 0,
           "attributes": 50,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1170,7 +1391,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2806,
+        "durationMs": 2797,
         "outputBytes": 1035860,
         "collections": {
           "target_frameworks": 0,
@@ -1178,6 +1399,10 @@
           "resources": 0,
           "attributes": 3523,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1186,7 +1411,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2890,
+        "durationMs": 2729,
         "outputBytes": 6877,
         "collections": {
           "target_frameworks": 0,
@@ -1194,6 +1419,10 @@
           "resources": 0,
           "attributes": 11,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1202,7 +1431,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2806,
+        "durationMs": 3047,
         "outputBytes": 1262129,
         "collections": {
           "target_frameworks": 0,
@@ -1210,6 +1439,10 @@
           "resources": 0,
           "attributes": 4238,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1218,7 +1451,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2712,
+        "durationMs": 2828,
         "outputBytes": 8655,
         "collections": {
           "target_frameworks": 0,
@@ -1226,6 +1459,10 @@
           "resources": 0,
           "attributes": 14,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1234,7 +1471,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2800,
+        "durationMs": 2845,
         "outputBytes": 844382,
         "collections": {
           "target_frameworks": 0,
@@ -1242,6 +1479,10 @@
           "resources": 0,
           "attributes": 2812,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1250,7 +1491,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2769,
+        "durationMs": 2704,
         "outputBytes": 898873,
         "collections": {
           "target_frameworks": 0,
@@ -1258,6 +1499,10 @@
           "resources": 0,
           "attributes": 3059,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1266,7 +1511,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2768,
+        "durationMs": 2585,
         "outputBytes": 7147,
         "collections": {
           "target_frameworks": 0,
@@ -1274,6 +1519,10 @@
           "resources": 0,
           "attributes": 11,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1282,7 +1531,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3133,
+        "durationMs": 2810,
         "outputBytes": 20973,
         "collections": {
           "target_frameworks": 0,
@@ -1290,6 +1539,10 @@
           "resources": 0,
           "attributes": 58,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1298,7 +1551,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2750,
+        "durationMs": 2793,
         "outputBytes": 5670,
         "collections": {
           "target_frameworks": 0,
@@ -1306,6 +1559,10 @@
           "resources": 0,
           "attributes": 7,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1314,7 +1571,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2942,
+        "durationMs": 2666,
         "outputBytes": 7110,
         "collections": {
           "target_frameworks": 0,
@@ -1322,6 +1579,10 @@
           "resources": 0,
           "attributes": 11,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1330,7 +1591,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2844,
+        "durationMs": 2938,
         "outputBytes": 60422,
         "collections": {
           "target_frameworks": 0,
@@ -1338,6 +1599,10 @@
           "resources": 0,
           "attributes": 187,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1346,7 +1611,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3004,
+        "durationMs": 3158,
         "outputBytes": 7706,
         "collections": {
           "target_frameworks": 0,
@@ -1354,6 +1619,10 @@
           "resources": 0,
           "attributes": 13,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1362,7 +1631,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2889,
+        "durationMs": 2774,
         "outputBytes": 132201,
         "collections": {
           "target_frameworks": 0,
@@ -1370,6 +1639,10 @@
           "resources": 0,
           "attributes": 452,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1378,7 +1651,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2817,
+        "durationMs": 2940,
         "outputBytes": 109501,
         "collections": {
           "target_frameworks": 0,
@@ -1386,6 +1659,10 @@
           "resources": 0,
           "attributes": 367,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1394,7 +1671,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2834,
+        "durationMs": 2920,
         "outputBytes": 119347,
         "collections": {
           "target_frameworks": 0,
@@ -1402,6 +1679,10 @@
           "resources": 0,
           "attributes": 390,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1410,7 +1691,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2894,
+        "durationMs": 2826,
         "outputBytes": 19732,
         "collections": {
           "target_frameworks": 0,
@@ -1418,6 +1699,10 @@
           "resources": 0,
           "attributes": 52,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1426,7 +1711,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2999,
+        "durationMs": 2824,
         "outputBytes": 58447,
         "collections": {
           "target_frameworks": 0,
@@ -1434,6 +1719,10 @@
           "resources": 0,
           "attributes": 179,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1442,7 +1731,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2942,
+        "durationMs": 2682,
         "outputBytes": 90804,
         "collections": {
           "target_frameworks": 0,
@@ -1450,6 +1739,10 @@
           "resources": 0,
           "attributes": 290,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1458,7 +1751,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2575,
+        "durationMs": 2627,
         "outputBytes": 168902,
         "collections": {
           "target_frameworks": 0,
@@ -1466,6 +1759,10 @@
           "resources": 0,
           "attributes": 559,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1474,7 +1771,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2711,
+        "durationMs": 2800,
         "outputBytes": 313301,
         "collections": {
           "target_frameworks": 0,
@@ -1482,6 +1779,10 @@
           "resources": 0,
           "attributes": 1061,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1490,7 +1791,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2926,
+        "durationMs": 2528,
         "outputBytes": 82182,
         "collections": {
           "target_frameworks": 0,
@@ -1498,6 +1799,10 @@
           "resources": 0,
           "attributes": 261,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1506,7 +1811,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2606,
+        "durationMs": 2731,
         "outputBytes": 154559,
         "collections": {
           "target_frameworks": 0,
@@ -1514,6 +1819,10 @@
           "resources": 0,
           "attributes": 510,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1522,7 +1831,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2733,
+        "durationMs": 2722,
         "outputBytes": 69422,
         "collections": {
           "target_frameworks": 0,
@@ -1530,6 +1839,10 @@
           "resources": 0,
           "attributes": 216,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1538,7 +1851,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2749,
+        "durationMs": 2736,
         "outputBytes": 59009,
         "collections": {
           "target_frameworks": 0,
@@ -1546,6 +1859,10 @@
           "resources": 0,
           "attributes": 181,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1554,7 +1871,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3242,
+        "durationMs": 2740,
         "outputBytes": 60486,
         "collections": {
           "target_frameworks": 0,
@@ -1562,6 +1879,10 @@
           "resources": 0,
           "attributes": 186,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1570,7 +1891,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2745,
+        "durationMs": 2970,
         "outputBytes": 59953,
         "collections": {
           "target_frameworks": 0,
@@ -1578,6 +1899,10 @@
           "resources": 0,
           "attributes": 184,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1586,7 +1911,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2927,
+        "durationMs": 3164,
         "outputBytes": 2353203,
         "collections": {}
       },
@@ -1596,7 +1921,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2585,
+        "durationMs": 2867,
         "outputBytes": 59960,
         "collections": {
           "target_frameworks": 0,
@@ -1604,6 +1929,10 @@
           "resources": 0,
           "attributes": 184,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1612,7 +1941,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2870,
+        "durationMs": 3063,
         "outputBytes": 78071,
         "collections": {
           "target_frameworks": 0,
@@ -1620,6 +1949,10 @@
           "resources": 0,
           "attributes": 246,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1628,7 +1961,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2612,
+        "durationMs": 3142,
         "outputBytes": 75917,
         "collections": {
           "target_frameworks": 0,
@@ -1636,6 +1969,10 @@
           "resources": 0,
           "attributes": 238,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1644,7 +1981,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2671,
+        "durationMs": 2993,
         "outputBytes": 56911,
         "collections": {
           "target_frameworks": 0,
@@ -1652,6 +1989,10 @@
           "resources": 0,
           "attributes": 175,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1660,7 +2001,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2584,
+        "durationMs": 3109,
         "outputBytes": 74662,
         "collections": {
           "target_frameworks": 0,
@@ -1668,6 +2009,10 @@
           "resources": 0,
           "attributes": 234,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1676,7 +2021,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2601,
+        "durationMs": 2760,
         "outputBytes": 5703,
         "collections": {
           "target_frameworks": 0,
@@ -1684,6 +2029,10 @@
           "resources": 0,
           "attributes": 6,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1692,7 +2041,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2791,
+        "durationMs": 2682,
         "outputBytes": 64778,
         "collections": {
           "target_frameworks": 0,
@@ -1700,6 +2049,10 @@
           "resources": 0,
           "attributes": 201,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1708,7 +2061,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2767,
+        "durationMs": 2845,
         "outputBytes": 212394,
         "collections": {
           "target_frameworks": 0,
@@ -1716,6 +2069,10 @@
           "resources": 0,
           "attributes": 710,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1724,7 +2081,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2749,
+        "durationMs": 2916,
         "outputBytes": 56946,
         "collections": {
           "target_frameworks": 0,
@@ -1732,6 +2089,10 @@
           "resources": 0,
           "attributes": 175,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1740,7 +2101,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2878,
+        "durationMs": 4221,
         "outputBytes": 203589,
         "collections": {
           "target_frameworks": 0,
@@ -1748,6 +2109,10 @@
           "resources": 0,
           "attributes": 682,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1756,7 +2121,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2928,
+        "durationMs": 3780,
         "outputBytes": 67291,
         "collections": {
           "target_frameworks": 0,
@@ -1764,6 +2129,10 @@
           "resources": 0,
           "attributes": 209,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1772,7 +2141,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2802,
+        "durationMs": 3295,
         "outputBytes": 69572,
         "collections": {
           "target_frameworks": 0,
@@ -1780,6 +2149,10 @@
           "resources": 0,
           "attributes": 217,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1788,7 +2161,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2763,
+        "durationMs": 2668,
         "outputBytes": 86941,
         "collections": {
           "target_frameworks": 0,
@@ -1796,6 +2169,10 @@
           "resources": 0,
           "attributes": 277,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1804,7 +2181,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2586,
+        "durationMs": 2740,
         "outputBytes": 61737,
         "collections": {
           "target_frameworks": 0,
@@ -1812,6 +2189,10 @@
           "resources": 0,
           "attributes": 190,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1820,7 +2201,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2617,
+        "durationMs": 2885,
         "outputBytes": 59021,
         "collections": {
           "target_frameworks": 0,
@@ -1828,6 +2209,10 @@
           "resources": 0,
           "attributes": 181,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1836,7 +2221,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2506,
+        "durationMs": 2781,
         "outputBytes": 59912,
         "collections": {
           "target_frameworks": 0,
@@ -1844,6 +2229,10 @@
           "resources": 0,
           "attributes": 184,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1852,7 +2241,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2750,
+        "durationMs": 2845,
         "outputBytes": 132580,
         "collections": {
           "target_frameworks": 0,
@@ -1860,6 +2249,10 @@
           "resources": 0,
           "attributes": 435,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1868,7 +2261,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2730,
+        "durationMs": 3112,
         "outputBytes": 9494,
         "collections": {
           "target_frameworks": 0,
@@ -1876,6 +2269,10 @@
           "resources": 0,
           "attributes": 18,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1884,7 +2281,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2732,
+        "durationMs": 3649,
         "outputBytes": 70235,
         "collections": {
           "target_frameworks": 0,
@@ -1892,6 +2289,10 @@
           "resources": 0,
           "attributes": 218,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1900,7 +2301,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2730,
+        "durationMs": 2985,
         "outputBytes": 280764,
         "collections": {
           "target_frameworks": 0,
@@ -1908,6 +2309,10 @@
           "resources": 0,
           "attributes": 955,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1916,7 +2321,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2756,
+        "durationMs": 3126,
         "outputBytes": 57950,
         "collections": {
           "target_frameworks": 0,
@@ -1924,6 +2329,10 @@
           "resources": 0,
           "attributes": 178,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1932,7 +2341,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2800,
+        "durationMs": 2889,
         "outputBytes": 385250,
         "collections": {
           "target_frameworks": 0,
@@ -1940,6 +2349,10 @@
           "resources": 0,
           "attributes": 1310,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1948,7 +2361,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2811,
+        "durationMs": 3109,
         "outputBytes": 313862,
         "collections": {
           "target_frameworks": 0,
@@ -1956,6 +2369,10 @@
           "resources": 0,
           "attributes": 1059,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1964,7 +2381,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2727,
+        "durationMs": 3030,
         "outputBytes": 96166,
         "collections": {
           "target_frameworks": 0,
@@ -1972,6 +2389,10 @@
           "resources": 0,
           "attributes": 310,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1980,7 +2401,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2618,
+        "durationMs": 3005,
         "outputBytes": 57106,
         "collections": {
           "target_frameworks": 0,
@@ -1988,6 +2409,10 @@
           "resources": 0,
           "attributes": 175,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -1996,7 +2421,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2659,
+        "durationMs": 3229,
         "outputBytes": 58774,
         "collections": {
           "target_frameworks": 0,
@@ -2004,6 +2429,10 @@
           "resources": 0,
           "attributes": 180,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2012,7 +2441,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2558,
+        "durationMs": 2932,
         "outputBytes": 57011,
         "collections": {
           "target_frameworks": 0,
@@ -2020,6 +2449,10 @@
           "resources": 0,
           "attributes": 175,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2028,7 +2461,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2788,
+        "durationMs": 2747,
         "outputBytes": 108778,
         "collections": {
           "target_frameworks": 0,
@@ -2036,6 +2469,10 @@
           "resources": 0,
           "attributes": 352,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2044,7 +2481,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2672,
+        "durationMs": 3143,
         "outputBytes": 59083,
         "collections": {
           "target_frameworks": 0,
@@ -2052,6 +2489,10 @@
           "resources": 0,
           "attributes": 181,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2060,7 +2501,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2694,
+        "durationMs": 2850,
         "outputBytes": 61212,
         "collections": {
           "target_frameworks": 0,
@@ -2068,6 +2509,10 @@
           "resources": 0,
           "attributes": 188,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2076,7 +2521,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2588,
+        "durationMs": 2875,
         "outputBytes": 57874,
         "collections": {
           "target_frameworks": 0,
@@ -2084,6 +2529,10 @@
           "resources": 0,
           "attributes": 177,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2092,7 +2541,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2730,
+        "durationMs": 2840,
         "outputBytes": 62073,
         "collections": {
           "target_frameworks": 0,
@@ -2100,6 +2549,10 @@
           "resources": 0,
           "attributes": 192,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2108,7 +2561,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2732,
+        "durationMs": 3026,
         "outputBytes": 84725,
         "collections": {
           "target_frameworks": 0,
@@ -2116,6 +2569,10 @@
           "resources": 0,
           "attributes": 267,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2124,7 +2581,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2642,
+        "durationMs": 2443,
         "outputBytes": 63445,
         "collections": {
           "target_frameworks": 0,
@@ -2132,6 +2589,10 @@
           "resources": 0,
           "attributes": 197,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2140,7 +2601,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2606,
+        "durationMs": 2858,
         "outputBytes": 170283,
         "collections": {
           "target_frameworks": 0,
@@ -2148,6 +2609,10 @@
           "resources": 0,
           "attributes": 562,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2156,7 +2621,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2515,
+        "durationMs": 2878,
         "outputBytes": 58414,
         "collections": {
           "target_frameworks": 0,
@@ -2164,6 +2629,10 @@
           "resources": 0,
           "attributes": 177,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2172,7 +2641,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2444,
+        "durationMs": 2597,
         "outputBytes": 151437,
         "collections": {
           "target_frameworks": 0,
@@ -2180,6 +2649,10 @@
           "resources": 0,
           "attributes": 503,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2188,7 +2661,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2673,
+        "durationMs": 2678,
         "outputBytes": 175292,
         "collections": {
           "target_frameworks": 0,
@@ -2196,6 +2669,10 @@
           "resources": 0,
           "attributes": 575,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2204,7 +2681,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2681,
+        "durationMs": 2966,
         "outputBytes": 79221,
         "collections": {
           "target_frameworks": 0,
@@ -2212,6 +2689,10 @@
           "resources": 0,
           "attributes": 251,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2220,7 +2701,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2780,
+        "durationMs": 2831,
         "outputBytes": 88986,
         "collections": {
           "target_frameworks": 0,
@@ -2228,6 +2709,10 @@
           "resources": 0,
           "attributes": 282,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2236,7 +2721,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2863,
+        "durationMs": 2953,
         "outputBytes": 193804,
         "collections": {
           "target_frameworks": 0,
@@ -2244,6 +2729,10 @@
           "resources": 0,
           "attributes": 654,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2252,7 +2741,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2910,
+        "durationMs": 3423,
         "outputBytes": 1730509,
         "collections": {
           "target_frameworks": 0,
@@ -2260,6 +2749,10 @@
           "resources": 0,
           "attributes": 5858,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2268,7 +2761,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2805,
+        "durationMs": 2999,
         "outputBytes": 79088,
         "collections": {
           "target_frameworks": 0,
@@ -2276,6 +2769,10 @@
           "resources": 0,
           "attributes": 248,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2284,7 +2781,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2771,
+        "durationMs": 2920,
         "outputBytes": 56926,
         "collections": {
           "target_frameworks": 0,
@@ -2292,6 +2789,10 @@
           "resources": 0,
           "attributes": 175,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2300,7 +2801,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2840,
+        "durationMs": 2970,
         "outputBytes": 98941,
         "collections": {
           "target_frameworks": 0,
@@ -2308,6 +2809,10 @@
           "resources": 0,
           "attributes": 318,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2316,7 +2821,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2716,
+        "durationMs": 2687,
         "outputBytes": 102326,
         "collections": {
           "target_frameworks": 0,
@@ -2324,6 +2829,10 @@
           "resources": 0,
           "attributes": 328,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2332,7 +2841,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2775,
+        "durationMs": 2771,
         "outputBytes": 62194,
         "collections": {
           "target_frameworks": 0,
@@ -2340,6 +2849,10 @@
           "resources": 0,
           "attributes": 192,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2348,7 +2861,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2671,
+        "durationMs": 2662,
         "outputBytes": 62750,
         "collections": {
           "target_frameworks": 0,
@@ -2356,6 +2869,10 @@
           "resources": 0,
           "attributes": 195,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2364,7 +2881,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2918,
+        "durationMs": 2861,
         "outputBytes": 56986,
         "collections": {
           "target_frameworks": 0,
@@ -2372,6 +2889,10 @@
           "resources": 0,
           "attributes": 175,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2380,7 +2901,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2790,
+        "durationMs": 2176,
         "outputBytes": 59109,
         "collections": {
           "target_frameworks": 0,
@@ -2388,6 +2909,10 @@
           "resources": 0,
           "attributes": 179,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2396,7 +2921,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2651,
+        "durationMs": 2292,
         "outputBytes": 59591,
         "collections": {
           "target_frameworks": 0,
@@ -2404,6 +2929,10 @@
           "resources": 0,
           "attributes": 181,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2412,7 +2941,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2770,
+        "durationMs": 2054,
         "outputBytes": 85684,
         "collections": {
           "target_frameworks": 0,
@@ -2420,6 +2949,10 @@
           "resources": 0,
           "attributes": 272,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2428,7 +2961,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2786,
+        "durationMs": 1994,
         "outputBytes": 58812,
         "collections": {
           "target_frameworks": 0,
@@ -2436,6 +2969,10 @@
           "resources": 0,
           "attributes": 179,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2444,7 +2981,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2748,
+        "durationMs": 1929,
         "outputBytes": 68626,
         "collections": {
           "target_frameworks": 0,
@@ -2452,6 +2989,10 @@
           "resources": 0,
           "attributes": 210,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2460,7 +3001,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2819,
+        "durationMs": 1884,
         "outputBytes": 120525,
         "collections": {
           "target_frameworks": 0,
@@ -2468,6 +3009,10 @@
           "resources": 0,
           "attributes": 393,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2476,7 +3021,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3088,
+        "durationMs": 1884,
         "outputBytes": 73674,
         "collections": {
           "target_frameworks": 0,
@@ -2484,6 +3029,10 @@
           "resources": 0,
           "attributes": 232,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2492,7 +3041,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2993,
+        "durationMs": 1839,
         "outputBytes": 61003,
         "collections": {
           "target_frameworks": 0,
@@ -2500,6 +3049,10 @@
           "resources": 0,
           "attributes": 187,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2508,7 +3061,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2812,
+        "durationMs": 1903,
         "outputBytes": 93160,
         "collections": {
           "target_frameworks": 0,
@@ -2516,6 +3069,10 @@
           "resources": 0,
           "attributes": 296,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2524,7 +3081,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2747,
+        "durationMs": 2145,
         "outputBytes": 85826,
         "collections": {
           "target_frameworks": 0,
@@ -2532,6 +3089,10 @@
           "resources": 0,
           "attributes": 272,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2540,7 +3101,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2854,
+        "durationMs": 2397,
         "outputBytes": 57588,
         "collections": {
           "target_frameworks": 0,
@@ -2548,6 +3109,10 @@
           "resources": 0,
           "attributes": 176,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2556,7 +3121,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2723,
+        "durationMs": 2692,
         "outputBytes": 143598,
         "collections": {
           "target_frameworks": 0,
@@ -2564,6 +3129,10 @@
           "resources": 0,
           "attributes": 468,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2572,7 +3141,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2922,
+        "durationMs": 3142,
         "outputBytes": 20820,
         "collections": {
           "target_frameworks": 0,
@@ -2580,6 +3149,10 @@
           "resources": 0,
           "attributes": 3,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2588,7 +3161,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2907,
+        "durationMs": 2979,
         "outputBytes": 537371,
         "collections": {
           "target_frameworks": 0,
@@ -2596,6 +3169,10 @@
           "resources": 0,
           "attributes": 1758,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2604,7 +3181,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2788,
+        "durationMs": 2642,
         "outputBytes": 8158,
         "collections": {
           "target_frameworks": 0,
@@ -2612,6 +3189,10 @@
           "resources": 0,
           "attributes": 14,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2620,7 +3201,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2731,
+        "durationMs": 2934,
         "outputBytes": 77802,
         "collections": {
           "target_frameworks": 0,
@@ -2628,6 +3209,10 @@
           "resources": 0,
           "attributes": 259,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2636,7 +3221,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3125,
+        "durationMs": 3649,
         "outputBytes": 1759293,
         "collections": {
           "target_frameworks": 0,
@@ -2644,6 +3229,10 @@
           "resources": 8,
           "attributes": 6023,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2652,7 +3241,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2757,
+        "durationMs": 2982,
         "outputBytes": 11292,
         "collections": {
           "target_frameworks": 0,
@@ -2660,6 +3249,10 @@
           "resources": 0,
           "attributes": 11,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2668,7 +3261,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2726,
+        "durationMs": 2831,
         "outputBytes": 6237,
         "collections": {
           "target_frameworks": 0,
@@ -2676,15 +3269,20 @@
           "resources": 0,
           "attributes": 9,
           "limitations": 1
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
         "command": "inspect-managed-members",
         "target": "Hollow Knight Silksong_Data/Managed/Assembly-CSharp.dll",
-        "status": "success",
+        "status": "warning",
+        "message": "Cobertura REA unavailable: Managed metadata exceeds the 67108864 byte representation budget",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 4338,
+        "durationMs": 4564,
         "outputBytes": 1895,
         "collections": {
           "types": 0,
@@ -2694,7 +3292,20 @@
           "call_edges": 0,
           "field_accesses": 0,
           "limitations": 1
-        }
+        },
+        "coverage": {
+          "state": "unavailable",
+          "issues": [
+            {
+              "code": "resource-limit",
+              "scope": "metadata.representation",
+              "detail": "Managed metadata exceeds the 67108864 byte representation budget"
+            }
+          ]
+        },
+        "limitations": [
+          "The CLI metadata could not be admitted; managed member inspection is unavailable."
+        ]
       },
       {
         "command": "inspect-managed-members",
@@ -2702,9 +3313,24 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 4982,
+        "durationMs": 4894,
         "outputBytes": 12434644,
-        "collections": {}
+        "collections": {
+          "types": 6,
+          "exported_types": 0,
+          "fields": 2234,
+          "methods": 1188,
+          "member_refs": 9417,
+          "call_edges": 5929,
+          "field_accesses": 8984,
+          "user_strings": 346,
+          "limitations": 6
+        },
+        "unmatchedTypes": [],
+        "coverage": {
+          "state": "complete",
+          "issues": []
+        }
       },
       {
         "command": "inspect-managed-native-boundaries",
@@ -2712,13 +3338,17 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3385,
+        "durationMs": 3330,
         "outputBytes": 109922,
         "collections": {
           "module_refs": 3,
           "pinvoke_imports": 16,
           "native_implementations": 400,
           "limitations": 3
+        },
+        "coverage": {
+          "state": "complete",
+          "issues": []
         }
       },
       {
@@ -2727,7 +3357,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2470,
+        "durationMs": 2508,
         "outputBytes": 12037,
         "collections": {
           "directories": 17,
@@ -2742,7 +3372,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2858,
+        "durationMs": 2880,
         "outputBytes": 6102,
         "collections": {
           "directories": 9,
@@ -2758,7 +3388,16 @@
     "status": "skipped"
   },
   "playerLogs": [],
-  "previousPublication": {},
+  "previousPublication": {
+    "runId": "20261025T015402Z",
+    "finishedAt": "2026-10-25T02:01:26.451Z",
+    "status": "success",
+    "branch": "arena/d5686468-silksongrea",
+    "commitHash": "b28706e1e8e87e84d4d34f1a3ab8738ff7590cfe",
+    "committed": true,
+    "pushed": true,
+    "message": "Relatório publicado na branch atual (b28706e1e8e8)."
+  },
   "publication": {
     "status": "pending",
     "reason": "Commit/push acontece depois da geração deste arquivo; o resultado fica registrado para a próxima execução."

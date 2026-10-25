@@ -161,11 +161,13 @@
 | inspect-managed-artifact — Hollow Knight Silksong_Data/Managed/mscorlib.dll | ✅ OK | 1.7 MiB | resources=8 |
 | inspect-managed-artifact — Hollow Knight Silksong_Data/Managed/netstandard.dll | ✅ OK | 11.0 KiB | resources=0 |
 | inspect-managed-artifact — Hollow Knight Silksong_Data/Managed/zlib.net.dll | ✅ OK | 6.1 KiB | resources=0 |
-| inspect-managed-members — Hollow Knight Silksong_Data/Managed/Assembly-CSharp.dll | ✅ OK | 1.9 KiB | types=0, fields=0, methods=0, call_edges=0 |
-| inspect-managed-members — HeroController, HeroControllerStates, HeroActions, InputHandler, GameManager, PlayerData | ✅ OK | 11.9 MiB |  |
+| inspect-managed-members — Hollow Knight Silksong_Data/Managed/Assembly-CSharp.dll | ⚠️ AVISO | 1.9 KiB | Cobertura REA unavailable: Managed metadata exceeds the 67108864 byte representation budget; types=0, fields=0, methods=0, member_refs=0, call_edges=0 |
+| inspect-managed-members — HeroController, HeroControllerStates, HeroActions, InputHandler, GameManager, PlayerData | ✅ OK | 11.9 MiB | types=6, fields=2234, methods=1188, member_refs=9417, call_edges=5929, user_strings=346 |
 | inspect-managed-native-boundaries — Hollow Knight Silksong_Data/Managed/Assembly-CSharp.dll | ✅ OK | 107.3 KiB | pinvoke_imports=16 |
 | inspect-pe-resources — Hollow Knight Silksong.exe | ✅ OK | 11.8 KiB | resources=12 |
 | inspect-pe-resources — UnityPlayer.dll | ✅ OK | 6.0 KiB | resources=6 |
+
+Cobertura partial ou unavailable representa limite/indisponibilidade da inspeção, não ausência dos membros no jogo. O JSON bruto e o CIL recuperado ficam somente no computador local.
 
 ## Decompilação local com ILSpy
 

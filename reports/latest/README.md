@@ -1,10 +1,10 @@
 # Relatório SilksongREA
 
-**Execução:** `20261025T015402Z`  
-**Início (UTC):** `2026-10-25T01:54:02.472Z`  
+**Execução:** `20261025T023917Z`  
+**Início (UTC):** `2026-10-25T02:39:17.180Z`  
 **Status geral:** ❌ FALHOU  
 **Runtime detectado:** Unity Mono  
-**Origem da detecção:** steam-manifest
+**Origem da detecção:** config-local
 
 > Este é um relatório sanitizado. Código decompilado, CIL completo, inventário CSV, logs brutos e demais artefatos locais não são publicados.
 
@@ -13,24 +13,24 @@
 - Arquivos inventariados: **2268** (7.6 GiB).
 - Assemblies gerenciados encontrados: **152**.
 - Decompilação ILSpy: **⏭️ IGNORADO**; 0 arquivos C# e 0 linhas locais.
-- Etapas com falha: **1**; etapas com aviso: **0**.
+- Etapas com falha: **1**; etapas com aviso: **1**.
 
 ## Etapas
 
 | Etapa | Status | Duração | Observação |
 |---|---|---:|---|
-| Sincronização inicial do repositório | ✅ OK | 1.8 s | Branch atual sincronizada antes da análise. |
-| Verificação das ferramentas | ✅ OK | 1.6 s | REA 6.7.0; 162 comandos detectados. |
-| Localização e identificação do jogo | ✅ OK | 1.4 s | Unity Mono; 152 assemblies gerenciados. |
-| Inventário completo e hashes da build | ✅ OK | 1.3 s | 2268 arquivos; 0 entradas ilegíveis. |
-| Identidade de todos os assemblies .NET | ✅ OK | 6 min 54 s | 152/152 assemblies identificados; 0 com aviso. |
-| Membros e CIL do Assembly-CSharp | ✅ OK | 4.3 s |  |
+| Sincronização inicial do repositório | ✅ OK | 1.6 s | Branch atual sincronizada antes da análise. |
+| Verificação das ferramentas | ✅ OK | 1.7 s | REA 6.7.0; 162 comandos detectados. |
+| Localização e identificação do jogo | ✅ OK | 605 ms | Unity Mono; 152 assemblies gerenciados. |
+| Inventário completo e hashes da build | ✅ OK | 957 ms | 2268 arquivos; 0 entradas ilegíveis. |
+| Identidade de todos os assemblies .NET | ✅ OK | 6 min 56 s | 152/152 assemblies identificados; 0 com aviso. |
+| Membros e CIL do Assembly-CSharp | ⚠️ AVISO | 4.6 s | Cobertura REA unavailable: Managed metadata exceeds the 67108864 byte representation budget |
 | Tipos prioritários para mecânicas | ✅ OK | 5.0 s |  |
-| Fronteiras nativas do código gerenciado | ✅ OK | 3.4 s |  |
-| Recursos dos executáveis PE | ✅ OK | 5.3 s | 2/2 imagens PE examinadas; 0 com aviso. |
+| Fronteiras nativas do código gerenciado | ✅ OK | 3.3 s |  |
+| Recursos dos executáveis PE | ✅ OK | 5.4 s | 2/2 imagens PE examinadas; 0 com aviso. |
 | Metadados IL2CPP (fallback) | ⏭️ IGNORADO | 0 ms | Nenhum global-metadata.dat encontrado; normal em uma instalação Mono. |
-| Decompilação completa do Assembly-CSharp com ILSpy | ❌ FALHOU | 270 ms | winget não encontrado; instale o .NET SDK 10 manualmente ou use --no-decompile. |
-| Análise de Player.log | ⏭️ IGNORADO | 3 ms | Nenhum Player.log convencional encontrado. |
+| Decompilação completa do Assembly-CSharp com ILSpy | ❌ FALHOU | 1 min 9 s | Falha ao instalar ilspycmd 11.1.0.9782: No NuGet sources are defined or enabled |
+| Análise de Player.log | ⏭️ IGNORADO | 1 ms | Nenhum Player.log convencional encontrado. |
 
 ## Integridade dos arquivos principais
 
