@@ -1,9 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import path from 'node:path';
-import { mkdtemp, rm, writeFile } from 'node:fs/promises';
+import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
-import { runRea } from '../scripts/lib/tools.mjs';
+import { runRea, writeToolNuGetConfig } from '../scripts/lib/tools.mjs';
 
 async function withFakeRea(source, run) {
   const directory = await mkdtemp(path.join(tmpdir(), 'silksong-rea-tools-'));
@@ -56,4 +56,14 @@ test('REA com saída inválida e exit zero não é tratado como sucesso', async 
   );
   assert.equal(result.status, 'warning');
   assert.match(result.parseError, /JSON/);
+});
+
+test('ILSpy usa configuração NuGet isolada com fonte pública explícita', async (t) => {
+  const directory = await mkdtemp(path.join(tmpdir(), 'silksong-nuget-'));
+  t.after(() => rm(directory, { recursive: true, force: true }));
+  const configPath = await writeToolNuGetConfig(directory);
+  const config = await readFile(configPath, 'utf8');
+  assert.match(config, /<clear\s*\/>/);
+  assert.match(config, /https:\/\/api\.nuget\.org\/v3\/index\.json/);
+  assert.doesNotMatch(config, /password|credentials/i);
 });

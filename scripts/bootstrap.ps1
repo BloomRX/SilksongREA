@@ -76,7 +76,7 @@ function Write-BootstrapFailure {
     [IO.File]::WriteAllText((Join-Path $report 'errors.md'), $contents, $encoding)
     $summary = @{
         schemaVersion = 1
-        toolVersion = '1.1.0'
+        toolVersion = '1.1.1'
         startedAt = $timestamp
         status = 'failed'
         stages = @(@{ id = 'bootstrap'; title = 'Bootstrap'; status = 'failed'; message = $safe })

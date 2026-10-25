@@ -229,6 +229,19 @@ async function installDotnet(repositoryRoot, rawDirectory) {
   }
 }
 
+export async function writeToolNuGetConfig(rawDirectory) {
+  const target = path.join(rawDirectory, 'NuGet.Config');
+  await writeFileAtomic(target, `<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <packageSources>
+    <clear />
+    <add key="nuget.org" value="https://api.nuget.org/v3/index.json" protocolVersion="3" />
+  </packageSources>
+</configuration>
+`);
+  return target;
+}
+
 export async function ensureIlspyCmd(repositoryRoot, rawDirectory) {
   const toolDirectory = path.join(repositoryRoot, '.tools', 'ilspycmd');
   const executableName = process.platform === 'win32' ? 'ilspycmd.exe' : 'ilspycmd';
@@ -274,9 +287,11 @@ export async function ensureIlspyCmd(repositoryRoot, rawDirectory) {
 
   await ensureDir(toolDirectory);
   const alreadyInstalled = await isFile(localExecutable);
+  const nugetConfig = await writeToolNuGetConfig(rawDirectory);
   const args = [
     'tool', alreadyInstalled ? 'update' : 'install', '--tool-path', toolDirectory,
     'ilspycmd', '--version', ILSPY_VERSION,
+    '--configfile', nugetConfig,
   ];
   const result = await runProcess({
     command: dotnet.executable,

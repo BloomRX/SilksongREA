@@ -26,6 +26,8 @@ A primeira execução pode demorar bastante. Reserve alguns gigabytes para resul
 - Dependências do repositório com `npm ci`, incluindo **REA 6.7.0** fixado no lockfile.
 - .NET SDK 10 local em `.tools/dotnet`, pelo script oficial da Microsoft e sem depender de `winget`, além de **ILSpyCmd 11.1.0.9782**, somente quando a decompilação for executada.
 
+O ILSpyCmd usa um `NuGet.Config` temporário com somente o feed público `nuget.org`; fontes desabilitadas na configuração global não impedem a instalação, e essa configuração global não é modificada.
+
 O `winget` e instaladores podem apresentar solicitações do Windows. Nenhuma política de execução do PowerShell é alterada permanentemente: o `Bypass` vale apenas para o processo iniciado pelo `.bat`.
 
 ## Etapas da análise
