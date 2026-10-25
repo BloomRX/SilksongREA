@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "toolVersion": "1.1.0",
-  "runId": "20261025T023917Z",
-  "startedAt": "2026-10-25T02:39:17.180Z",
-  "finishedAt": "2026-10-25T02:47:44.900Z",
-  "status": "failed",
+  "toolVersion": "1.1.1",
+  "runId": "20261025T031201Z",
+  "startedAt": "2026-10-25T03:12:01.183Z",
+  "finishedAt": "2026-10-25T03:16:41.069Z",
+  "status": "warning",
   "options": {
     "publish": true,
     "decompile": true,
@@ -15,11 +15,12 @@
     "osRelease": "10.0.26200",
     "architecture": "x64",
     "nodeVersion": "v26.8.1",
-    "reaVersion": "6.7.0"
+    "reaVersion": "6.7.0",
+    "ilspyVersion": "11.1.0.9782"
   },
   "game": {
     "runtime": "Unity Mono",
-    "source": "config-local",
+    "source": "argumento",
     "manifest": {},
     "dataDirectoryCount": 1,
     "hasMainExecutable": true,
@@ -33,75 +34,75 @@
       "status": "success",
       "branch": "arena/d5686468-silksongrea",
       "message": "Branch atual sincronizada antes da análise.",
-      "durationMs": 1631
+      "durationMs": 1370
     },
     {
       "id": "tools",
       "title": "Verificação das ferramentas",
       "status": "success",
       "message": "REA 6.7.0; 162 comandos detectados.",
-      "durationMs": 1747
+      "durationMs": 1382
     },
     {
       "id": "game",
       "title": "Localização e identificação do jogo",
       "status": "success",
       "message": "Unity Mono; 152 assemblies gerenciados.",
-      "durationMs": 605
+      "durationMs": 297
     },
     {
       "id": "inventory",
       "title": "Inventário completo e hashes da build",
       "status": "success",
       "message": "2268 arquivos; 0 entradas ilegíveis.",
-      "durationMs": 957
+      "durationMs": 843
     },
     {
       "id": "managed-artifacts",
       "title": "Identidade de todos os assemblies .NET",
       "status": "success",
       "message": "152/152 assemblies identificados; 0 com aviso.",
-      "durationMs": 415763
+      "durationMs": 232273
     },
     {
       "id": "managed-members",
       "title": "Membros e CIL do Assembly-CSharp",
       "status": "warning",
       "message": "Cobertura REA unavailable: Managed metadata exceeds the 67108864 byte representation budget",
-      "durationMs": 4567
+      "durationMs": 2053
     },
     {
       "id": "managed-focus",
       "title": "Tipos prioritários para mecânicas",
       "status": "success",
-      "durationMs": 4965
+      "durationMs": 2434
     },
     {
       "id": "managed-native",
       "title": "Fronteiras nativas do código gerenciado",
       "status": "success",
-      "durationMs": 3335
+      "durationMs": 1625
     },
     {
       "id": "native-pe",
       "title": "Recursos dos executáveis PE",
       "status": "success",
       "message": "2/2 imagens PE examinadas; 0 com aviso.",
-      "durationMs": 5395
+      "durationMs": 2403
     },
     {
       "id": "il2cpp",
       "title": "Metadados IL2CPP (fallback)",
       "status": "skipped",
       "reason": "Nenhum global-metadata.dat encontrado; normal em uma instalação Mono.",
-      "durationMs": 0
+      "durationMs": 1
     },
     {
       "id": "decompile",
       "title": "Decompilação completa do Assembly-CSharp com ILSpy",
-      "status": "failed",
-      "message": "Falha ao instalar ilspycmd 11.1.0.9782: No NuGet sources are defined or enabled",
-      "durationMs": 68740
+      "status": "success",
+      "message": "5077 arquivos C# locais.",
+      "durationMs": 35198
     },
     {
       "id": "player-logs",
@@ -261,7 +262,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 1819,
+        "durationMs": 1456,
         "outputBytes": 9387,
         "collections": {
           "target_frameworks": 0,
@@ -281,7 +282,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 1790,
+        "durationMs": 1464,
         "outputBytes": 70315,
         "collections": {
           "target_frameworks": 0,
@@ -301,7 +302,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2275,
+        "durationMs": 1924,
         "outputBytes": 9870125,
         "collections": {}
       },
@@ -311,7 +312,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 1738,
+        "durationMs": 1449,
         "outputBytes": 18413,
         "collections": {
           "target_frameworks": 0,
@@ -331,7 +332,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 1756,
+        "durationMs": 1443,
         "outputBytes": 31164,
         "collections": {
           "target_frameworks": 0,
@@ -351,7 +352,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 1743,
+        "durationMs": 1459,
         "outputBytes": 40610,
         "collections": {
           "target_frameworks": 0,
@@ -371,7 +372,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 1760,
+        "durationMs": 1460,
         "outputBytes": 107864,
         "collections": {
           "target_frameworks": 0,
@@ -391,7 +392,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 1739,
+        "durationMs": 1440,
         "outputBytes": 39107,
         "collections": {
           "target_frameworks": 0,
@@ -411,7 +412,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 1802,
+        "durationMs": 1466,
         "outputBytes": 95772,
         "collections": {
           "target_frameworks": 0,
@@ -431,7 +432,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 1778,
+        "durationMs": 1416,
         "outputBytes": 7170,
         "collections": {
           "target_frameworks": 0,
@@ -451,7 +452,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 1743,
+        "durationMs": 1429,
         "outputBytes": 6522,
         "collections": {
           "target_frameworks": 0,
@@ -471,7 +472,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 1734,
+        "durationMs": 1477,
         "outputBytes": 38708,
         "collections": {
           "target_frameworks": 0,
@@ -491,7 +492,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 1886,
+        "durationMs": 1591,
         "outputBytes": 1282828,
         "collections": {
           "target_frameworks": 1,
@@ -511,7 +512,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2255,
+        "durationMs": 1497,
         "outputBytes": 225351,
         "collections": {
           "target_frameworks": 1,
@@ -531,7 +532,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2082,
+        "durationMs": 1466,
         "outputBytes": 106653,
         "collections": {
           "target_frameworks": 1,
@@ -551,7 +552,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 1972,
+        "durationMs": 1470,
         "outputBytes": 80657,
         "collections": {
           "target_frameworks": 1,
@@ -571,7 +572,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 1879,
+        "durationMs": 1418,
         "outputBytes": 7335,
         "collections": {
           "target_frameworks": 0,
@@ -591,7 +592,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 1961,
+        "durationMs": 1667,
         "outputBytes": 165116,
         "collections": {
           "target_frameworks": 0,
@@ -611,7 +612,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 1735,
+        "durationMs": 1569,
         "outputBytes": 30871,
         "collections": {
           "target_frameworks": 0,
@@ -631,7 +632,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 1906,
+        "durationMs": 1526,
         "outputBytes": 63794,
         "collections": {
           "target_frameworks": 0,
@@ -651,7 +652,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2929,
+        "durationMs": 1818,
         "outputBytes": 6671,
         "collections": {
           "target_frameworks": 0,
@@ -671,7 +672,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3677,
+        "durationMs": 1665,
         "outputBytes": 566338,
         "collections": {
           "target_frameworks": 0,
@@ -691,7 +692,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3006,
+        "durationMs": 1513,
         "outputBytes": 22416,
         "collections": {
           "target_frameworks": 0,
@@ -711,7 +712,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3446,
+        "durationMs": 1645,
         "outputBytes": 366361,
         "collections": {
           "target_frameworks": 0,
@@ -731,7 +732,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3177,
+        "durationMs": 1561,
         "outputBytes": 103158,
         "collections": {
           "target_frameworks": 0,
@@ -751,7 +752,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3059,
+        "durationMs": 1475,
         "outputBytes": 110067,
         "collections": {
           "target_frameworks": 0,
@@ -771,7 +772,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3106,
+        "durationMs": 1384,
         "outputBytes": 6704,
         "collections": {
           "target_frameworks": 0,
@@ -791,7 +792,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3047,
+        "durationMs": 1423,
         "outputBytes": 10767,
         "collections": {
           "target_frameworks": 0,
@@ -811,7 +812,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3006,
+        "durationMs": 1488,
         "outputBytes": 25726,
         "collections": {
           "target_frameworks": 0,
@@ -831,7 +832,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3019,
+        "durationMs": 1542,
         "outputBytes": 6979,
         "collections": {
           "target_frameworks": 0,
@@ -851,7 +852,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3047,
+        "durationMs": 1668,
         "outputBytes": 80697,
         "collections": {
           "target_frameworks": 0,
@@ -871,7 +872,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2867,
+        "durationMs": 1551,
         "outputBytes": 33237,
         "collections": {
           "target_frameworks": 0,
@@ -891,7 +892,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3163,
+        "durationMs": 1508,
         "outputBytes": 6741,
         "collections": {
           "target_frameworks": 0,
@@ -911,7 +912,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3170,
+        "durationMs": 1540,
         "outputBytes": 6688,
         "collections": {
           "target_frameworks": 0,
@@ -931,7 +932,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3187,
+        "durationMs": 1566,
         "outputBytes": 6761,
         "collections": {
           "target_frameworks": 0,
@@ -951,7 +952,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3128,
+        "durationMs": 1555,
         "outputBytes": 7034,
         "collections": {
           "target_frameworks": 0,
@@ -971,7 +972,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2635,
+        "durationMs": 1636,
         "outputBytes": 7395,
         "collections": {
           "target_frameworks": 0,
@@ -991,7 +992,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2460,
+        "durationMs": 1632,
         "outputBytes": 11292,
         "collections": {
           "target_frameworks": 0,
@@ -1011,7 +1012,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2565,
+        "durationMs": 1775,
         "outputBytes": 322540,
         "collections": {
           "target_frameworks": 0,
@@ -1031,7 +1032,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2994,
+        "durationMs": 1719,
         "outputBytes": 7661,
         "collections": {
           "target_frameworks": 0,
@@ -1051,7 +1052,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2992,
+        "durationMs": 1654,
         "outputBytes": 125114,
         "collections": {
           "target_frameworks": 0,
@@ -1071,7 +1072,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2537,
+        "durationMs": 2945,
         "outputBytes": 153682,
         "collections": {
           "target_frameworks": 0,
@@ -1091,7 +1092,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2655,
+        "durationMs": 1564,
         "outputBytes": 38067,
         "collections": {
           "target_frameworks": 0,
@@ -1111,7 +1112,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2973,
+        "durationMs": 1700,
         "outputBytes": 24070,
         "collections": {
           "target_frameworks": 0,
@@ -1131,7 +1132,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3154,
+        "durationMs": 1965,
         "outputBytes": 1919147,
         "collections": {
           "target_frameworks": 0,
@@ -1151,7 +1152,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3168,
+        "durationMs": 1901,
         "outputBytes": 118518,
         "collections": {
           "target_frameworks": 0,
@@ -1171,7 +1172,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3197,
+        "durationMs": 1737,
         "outputBytes": 503850,
         "collections": {
           "target_frameworks": 0,
@@ -1191,7 +1192,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3079,
+        "durationMs": 1734,
         "outputBytes": 1042546,
         "collections": {
           "target_frameworks": 0,
@@ -1211,7 +1212,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2906,
+        "durationMs": 1538,
         "outputBytes": 7906,
         "collections": {
           "target_frameworks": 0,
@@ -1231,7 +1232,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3102,
+        "durationMs": 1568,
         "outputBytes": 14061,
         "collections": {
           "target_frameworks": 0,
@@ -1251,7 +1252,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2883,
+        "durationMs": 1660,
         "outputBytes": 8842,
         "collections": {
           "target_frameworks": 0,
@@ -1271,7 +1272,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2893,
+        "durationMs": 1609,
         "outputBytes": 30236,
         "collections": {
           "target_frameworks": 0,
@@ -1291,7 +1292,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2746,
+        "durationMs": 1571,
         "outputBytes": 48564,
         "collections": {
           "target_frameworks": 0,
@@ -1311,7 +1312,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2714,
+        "durationMs": 1567,
         "outputBytes": 32007,
         "collections": {
           "target_frameworks": 0,
@@ -1331,7 +1332,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2867,
+        "durationMs": 1518,
         "outputBytes": 67485,
         "collections": {
           "target_frameworks": 0,
@@ -1351,7 +1352,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2683,
+        "durationMs": 1517,
         "outputBytes": 60244,
         "collections": {
           "target_frameworks": 0,
@@ -1371,7 +1372,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2689,
+        "durationMs": 1570,
         "outputBytes": 18101,
         "collections": {
           "target_frameworks": 0,
@@ -1391,7 +1392,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2797,
+        "durationMs": 1616,
         "outputBytes": 1035860,
         "collections": {
           "target_frameworks": 0,
@@ -1411,7 +1412,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2729,
+        "durationMs": 1578,
         "outputBytes": 6877,
         "collections": {
           "target_frameworks": 0,
@@ -1431,7 +1432,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3047,
+        "durationMs": 1712,
         "outputBytes": 1262129,
         "collections": {
           "target_frameworks": 0,
@@ -1451,7 +1452,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2828,
+        "durationMs": 1773,
         "outputBytes": 8655,
         "collections": {
           "target_frameworks": 0,
@@ -1471,7 +1472,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2845,
+        "durationMs": 2246,
         "outputBytes": 844382,
         "collections": {
           "target_frameworks": 0,
@@ -1491,7 +1492,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2704,
+        "durationMs": 1837,
         "outputBytes": 898873,
         "collections": {
           "target_frameworks": 0,
@@ -1511,7 +1512,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2585,
+        "durationMs": 1609,
         "outputBytes": 7147,
         "collections": {
           "target_frameworks": 0,
@@ -1531,7 +1532,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2810,
+        "durationMs": 1583,
         "outputBytes": 20973,
         "collections": {
           "target_frameworks": 0,
@@ -1551,7 +1552,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2793,
+        "durationMs": 1522,
         "outputBytes": 5670,
         "collections": {
           "target_frameworks": 0,
@@ -1571,7 +1572,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2666,
+        "durationMs": 1511,
         "outputBytes": 7110,
         "collections": {
           "target_frameworks": 0,
@@ -1591,7 +1592,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2938,
+        "durationMs": 1616,
         "outputBytes": 60422,
         "collections": {
           "target_frameworks": 0,
@@ -1611,7 +1612,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3158,
+        "durationMs": 1570,
         "outputBytes": 7706,
         "collections": {
           "target_frameworks": 0,
@@ -1631,7 +1632,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2774,
+        "durationMs": 1617,
         "outputBytes": 132201,
         "collections": {
           "target_frameworks": 0,
@@ -1651,7 +1652,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2940,
+        "durationMs": 1582,
         "outputBytes": 109501,
         "collections": {
           "target_frameworks": 0,
@@ -1671,7 +1672,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2920,
+        "durationMs": 1593,
         "outputBytes": 119347,
         "collections": {
           "target_frameworks": 0,
@@ -1691,7 +1692,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2826,
+        "durationMs": 1470,
         "outputBytes": 19732,
         "collections": {
           "target_frameworks": 0,
@@ -1711,7 +1712,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2824,
+        "durationMs": 1458,
         "outputBytes": 58447,
         "collections": {
           "target_frameworks": 0,
@@ -1731,7 +1732,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2682,
+        "durationMs": 1474,
         "outputBytes": 90804,
         "collections": {
           "target_frameworks": 0,
@@ -1751,7 +1752,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2627,
+        "durationMs": 1654,
         "outputBytes": 168902,
         "collections": {
           "target_frameworks": 0,
@@ -1771,7 +1772,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2800,
+        "durationMs": 1617,
         "outputBytes": 313301,
         "collections": {
           "target_frameworks": 0,
@@ -1791,7 +1792,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2528,
+        "durationMs": 1609,
         "outputBytes": 82182,
         "collections": {
           "target_frameworks": 0,
@@ -1811,7 +1812,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2731,
+        "durationMs": 1491,
         "outputBytes": 154559,
         "collections": {
           "target_frameworks": 0,
@@ -1831,7 +1832,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2722,
+        "durationMs": 1558,
         "outputBytes": 69422,
         "collections": {
           "target_frameworks": 0,
@@ -1851,7 +1852,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2736,
+        "durationMs": 1525,
         "outputBytes": 59009,
         "collections": {
           "target_frameworks": 0,
@@ -1871,7 +1872,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2740,
+        "durationMs": 1454,
         "outputBytes": 60486,
         "collections": {
           "target_frameworks": 0,
@@ -1891,7 +1892,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2970,
+        "durationMs": 1471,
         "outputBytes": 59953,
         "collections": {
           "target_frameworks": 0,
@@ -1911,7 +1912,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3164,
+        "durationMs": 1585,
         "outputBytes": 2353203,
         "collections": {}
       },
@@ -1921,7 +1922,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2867,
+        "durationMs": 1400,
         "outputBytes": 59960,
         "collections": {
           "target_frameworks": 0,
@@ -1941,7 +1942,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3063,
+        "durationMs": 1657,
         "outputBytes": 78071,
         "collections": {
           "target_frameworks": 0,
@@ -1961,7 +1962,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3142,
+        "durationMs": 1688,
         "outputBytes": 75917,
         "collections": {
           "target_frameworks": 0,
@@ -1981,7 +1982,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2993,
+        "durationMs": 1526,
         "outputBytes": 56911,
         "collections": {
           "target_frameworks": 0,
@@ -2001,7 +2002,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3109,
+        "durationMs": 1619,
         "outputBytes": 74662,
         "collections": {
           "target_frameworks": 0,
@@ -2021,7 +2022,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2760,
+        "durationMs": 1509,
         "outputBytes": 5703,
         "collections": {
           "target_frameworks": 0,
@@ -2041,7 +2042,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2682,
+        "durationMs": 1485,
         "outputBytes": 64778,
         "collections": {
           "target_frameworks": 0,
@@ -2061,7 +2062,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2845,
+        "durationMs": 1454,
         "outputBytes": 212394,
         "collections": {
           "target_frameworks": 0,
@@ -2081,7 +2082,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2916,
+        "durationMs": 1384,
         "outputBytes": 56946,
         "collections": {
           "target_frameworks": 0,
@@ -2101,7 +2102,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 4221,
+        "durationMs": 1442,
         "outputBytes": 203589,
         "collections": {
           "target_frameworks": 0,
@@ -2121,7 +2122,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3780,
+        "durationMs": 1392,
         "outputBytes": 67291,
         "collections": {
           "target_frameworks": 0,
@@ -2141,7 +2142,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3295,
+        "durationMs": 1415,
         "outputBytes": 69572,
         "collections": {
           "target_frameworks": 0,
@@ -2161,7 +2162,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2668,
+        "durationMs": 1399,
         "outputBytes": 86941,
         "collections": {
           "target_frameworks": 0,
@@ -2181,7 +2182,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2740,
+        "durationMs": 1409,
         "outputBytes": 61737,
         "collections": {
           "target_frameworks": 0,
@@ -2201,7 +2202,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2885,
+        "durationMs": 1412,
         "outputBytes": 59021,
         "collections": {
           "target_frameworks": 0,
@@ -2221,7 +2222,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2781,
+        "durationMs": 1404,
         "outputBytes": 59912,
         "collections": {
           "target_frameworks": 0,
@@ -2241,7 +2242,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2845,
+        "durationMs": 1425,
         "outputBytes": 132580,
         "collections": {
           "target_frameworks": 0,
@@ -2261,7 +2262,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3112,
+        "durationMs": 1446,
         "outputBytes": 9494,
         "collections": {
           "target_frameworks": 0,
@@ -2281,7 +2282,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3649,
+        "durationMs": 1415,
         "outputBytes": 70235,
         "collections": {
           "target_frameworks": 0,
@@ -2301,7 +2302,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2985,
+        "durationMs": 1403,
         "outputBytes": 280764,
         "collections": {
           "target_frameworks": 0,
@@ -2321,7 +2322,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3126,
+        "durationMs": 1451,
         "outputBytes": 57950,
         "collections": {
           "target_frameworks": 0,
@@ -2341,7 +2342,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2889,
+        "durationMs": 1441,
         "outputBytes": 385250,
         "collections": {
           "target_frameworks": 0,
@@ -2361,7 +2362,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3109,
+        "durationMs": 1419,
         "outputBytes": 313862,
         "collections": {
           "target_frameworks": 0,
@@ -2381,7 +2382,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3030,
+        "durationMs": 1473,
         "outputBytes": 96166,
         "collections": {
           "target_frameworks": 0,
@@ -2401,7 +2402,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3005,
+        "durationMs": 1443,
         "outputBytes": 57106,
         "collections": {
           "target_frameworks": 0,
@@ -2421,7 +2422,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3229,
+        "durationMs": 1410,
         "outputBytes": 58774,
         "collections": {
           "target_frameworks": 0,
@@ -2441,7 +2442,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2932,
+        "durationMs": 1392,
         "outputBytes": 57011,
         "collections": {
           "target_frameworks": 0,
@@ -2461,7 +2462,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2747,
+        "durationMs": 1423,
         "outputBytes": 108778,
         "collections": {
           "target_frameworks": 0,
@@ -2481,7 +2482,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3143,
+        "durationMs": 1425,
         "outputBytes": 59083,
         "collections": {
           "target_frameworks": 0,
@@ -2501,7 +2502,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2850,
+        "durationMs": 1417,
         "outputBytes": 61212,
         "collections": {
           "target_frameworks": 0,
@@ -2521,7 +2522,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2875,
+        "durationMs": 1430,
         "outputBytes": 57874,
         "collections": {
           "target_frameworks": 0,
@@ -2541,7 +2542,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2840,
+        "durationMs": 1404,
         "outputBytes": 62073,
         "collections": {
           "target_frameworks": 0,
@@ -2561,7 +2562,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3026,
+        "durationMs": 1411,
         "outputBytes": 84725,
         "collections": {
           "target_frameworks": 0,
@@ -2581,7 +2582,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2443,
+        "durationMs": 1400,
         "outputBytes": 63445,
         "collections": {
           "target_frameworks": 0,
@@ -2601,7 +2602,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2858,
+        "durationMs": 1437,
         "outputBytes": 170283,
         "collections": {
           "target_frameworks": 0,
@@ -2621,7 +2622,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2878,
+        "durationMs": 1402,
         "outputBytes": 58414,
         "collections": {
           "target_frameworks": 0,
@@ -2641,7 +2642,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2597,
+        "durationMs": 1415,
         "outputBytes": 151437,
         "collections": {
           "target_frameworks": 0,
@@ -2661,7 +2662,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2678,
+        "durationMs": 1393,
         "outputBytes": 175292,
         "collections": {
           "target_frameworks": 0,
@@ -2681,7 +2682,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2966,
+        "durationMs": 1410,
         "outputBytes": 79221,
         "collections": {
           "target_frameworks": 0,
@@ -2701,7 +2702,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2831,
+        "durationMs": 1417,
         "outputBytes": 88986,
         "collections": {
           "target_frameworks": 0,
@@ -2721,7 +2722,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2953,
+        "durationMs": 1423,
         "outputBytes": 193804,
         "collections": {
           "target_frameworks": 0,
@@ -2741,7 +2742,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3423,
+        "durationMs": 1542,
         "outputBytes": 1730509,
         "collections": {
           "target_frameworks": 0,
@@ -2761,7 +2762,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2999,
+        "durationMs": 1389,
         "outputBytes": 79088,
         "collections": {
           "target_frameworks": 0,
@@ -2781,7 +2782,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2920,
+        "durationMs": 1386,
         "outputBytes": 56926,
         "collections": {
           "target_frameworks": 0,
@@ -2801,7 +2802,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2970,
+        "durationMs": 1411,
         "outputBytes": 98941,
         "collections": {
           "target_frameworks": 0,
@@ -2821,7 +2822,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2687,
+        "durationMs": 1415,
         "outputBytes": 102326,
         "collections": {
           "target_frameworks": 0,
@@ -2841,7 +2842,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2771,
+        "durationMs": 1390,
         "outputBytes": 62194,
         "collections": {
           "target_frameworks": 0,
@@ -2861,7 +2862,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2662,
+        "durationMs": 1396,
         "outputBytes": 62750,
         "collections": {
           "target_frameworks": 0,
@@ -2881,7 +2882,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2861,
+        "durationMs": 1423,
         "outputBytes": 56986,
         "collections": {
           "target_frameworks": 0,
@@ -2901,7 +2902,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2176,
+        "durationMs": 1392,
         "outputBytes": 59109,
         "collections": {
           "target_frameworks": 0,
@@ -2921,7 +2922,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2292,
+        "durationMs": 1450,
         "outputBytes": 59591,
         "collections": {
           "target_frameworks": 0,
@@ -2941,7 +2942,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2054,
+        "durationMs": 1438,
         "outputBytes": 85684,
         "collections": {
           "target_frameworks": 0,
@@ -2961,7 +2962,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 1994,
+        "durationMs": 1400,
         "outputBytes": 58812,
         "collections": {
           "target_frameworks": 0,
@@ -2981,7 +2982,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 1929,
+        "durationMs": 1409,
         "outputBytes": 68626,
         "collections": {
           "target_frameworks": 0,
@@ -3001,7 +3002,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 1884,
+        "durationMs": 1427,
         "outputBytes": 120525,
         "collections": {
           "target_frameworks": 0,
@@ -3021,7 +3022,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 1884,
+        "durationMs": 1442,
         "outputBytes": 73674,
         "collections": {
           "target_frameworks": 0,
@@ -3041,7 +3042,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 1839,
+        "durationMs": 1385,
         "outputBytes": 61003,
         "collections": {
           "target_frameworks": 0,
@@ -3061,7 +3062,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 1903,
+        "durationMs": 1395,
         "outputBytes": 93160,
         "collections": {
           "target_frameworks": 0,
@@ -3081,7 +3082,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2145,
+        "durationMs": 1374,
         "outputBytes": 85826,
         "collections": {
           "target_frameworks": 0,
@@ -3101,7 +3102,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2397,
+        "durationMs": 1420,
         "outputBytes": 57588,
         "collections": {
           "target_frameworks": 0,
@@ -3121,7 +3122,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2692,
+        "durationMs": 1423,
         "outputBytes": 143598,
         "collections": {
           "target_frameworks": 0,
@@ -3141,7 +3142,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3142,
+        "durationMs": 1422,
         "outputBytes": 20820,
         "collections": {
           "target_frameworks": 0,
@@ -3161,7 +3162,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2979,
+        "durationMs": 1464,
         "outputBytes": 537371,
         "collections": {
           "target_frameworks": 0,
@@ -3181,7 +3182,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2642,
+        "durationMs": 1404,
         "outputBytes": 8158,
         "collections": {
           "target_frameworks": 0,
@@ -3201,7 +3202,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2934,
+        "durationMs": 1438,
         "outputBytes": 77802,
         "collections": {
           "target_frameworks": 0,
@@ -3221,7 +3222,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3649,
+        "durationMs": 1576,
         "outputBytes": 1759293,
         "collections": {
           "target_frameworks": 0,
@@ -3241,7 +3242,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2982,
+        "durationMs": 1408,
         "outputBytes": 11292,
         "collections": {
           "target_frameworks": 0,
@@ -3261,7 +3262,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2831,
+        "durationMs": 1407,
         "outputBytes": 6237,
         "collections": {
           "target_frameworks": 0,
@@ -3282,7 +3283,7 @@
         "message": "Cobertura REA unavailable: Managed metadata exceeds the 67108864 byte representation budget",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 4564,
+        "durationMs": 2051,
         "outputBytes": 1895,
         "collections": {
           "types": 0,
@@ -3313,7 +3314,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 4894,
+        "durationMs": 2389,
         "outputBytes": 12434644,
         "collections": {
           "types": 6,
@@ -3338,7 +3339,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 3330,
+        "durationMs": 1623,
         "outputBytes": 109922,
         "collections": {
           "module_refs": 3,
@@ -3357,7 +3358,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2508,
+        "durationMs": 1164,
         "outputBytes": 12037,
         "collections": {
           "directories": 17,
@@ -3372,7 +3373,7 @@
         "status": "success",
         "exitCode": 0,
         "timedOut": false,
-        "durationMs": 2880,
+        "durationMs": 1234,
         "outputBytes": 6102,
         "collections": {
           "directories": 9,
@@ -3385,18 +3386,54 @@
     "assemblyCount": 152
   },
   "decompilation": {
-    "status": "skipped"
+    "status": "success",
+    "fileCount": 5078,
+    "sourceFileCount": 5077,
+    "totalBytes": 14691863,
+    "totalLines": 574500,
+    "focusTypes": [
+      {
+        "name": "HeroController",
+        "found": true,
+        "source": "HeroController.cs"
+      },
+      {
+        "name": "HeroControllerStates",
+        "found": true,
+        "source": "HeroControllerStates.cs"
+      },
+      {
+        "name": "HeroActions",
+        "found": true,
+        "source": "HeroActions.cs"
+      },
+      {
+        "name": "InputHandler",
+        "found": true,
+        "source": "InputHandler.cs"
+      },
+      {
+        "name": "GameManager",
+        "found": true,
+        "source": "GameManager.cs"
+      },
+      {
+        "name": "PlayerData",
+        "found": true,
+        "source": "PlayerData.cs"
+      }
+    ]
   },
   "playerLogs": [],
   "previousPublication": {
-    "runId": "20261025T015402Z",
-    "finishedAt": "2026-10-25T02:01:26.451Z",
+    "runId": "20261025T023917Z",
+    "finishedAt": "2026-10-25T02:47:50.245Z",
     "status": "success",
     "branch": "arena/d5686468-silksongrea",
-    "commitHash": "b28706e1e8e87e84d4d34f1a3ab8738ff7590cfe",
+    "commitHash": "96a2d388c4e53efd4d1fbcba72dd8d4460962898",
     "committed": true,
     "pushed": true,
-    "message": "Relatório publicado na branch atual (b28706e1e8e8)."
+    "message": "Relatório publicado na branch atual (96a2d388c4e5)."
   },
   "publication": {
     "status": "pending",

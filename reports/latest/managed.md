@@ -3,7 +3,7 @@
 - Runtime: **Unity Mono**
 - Assemblies na pasta Managed: **152**
 - REA: **`6.7.0`**
-- ILSpyCmd: **`indisponível`**
+- ILSpyCmd: **`11.1.0.9782`**
 
 ## Comandos REA
 
@@ -171,16 +171,21 @@ Cobertura partial ou unavailable representa limite/indisponibilidade da inspeç�
 
 ## Decompilação local com ILSpy
 
-- Status: **⏭️ IGNORADO**
-- Arquivos produzidos: **0**
-- Arquivos C#: **0**
-- Linhas C# locais: **0**
-- Bytes locais: **0 B**
+- Status: **✅ OK**
+- Arquivos produzidos: **5078**
+- Arquivos C#: **5077**
+- Linhas C# locais: **574500**
+- Bytes locais: **14.0 MiB**
 
 ### Tipos prioritários
 
 | Tipo | Encontrado na decompilação | Arquivo local relativo |
 |---|---|---|
-| Nenhum | — | — |
+| `HeroController` | sim | `HeroController.cs` |
+| `HeroControllerStates` | sim | `HeroControllerStates.cs` |
+| `HeroActions` | sim | `HeroActions.cs` |
+| `InputHandler` | sim | `InputHandler.cs` |
+| `GameManager` | sim | `GameManager.cs` |
+| `PlayerData` | sim | `PlayerData.cs` |
 
 Os corpos dos métodos, literais, CIL e o código C# não são publicados neste relatório.
