@@ -1,0 +1,42 @@
+# Dependências e ferramentas locais
+node_modules/
+.tools/
+.local/
+
+# Configuração/credenciais locais
+.env
+.env.*
+*.local.json
+
+# Logs e temporários fora dos relatórios públicos
+*.log
+*.tmp
+*.dmp
+
+# Instalação do jogo, assemblies e material decompilado/extraído
+# Nenhum desses arquivos deve ser redistribuído por este repositório.
+*.dll
+*.exe
+*.pdb
+*.assets
+*.resource
+*.resS
+*.unity3d
+*.bundle
+*.pck
+*.zip
+*.7z
+GameFiles/
+game/
+decompiled/
+AssetRipperExport/
+
+# Relatórios locais adicionais (reports/latest permanece rastreado)
+reports/local/
+
+# Sistema operacional/editor
+.DS_Store
+Thumbs.db
+.vs/
+.vscode/
+.idea/
