@@ -21,9 +21,17 @@ processo — trabalhe só com análise estática dos arquivos que você possui.
 
 ## Unity
 
-Primeiro descubra se o build é **Mono** ou **IL2CPP**: procure
-`*_Data/Managed/Assembly-CSharp.dll` (Mono) ou
-`*_Data/il2cpp_data/Metadata/global-metadata.dat` + `GameAssembly.dll` (IL2CPP).
+Primeiro descubra se o build é **Mono** ou **IL2CPP**:
+
+| Pista na pasta do jogo | Build |
+| --- | --- |
+| `*_Data/Managed/Assembly-CSharp.dll` e/ou `MonoBleedingEdge/` | Mono |
+| `GameAssembly.dll` + `*_Data/il2cpp_data/Metadata/global-metadata.dat` | IL2CPP |
+| `UnityPlayer.dll` com dezenas de MB, sem `GameAssembly.dll` | quase sempre Mono |
+
+O `MonoBleedingEdge/` na raiz e um `UnityPlayer.dll` grande (20–40 MB) são o
+sinal mais rápido de Mono: o motor está dentro do `UnityPlayer.dll`, não num
+`GameAssembly.dll`.
 
 Copiar só o `.exe` e o `UnityPlayer.dll` não basta: o detector classifica isso
 como binário nativo. Copie a pasta `*_Data` (ou ao menos `Managed/` no Mono,
