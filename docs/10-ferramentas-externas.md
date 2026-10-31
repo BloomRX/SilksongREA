@@ -88,11 +88,18 @@ Se o doctor reclamar de JDK, confira `$env:JAVA_HOME` (deve apontar para a pasta
 que contém `bin\java.exe`) e se a versão atende à faixa do Ghidra. Se reclamar
 do decompiler nativo, a extração saiu incompleta — apague a pasta e extraia de novo.
 
-Teste rápido, sem tocar no jogo:
+Teste rápido, sem tocar no jogo (copie o binário antes: o provider faz
+admissão de caminho e a importação fria pode levar de 1 a 3 minutos):
 
 ```powershell
-rea inspect "C:\Windows\System32\notepad.exe" --provider ghidra --format json
+$fx = "$env:USERPROFILE\cleanroom-tools\fixtures"
+New-Item -ItemType Directory -Force $fx | Out-Null
+Copy-Item "C:\Windows\System32\notepad.exe" "$fx\notepad.exe"
+rea inspect "$fx\notepad.exe" --provider ghidra --format json
 ```
+
+Se o `inspect` falhar com erro de admissão de caminho, tente outro executável
+copiado para `$fx` (o caminho precisa ser NTFS local, sem reparse point).
 
 ### 1.2 Registre de novo e reinicie o Codex
 

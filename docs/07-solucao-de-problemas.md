@@ -75,6 +75,13 @@ rea doctor --provider ghidra --json             # só quando for usar binário n
 saída como aviso; `./scripts/preflight.mjs` nem chama o `rea doctor`, para não
 confundir "cliente que eu não uso" com "instalação quebrada".
 
+### O primeiro `rea inspect` parece travado
+
+Importação fria do Ghidra (JVM + `analyzeHeadless`) leva de 1 a 3 minutos; o
+provider espera até 330 s antes de desistir. Rode com o binário copiado para uma
+pasta do usuário, não direto de `C:\Windows\System32`, e não interrompa no
+primeiro minuto.
+
 ### MCP registrado, mas ferramentas não aparecem
 
 1. Reinicie o cliente (registro só é lido no início).
