@@ -194,6 +194,21 @@ O `bootstrap.sh` grava `rooms/<sala>/.claude/settings.local.json` com o caminho
 
 Confira o JSON gerado e reinicie o Claude Code.
 
+### Codex mostra `Hook failed` a cada ação
+
+O `settings.json` do projeto declara um hook do Claude Code; o Codex também tenta
+executá-lo. Com `$CLAUDE_PROJECT_DIR` indefinido, o comando apontava para um
+caminho inválido e saía 1. As versões atuais resolvem o guard pelo próprio Git
+(`$(git rev-parse --show-toplevel)`), que funciona no sh, no Git Bash e no
+PowerShell.
+
+Se ainda aparecer, o hook **falha aberto** (não bloqueia a ferramenta). Para
+gravar caminhos absolutos específicos da máquina:
+
+```bash
+bash ./scripts/bootstrap.sh --skip-rea --yes
+```
+
 ### O guard bloqueou algo legítimo
 
 Leia a mensagem: ela diz a regra. Casos comuns:

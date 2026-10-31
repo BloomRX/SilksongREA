@@ -28,9 +28,10 @@ for (const rel of files) {
   });
 }
 
-test("os dois templates de settings de sala usam caminhos coerentes", () => {
+test("os hooks resolvem o guard sem depender de variável do cliente", () => {
   const impl = JSON.parse(readFileSync(join(root, "rooms/impl/.claude/settings.json"), "utf8"));
   const cmd = impl.hooks.PreToolUse[0].hooks[0].command;
-  assert.match(cmd, /\$CLAUDE_PROJECT_DIR/);
   assert.match(cmd, /guard-impl\.mjs/);
+  assert.match(cmd, /git rev-parse --show-toplevel/);
+  assert.doesNotMatch(cmd, /\$CLAUDE_PROJECT_DIR/);
 });
