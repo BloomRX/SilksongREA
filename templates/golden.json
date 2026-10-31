@@ -1,0 +1,8 @@
+{
+  "schema": "cleanroom-golden/v1",
+  "target": "{{SLUG}}",
+  "target_version": "{{VERSION}}",
+  "captured_at": "{{DATE}}",
+  "notes": "Vetores observáveis extraídos do alvo. Nada de código: só entrada, saída esperada e tolerância.",
+  "cases": []
+}

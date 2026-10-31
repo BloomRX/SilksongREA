@@ -1,0 +1,31 @@
+# Dependências e artefatos de build
+node_modules/
+dist/
+coverage/
+*.log
+
+# Sistema
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Configuração local das salas (contém caminhos absolutos da máquina)
+rooms/*/.claude/settings.local.json
+.claude/settings.local.json
+
+# Alvos: binários, evidências e handoffs NUNCA vão para o Git.
+# A spec e os vetores continuam versionados de propósito (trilha de auditoria).
+targets/*/analysis/artifacts/
+targets/*/analysis/evidence/
+targets/*/handoff/
+*.bundle.json
+*.evidence.json
+
+# Snapshots de análise
+targets/*/analysis/snapshots/
+targets/*/analysis/tools/
+targets/*/analysis/harness/
+
+# Código da sala limpa (projeto separado; mantenha fora do kit se preferir)
+targets/*/impl-src/

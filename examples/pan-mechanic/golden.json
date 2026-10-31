@@ -1,0 +1,58 @@
+{
+  "schema": "cleanroom-golden/v1",
+  "target": "pan-mechanic",
+  "target_version": "0.9.0-demo",
+  "captured_at": "2026-10-31",
+  "notes": "Exemplo fictício. Entradas e saídas observáveis; nada de código do original.",
+  "cases": [
+    {
+      "id": "normal-001",
+      "source": "EV-003 execução controlada",
+      "input": { "current_angle": 0, "target_angle": 90, "max_turn_rate": 180, "dt_ms": 100, "dead_zone_deg": 2 },
+      "expected": 18,
+      "tolerance": 1e-6
+    },
+    {
+      "id": "normal-002",
+      "source": "EV-003 execução controlada",
+      "input": { "current_angle": 0, "target_angle": 90, "max_turn_rate": 180, "dt_ms": 1000, "dead_zone_deg": 2 },
+      "expected": 90,
+      "tolerance": 1e-6
+    },
+    {
+      "id": "wrap-horario",
+      "source": "EV-003 execução controlada",
+      "input": { "current_angle": 350, "target_angle": 10, "max_turn_rate": 90, "dt_ms": 100, "dead_zone_deg": 2 },
+      "expected": 359,
+      "tolerance": 1e-6
+    },
+    {
+      "id": "wrap-anti-horario",
+      "source": "EV-003 execução controlada",
+      "input": { "current_angle": 10, "target_angle": 350, "max_turn_rate": 90, "dt_ms": 100, "dead_zone_deg": 2 },
+      "expected": 1,
+      "tolerance": 1e-6
+    },
+    {
+      "id": "zona-morta",
+      "source": "EV-003 execução controlada",
+      "input": { "current_angle": 0, "target_angle": 1.5, "max_turn_rate": 180, "dt_ms": 16, "dead_zone_deg": 2 },
+      "expected": 0,
+      "tolerance": 1e-6
+    },
+    {
+      "id": "empate-180",
+      "source": "EV-003 execução controlada",
+      "input": { "current_angle": 0, "target_angle": 180, "max_turn_rate": 100, "dt_ms": 500, "dead_zone_deg": 0 },
+      "expected": 50,
+      "tolerance": 1e-6
+    },
+    {
+      "id": "taxa-zero",
+      "source": "EV-003 execução controlada",
+      "input": { "current_angle": 0, "target_angle": 90, "max_turn_rate": 0, "dt_ms": 100, "dead_zone_deg": 2 },
+      "expected": 0,
+      "tolerance": 1e-6
+    }
+  ]
+}

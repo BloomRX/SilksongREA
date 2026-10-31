@@ -1,0 +1,17 @@
+{
+  "name": "silksongrea-cleanroom",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Kit de clean room com REA para reimplementar comportamentos de jogos e apps com agentes",
+  "license": "MIT",
+  "engines": {
+    "node": "^22.23.4 || ^24.22.1 || >=26.12.1"
+  },
+  "scripts": {
+    "check-spec": "node scripts/check-spec.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "lint:scripts": "node --check scripts/check-spec.mjs && node --check scripts/guard-impl.mjs && node --check scripts/verify-handoff.mjs",
+    "verify:example": "node --test examples/pan-mechanic/impl/solution.test.mjs"
+  }
+}
