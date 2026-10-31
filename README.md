@@ -220,6 +220,7 @@ docker/impl/           container opcional para a sala limpa
 | [docs/08-skills.md](docs/08-skills.md) | skills, como carregam e como editar |
 | [docs/09-reparo-com-codex.md](docs/09-reparo-com-codex.md) | prompt para o Codex consertar a instalação sozinho |
 | [docs/10-ferramentas-externas.md](docs/10-ferramentas-externas.md) | Ghidra, JDK, Docker, JADX: o que baixar e como configurar |
+| [docs/11-anotar-ou-implementar.md](docs/11-anotar-ou-implementar.md) | quando basta anotar e quando implementar direto, jogos e apps |
 
 ## FAQ curto
 
