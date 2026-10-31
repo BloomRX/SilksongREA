@@ -80,6 +80,10 @@ importa é `healthy` e o bloco `scope_checks`:
 rea doctor --client codex --skill --json | jq '{healthy, scope_checks: [.scope_checks[] | {name, ok}]}'
 ```
 
+```powershell
+rea doctor --client codex --skill --json | ConvertFrom-Json | Select-Object healthy, scope_checks
+```
+
 `./scripts/doctor.sh` roda o `rea doctor` completo apenas com `--deep` e trata a
 saída como aviso. O `./scripts/preflight.mjs --deep` interpreta o JSON: passa
 quando `healthy` é true e todos os `scope_checks` estão ok, ignorando provedores
