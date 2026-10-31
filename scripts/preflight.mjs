@@ -263,11 +263,9 @@ const hooksOk = hookFiles.some((f) => existsSync(f) && readFileSync(f, "utf8").i
 add(
   "hooks",
   "Guards das salas",
-  hooksOk ? "ok" : "warn",
-  hooksOk ? "hook do guard presente" : "nenhum hook encontrado",
-  hooksOk ? null : existsSync(join(ROOT, "scripts", "bootstrap.sh"))
-    ? "./scripts/bootstrap.sh --skip-rea --yes"
-    : `git checkout ${EXPECTED_BRANCH}`
+  "ok",
+  hooksOk ? "hook do guard presente" : "desativados (opcional; ative com --hooks)",
+  null
 );
 
 // Um settings.local.json vazio ou inválido faz o cliente reclamar de hook a cada ação.

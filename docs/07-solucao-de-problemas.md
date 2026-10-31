@@ -209,7 +209,9 @@ gravar caminhos absolutos específicos da máquina:
 bash ./scripts/bootstrap.sh --skip-rea --yes
 ```
 
-### O guard bloqueou algo legítimo
+### O guard bloqueou algo legítimo (só com `--hooks`)
+
+Os hooks são opcionais e vêm desligados. O portão obrigatório é o `check-spec`.
 
 Leia a mensagem: ela diz a regra. Casos comuns:
 

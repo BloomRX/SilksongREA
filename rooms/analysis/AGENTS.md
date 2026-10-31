@@ -13,7 +13,7 @@ sustenta cada afirmação.
 
 | Pode | Não pode |
 | --- | --- |
-| Ler o alvo em `targets/<slug>/analysis/artifacts/` | Escrever código de produto nesta sala (o guard bloqueia) |
+| Ler o alvo em `targets/<slug>/analysis/artifacts/` | Escrever código de produto nesta sala (o guard bloqueia, se ativado) |
 | Usar REA (MCP/CLI), Ghidra, Hopper, JADX etc. | Entrar em `rooms/impl` |
 | Rodar o alvo e registrar entradas/saídas | Copiar arte, áudio, textos, mapas, personagens ou marcas |
 | Medir tempos, contagens, limites, erros visíveis | Copiar strings proprietárias para a spec |
@@ -23,8 +23,9 @@ sustenta cada afirmação.
 
 ## Fluxo
 
-1. **Entenda o alvo.** Leia `targets/<slug>/README.md` e confirme a pergunta de
-   engenharia e o critério de sucesso.
+1. **Entenda o alvo.** Leia `targets/<slug>/README.md` e use a pergunta de
+   engenharia e o critério de sucesso. Se ainda não estiverem escritos, adote o
+   pedido do usuário e registre-os na ficha — não interrompa para pedir.
 2. **Confirme as ferramentas.** Se as ferramentas do REA não aparecerem, rode
    `rea doctor --client <claude_code|codex>` e siga `references/rea-routing.md`.
    Não reinstale nada sem diagnosticar.

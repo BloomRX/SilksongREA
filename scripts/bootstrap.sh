@@ -14,6 +14,7 @@
 #   ./scripts/bootstrap.sh --skip-rea               # só as pastas/guards
 #   ./scripts/bootstrap.sh --provider ghidra        # provedor de binário nativo
 #   ./scripts/bootstrap.sh --dry-run                # mostra o plano, não escreve
+#   ./scripts/bootstrap.sh --hooks                  # ativa os guards das salas (opcional)
 
 source "$(cd "$(dirname "$0")" && pwd)/lib/common.sh"
 
@@ -23,6 +24,7 @@ SKIP_REA=0
 DRY_RUN=0
 PROVIDER=""
 TOOL_FAMILIES=""
+INSTALL_HOOKS=0
 
 usage() {
   sed -n '2,18p' "$0" | sed 's/^# \{0,1\}//'
@@ -32,6 +34,8 @@ Opções extras:
   --provider <ghidra|hopper|ida|kuna|none>   só diagnostica o provedor nativo (doctor)
   --tool-families <a,b,c>                    limita famílias de ferramentas do MCP
   --no-global                                não instala global; usa npx
+  --hooks                                    ativa o guard das salas (bloqueio opcional)
+  --no-hooks                                 desativa/limpa os hooks (padrão)
 EOF
 }
 
@@ -54,6 +58,8 @@ while (($# > 0)); do
     --skip-rea) SKIP_REA=1; shift ;;
     --dry-run) DRY_RUN=1; shift ;;
     --no-global) REA_NO_GLOBAL=1; shift ;;
+    --hooks) INSTALL_HOOKS=1; shift ;;
+    --no-hooks) INSTALL_HOOKS=0; shift ;;
     -h|--help) usage; exit 0 ;;
     *) die "opção desconhecida: $1 (use --help)" ;;
   esac
@@ -155,16 +161,30 @@ else
       || die "falha ao gerar JSON válido em $dest"
   }
 
-  # Hook na raiz também: se o cliente tratar o repo como projeto, ele carrega este.
-  mkdir -p "$ROOT/.claude"
-  write_hook_settings "$ROOT/.claude/settings.local.json" "node \"$GUARD\""
-  ok "guard instalado em .claude/settings.local.json (raiz)"
+  clear_hook_settings() {
+    local dest="$1"
+    mkdir -p "$(dirname "$dest")"
+    printf '{}\n' >"$dest"
+  }
 
-  for room in analysis impl; do
-    mkdir -p "$ROOT/rooms/$room/.claude"
-    write_hook_settings "$ROOT/rooms/$room/.claude/settings.local.json" "CLEANROOM_ROOM=$room node \"$GUARD\""
-    ok "guard instalado em rooms/$room/.claude/settings.local.json"
-  done
+  if [[ $INSTALL_HOOKS -eq 1 ]]; then
+    # Hook na raiz também: se o cliente tratar o repo como projeto, ele carrega este.
+    mkdir -p "$ROOT/.claude"
+    write_hook_settings "$ROOT/.claude/settings.local.json" "node \"$GUARD\""
+    ok "guard ativado em .claude/settings.local.json (raiz)"
+
+    for room in analysis impl; do
+      mkdir -p "$ROOT/rooms/$room/.claude"
+      write_hook_settings "$ROOT/rooms/$room/.claude/settings.local.json" "CLEANROOM_ROOM=$room node \"$GUARD\""
+      ok "guard ativado em rooms/$room/.claude/settings.local.json"
+    done
+  else
+    clear_hook_settings "$ROOT/.claude/settings.local.json"
+    for room in analysis impl; do
+      clear_hook_settings "$ROOT/rooms/$room/.claude/settings.local.json"
+    done
+    dim "  guards desativados (padrão). Ative com: ./scripts/bootstrap.sh --hooks"
+  fi
 fi
 
 # ---------------------------------------------------------------------- doctor

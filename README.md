@@ -108,7 +108,7 @@ O bootstrap:
 2. instala o `rea-agents` globalmente (caminho durável);
 3. mostra o plano de setup de cada cliente (`--dry-run`) e pede aprovação;
 4. registra o MCP do REA e instala a skill oficial;
-5. cria as pastas de trabalho e instala os guards das salas;
+5. cria as pastas de trabalho (e, com `--hooks`, ativa os guards das salas);
 6. roda `rea doctor` e o verificador de isolamento.
 
 **Windows:** use WSL2 (recomendado) e rode os scripts dentro dele. No PowerShell
@@ -168,7 +168,7 @@ Se a spec for ambígua, crie um pedido de esclarecimento; não invente.
 | Comando | O que faz |
 | --- | --- |
 | `node scripts/preflight.mjs [--json] [--deep]` | confere SO, branch, Node, REA, agentes e registros |
-| `./scripts/bootstrap.sh` | instala/atualiza REA, registra MCP, cria guards |
+| `./scripts/bootstrap.sh` | instala/atualiza REA, registra MCP, cria pastas (guards com `--hooks`) |
 | `./scripts/new-target.sh <slug>` | cria a estrutura de um alvo |
 | `./scripts/hash-artifacts.sh <slug>` | registra sha256 dos artefatos |
 | `./scripts/detect-target.sh <slug>` | detecta o tipo e recomenda a rota no REA |

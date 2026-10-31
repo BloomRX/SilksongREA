@@ -48,7 +48,7 @@ Escolha o nível conforme o risco. O kit implementa L1/L2; L3 é infraestrutura.
 
 ### L1 — disciplina de sessão (fraco)
 
-Duas pastas, duas sessões, guards ativos (`check-spec` + hooks).
+Duas pastas, duas sessões; `check-spec` sempre no caminho e, se você ativar, os hooks das salas (`--hooks`).
 Protege contra descuido, **não** contra intenção ou acesso via shell fora do hook.
 Serve para estudo pessoal.
 

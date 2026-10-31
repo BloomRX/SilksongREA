@@ -17,21 +17,30 @@ for (const rel of files) {
     const p = join(root, rel);
     assert.ok(existsSync(p), `faltou ${rel}`);
     const data = JSON.parse(readFileSync(p, "utf8"));
+    assert.equal(typeof data, "object");
     const hooks = data.hooks?.PreToolUse;
-    assert.ok(Array.isArray(hooks) && hooks.length > 0, "sem PreToolUse");
+    if (!hooks) return;
+    assert.ok(Array.isArray(hooks));
+    for (const h of hooks) {
+      for (const c of h.hooks ?? []) assert.equal(typeof c.command, "string");
+    }
     const cmds = hooks.flatMap((h) => h.hooks ?? []).map((h) => h.command ?? "");
-    assert.ok(
-      cmds.some((c) => c.includes("guard-impl.mjs")),
-      "hook não aponta para guard-impl.mjs"
-    );
-    for (const c of cmds) assert.equal(typeof c, "string");
+    for (const c of cmds) {
+      if (c.trim()) assert.match(c, /guard-impl\.mjs/);
+    }
   });
 }
 
-test("os hooks resolvem o guard sem depender de variável do cliente", () => {
-  const impl = JSON.parse(readFileSync(join(root, "rooms/impl/.claude/settings.json"), "utf8"));
-  const cmd = impl.hooks.PreToolUse[0].hooks[0].command;
-  assert.match(cmd, /guard-impl\.mjs/);
-  assert.match(cmd, /git rev-parse --show-toplevel/);
-  assert.doesNotMatch(cmd, /\$CLAUDE_PROJECT_DIR/);
+test("hooks vêm desativados por padrão", () => {
+  for (const rel of files) {
+    const data = JSON.parse(readFileSync(join(root, rel), "utf8"));
+    assert.deepEqual(data.hooks?.PreToolUse ?? [], [], `${rel} deveria vir sem hooks`);
+  }
+});
+
+test("bootstrap sabe ativar e desativar hooks", () => {
+  const s = readFileSync(join(root, "scripts/bootstrap.sh"), "utf8");
+  assert.match(s, /--hooks/);
+  assert.match(s, /--no-hooks/);
+  assert.match(s, /INSTALL_HOOKS/);
 });

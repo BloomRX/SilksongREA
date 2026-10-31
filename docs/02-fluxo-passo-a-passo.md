@@ -17,8 +17,8 @@ cd cleanroom-rea
 ./scripts/bootstrap.sh
 ```
 
-Saída esperada: Node OK, REA instalado, plano de setup aprovado, guards criados,
-`isolamento OK`.
+Saída esperada: Node OK, REA instalado, plano de setup aprovado, pastas criadas,
+`isolamento OK`. Os guards são opcionais (`--hooks`).
 
 Se o `doctor` reclamar de provedor nativo, resolva **agora** (Ghidra é o caminho
 mais simples). Sem provedor você ainda analisa JavaScript/Electron, .NET, Godot
@@ -146,8 +146,8 @@ Respeite as tolerâncias. Se a spec for ambígua, crie
 Registre em PROVENANCE.md qual seção da spec guiou cada arquivo/teste.
 ```
 
-O guard bloqueia: `rea`, Ghidra/Hopper/JADX/Frida, leitura de `analysis/`, bundles
-de evidência, busca ao REA na web. Se ele bloquear algo legítimo, **pare** e revise
+Com `--hooks`, o guard bloqueia: `rea`, Ghidra/Hopper/JADX/Frida, leitura de
+`analysis/`, bundles de evidência, busca ao REA na web. Se ele bloquear algo legítimo, **pare** e revise
 — não contorne.
 
 **Estrutura sugerida do projeto:**

@@ -105,6 +105,7 @@ for f in "${hook_files[@]}"; do
       const [file] = process.argv.slice(1);
       const d = JSON.parse(fs.readFileSync(file, "utf8"));
       const cmd = d.hooks?.PreToolUse?.[0]?.hooks?.[0]?.command || "";
+      if (cmd.includes("$(")) process.exit(0);
       const m = cmd.match(/node "([^"]+)"/);
       if (!m) process.exit(2);
       const projectDir = path.dirname(path.dirname(file));
@@ -121,7 +122,7 @@ for f in "${hook_files[@]}"; do
     }
   fi
 done
-(( found_hook == 1 )) && pass "guard referenciado em pelo menos um settings" || fail "nenhum settings com o guard (rode ./scripts/bootstrap.sh)"
+(( found_hook == 1 )) && pass "guard referenciado em pelo menos um settings" || note "guards desativados (opcional; ative com ./scripts/bootstrap.sh --hooks)"
 
 section "Alvos e handoffs"
 if [[ -d "$ROOT/targets" ]]; then

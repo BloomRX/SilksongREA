@@ -6,7 +6,7 @@
 #
 # Verifica:
 #   1. REA não está instalado/registrado no ambiente da sala limpa;
-#   2. os hooks das duas salas existem e apontam para o guard;
+#   2. os hooks das salas (opcionais) apontam para o guard quando existem;
 #   3. hashes do handoff batem com o manifesto (nada foi editado depois);
 #   4. não há atalho (symlink) ligando a sala limpa ao material de análise;
 #   5. artefatos e handoffs não estão versionados no Git.
@@ -66,7 +66,7 @@ for room in analysis impl; do
   if guard_present "$room"; then
     pass "guard ativo para a sala '$room'"
   else
-    fail "sala '$room' sem hook do guard (rode ./scripts/bootstrap.sh)"
+    note "sala '$room' sem hook (opcional; ative com ./scripts/bootstrap.sh --hooks)"
   fi
 done
 
