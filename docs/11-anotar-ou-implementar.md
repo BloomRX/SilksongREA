@@ -66,6 +66,30 @@ descreva o efeito, implemente do zero.
 | copiar nomes internos para "facilitar" | contaminação: `sub_`, `FUN_`, nomes de classes do original |
 | pular os vetores | não há como provar equivalência; bug vira discussão |
 
+## Fatiando um jogo inteiro
+
+Pode pedir para o agente **mapear** movimento, combate, upgrades, dano e reações —
+mas não peça a spec de tudo numa tacada. Faça em ondas:
+
+1. **Reconhecimento (uma página por sistema).** Onde a lógica vive, o que é
+   observável em jogo, o que só dá para ler no assembly, incertezas. Sem spec.
+2. **Uma spec por comportamento**, na ordem em que os sistemas dependem um do
+   outro:
+
+| Ordem | Sistema | Por quê |
+| --- | --- | --- |
+| 1 | movimento (andar, pular, dash, parede) | base de posição/velocidade usada por todo o resto |
+| 2 | combate (ataque, hitbox, dano, knockback) | precisa das posições e do tempo do movimento |
+| 3 | reações (i-frames, hitstop, stagger, morte/respawn) | modificam o resultado do combate |
+| 4 | upgrades e progressão | alteram parâmetros das mecânicas acima; spec por diferença |
+| 5 | economia/itens | independente, mas depende de eventos de morte/coleta |
+
+3. **Handoff por versão** (`0.1.0` movimento, `0.2.0` combate…) e implementação
+   entre uma spec e outra, para não empilhar material não verificado.
+
+Pedir "analise tudo e gere a spec completa" produz uma spec rasa em todos os
+sistemas e nenhum vetor confiável — o oposto de economizar tokens.
+
 ## Como isso cai no kit
 
 1. **Sala de análise** (`rooms/analysis`): observa, mede, escreve a spec e os
