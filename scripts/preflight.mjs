@@ -270,6 +270,29 @@ add(
     : `git checkout ${EXPECTED_BRANCH}`
 );
 
+// Um settings.local.json vazio ou inválido faz o cliente reclamar de hook a cada ação.
+const badSettings = hookFiles
+  .filter((f) => existsSync(f))
+  .filter((f) => {
+    const text = readFileSync(f, "utf8").trim();
+    if (!text) return true;
+    try {
+      JSON.parse(text);
+      return false;
+    } catch {
+      return true;
+    }
+  });
+add(
+  "hooks-json",
+  "JSON dos hooks",
+  badSettings.length === 0 ? "ok" : "warn",
+  badSettings.length === 0
+    ? "todos os settings são JSON válido"
+    : `vazio/inválido: ${badSettings.map((f) => f.replace(ROOT, "").replace(/^[\\/]/, "")).join(", ")}`,
+  badSettings.length === 0 ? null : "bash ./scripts/bootstrap.sh --skip-rea --yes"
+);
+
 const skills = [
   join(".claude", "skills", "clean-room-orchestrator", "SKILL.md"),
   join("rooms", "analysis", ".claude", "skills", "clean-room-spec", "SKILL.md"),
