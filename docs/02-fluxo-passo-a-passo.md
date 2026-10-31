@@ -161,6 +161,22 @@ meu-jogo-impl/
   DELIVERY.md
 ```
 
+**Onde criar o projeto.** Em pasta própria, nunca dentro de `rooms/`:
+
+- `targets/<slug>/impl-src/<stack>/` — já coberta pelo `.gitignore` do kit;
+- ou um repositório separado (isolamento mais forte, histórico próprio).
+
+Crie o projeto **você**, antes de abrir o agente, e passe o caminho absoluto no
+prompt. No Godot: Novo Projeto → pasta acima → renderer *Compatibility* (2D) →
+abra uma vez para gerar `.godot/`. Testes rodam sem interface:
+
+```bash
+godot --headless --path targets/<slug>/impl-src/godot --script res://tests/run_tests.gd
+```
+
+O motor não muda a spec: os vetores são entrada/saída. Use a mesma versão maior
+do Godot que você pretende usar no projeto final.
+
 ## Fase 6 — Verificação
 
 ```bash
