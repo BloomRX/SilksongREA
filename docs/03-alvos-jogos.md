@@ -3,6 +3,11 @@
 Como rotear a análise por engine/empacotamento e como transformar isso em
 comportamento reimplementável.
 
+**Comece pelo detector:** `./scripts/detect-target.sh <slug>` identifica Unity
+Mono/IL2CPP, UnityFS, Godot PCK, ROMs, WASM e nativo, e já sugere a ferramenta
+inicial, o provedor e as famílias de ferramentas. As seções abaixo aprofundam
+cada caso.
+
 ## Regra de ouro para jogos
 
 O que se reimplementa é **regra**, não **conteúdo**. Fórmula de dano, janela de

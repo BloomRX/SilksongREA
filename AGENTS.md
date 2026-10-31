@@ -35,9 +35,11 @@ Antes de agir, identifique onde você está:
 ./scripts/bootstrap.sh                      # Node, REA, MCP, guards
 ./scripts/new-target.sh <slug> --name ...   # cria a estrutura de um alvo
 ./scripts/hash-artifacts.sh <slug>          # proveniência dos artefatos
+./scripts/detect-target.sh <slug>           # tipo do alvo e rota no REA
 node scripts/check-spec.mjs <spec> --strict # portão da spec
 ./scripts/handoff.sh <slug> <versão>        # sela o pacote para a sala limpa
 ./scripts/verify-isolation.sh [slug]        # audita separação e integridade
+./scripts/doctor.sh                         # diagnóstico completo do kit
 ```
 
 ## O que o REA faz aqui
@@ -46,6 +48,9 @@ O REA é o instrumento da **sala de análise**: ele conecta o agente a ferrament
 de inspeção de binários nativos, JavaScript/Electron, .NET, Android, arquivos
 UnityFS/Godot, firmware e web, e devolve resultados **com evidência e limites**.
 Ele não implementa nada e não deve ser usado na sala limpa.
+
+Skills: `clean-room-orchestrator` (raiz), `clean-room-spec` (análise) e
+`clean-room-impl` (sala limpa) — ver `docs/08-skills.md`.
 
 Detalhes: `docs/00-metodo-clean-room.md` (método e limites),
 `docs/01-instalacao-rea.md` (instalação), `docs/02-fluxo-passo-a-passo.md`

@@ -5,7 +5,8 @@
 #   ./scripts/new-target.sh <slug> [--name "Nome do app"] [--version "1.2.3"]
 #
 # Exemplo:
-#   ./scripts/new-target.sh silksong --name "Hollow Knight: Silksong" --version "1.0.0"
+#   ./scripts/new-target.sh meu-jogo --name "Meu Jogo" --version "1.0.0"
+#   ./scripts/new-target.sh meu-app  --name "Meu App"  --version "2.1.0"
 #
 # O slug é o identificador usado por todos os outros comandos.
 
@@ -76,11 +77,14 @@ Próximos passos:
   2. Registre os hashes do que você vai analisar:
        ./scripts/hash-artifacts.sh $SLUG
 
-  3. Abra a sala de análise e peça a investigação:
+  3. Descubra o tipo do alvo (Unity, Godot, Electron, .NET, Android, nativo...):
+       ./scripts/detect-target.sh $SLUG
+
+  4. Abra a sala de análise e peça a investigação:
        cd rooms/analysis && claude
      ou:  cd rooms/analysis && codex
 
-  4. Quando a spec estiver boa, feche o portão:
+  5. Quando a spec estiver boa, feche o portão:
        node scripts/check-spec.mjs targets/$SLUG/analysis/spec/spec.md --strict
        ./scripts/handoff.sh $SLUG 0.1.0
 EOF

@@ -87,6 +87,20 @@ test("guard bloqueia REA e análise na sala limpa, e libera o handoff", () => {
     env: { ...process.env, CLEANROOM_ROOM: "analysis" },
   });
   assert.match(denyCodeInAnalysis.stdout, /"permissionDecision":"deny"/);
+
+  // Aberto na raiz do kit, escrever código dentro da análise continua bloqueado.
+  const denyFromRoot = run(guard, [], {
+    input: payload("Write", { file_path: "targets/x/analysis/src/Player.cs" }, root),
+    env: { ...process.env, CLEANROOM_ROOM: "" },
+  });
+  assert.match(denyFromRoot.stdout, /"permissionDecision":"deny"/);
+
+  // Harness de observação é permitido na análise.
+  const allowHarness = run(guard, [], {
+    input: payload("Write", { file_path: "targets/x/analysis/tools/drive.py" }, root),
+    env: { ...process.env, CLEANROOM_ROOM: "" },
+  });
+  assert.equal(allowHarness.stdout.trim(), "");
 });
 
 test("verify-handoff detecta adulteração", () => {

@@ -4,6 +4,10 @@ Aplicativos costumam ser mais fáceis que jogos: o comportamento é mais explíc
 as ferramentas cobrem o empacotamento. O risco muda de lugar — dados de usuário,
 credenciais e propriedade intelectual de terceiros.
 
+**Comece pelo detector:** `./scripts/detect-target.sh <slug>` reconhece
+Electron/ASAR, .NET (pelo cabeçalho CLI do PE), Android, Apple, Python
+empacotado, SQLite, capturas de rede e web, e recomenda a rota no REA.
+
 ## Regras específicas de apps
 
 1. **Use a sua própria conta e os seus próprios dados.** Nada de capturar tráfego

@@ -195,6 +195,9 @@ ${C_BOLD}Pronto.${C_RESET} Próximos passos:
 
   2) Coloque sua cópia do alvo em:
        targets/meu-jogo/analysis/artifacts/
+     Registre os hashes e descubra o tipo:
+       ./scripts/hash-artifacts.sh meu-jogo
+       ./scripts/detect-target.sh meu-jogo
 
   3) Abra a ${C_BOLD}sala de análise${C_RESET}:
        cd rooms/analysis && claude      # ou: codex
@@ -212,6 +215,9 @@ ${C_BOLD}Pronto.${C_RESET} Próximos passos:
 
   6) Audite:
        ./scripts/verify-isolation.sh meu-jogo
+
+  Diagnóstico a qualquer momento:
+       ./scripts/doctor.sh
 
   Documentação: docs/00-metodo-clean-room.md (comece por aqui).
 EOF

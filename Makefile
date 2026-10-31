@@ -5,7 +5,7 @@ TARGET ?=
 VERSION ?= 0.1.0
 
 .DEFAULT_GOAL := help
-.PHONY: help bootstrap target hash check handoff verify test lint demo clean-demo rooms
+.PHONY: help bootstrap target hash detect check handoff verify doctor test lint demo clean-demo rooms
 
 help: ## Mostra esta ajuda
 	@echo "Kit de clean room com REA"
@@ -26,6 +26,10 @@ hash: ## Registra hashes dos artefatos: make hash TARGET=meu-jogo
 	@test -n "$(TARGET)" || { echo "defina TARGET=<slug>"; exit 1; }
 	./scripts/hash-artifacts.sh "$(TARGET)"
 
+detect: ## Detecta o tipo do alvo: make detect TARGET=meu-jogo
+	@test -n "$(TARGET)" || { echo "defina TARGET=<slug>"; exit 1; }
+	./scripts/detect-target.sh "$(TARGET)"
+
 check: ## Portão da spec: make check TARGET=meu-jogo
 	@test -n "$(TARGET)" || { echo "defina TARGET=<slug>"; exit 1; }
 	node scripts/check-spec.mjs "targets/$(TARGET)/analysis/spec/spec.md" --strict
@@ -34,6 +38,9 @@ check: ## Portão da spec: make check TARGET=meu-jogo
 handoff: ## Sela o handoff: make handoff TARGET=meu-jogo VERSION=0.1.0
 	@test -n "$(TARGET)" || { echo "defina TARGET=<slug>"; exit 1; }
 	./scripts/handoff.sh "$(TARGET)" "$(VERSION)"
+
+doctor: ## Diagnóstico completo do kit
+	./scripts/doctor.sh
 
 verify: ## Audita isolamento: make verify TARGET=meu-jogo
 	./scripts/verify-isolation.sh $(TARGET)
@@ -44,7 +51,9 @@ test: ## Testa as ferramentas do kit
 lint: ## Checagem de sintaxe dos scripts
 	npm run lint:scripts
 	bash -n scripts/bootstrap.sh scripts/new-target.sh scripts/handoff.sh \
-	        scripts/verify-isolation.sh scripts/hash-artifacts.sh scripts/lib/common.sh
+	        scripts/verify-isolation.sh scripts/hash-artifacts.sh \
+	        scripts/detect-target.sh scripts/doctor.sh scripts/lib/common.sh \
+	        docker/impl/run.sh
 
 demo: ## Gera um alvo de demonstração e o handoff de exemplo
 	@rm -rf targets/demo-target

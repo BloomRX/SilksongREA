@@ -1,9 +1,14 @@
-# SilksongREA — kit de clean room com REA
+# SilksongREA — clean room com REA para qualquer app ou jogo
 
 Monte um **clean room** (sala limpa) para reimplementar comportamentos de jogos e
 apps com agentes — Claude Code e Codex CLI — usando o
 [REA (Reverse Engineering Agent)](https://github.com/morluto/rea) só do lado de
 quem analisa o original.
+
+O kit é **agnóstico ao alvo**: detecta Unity (Mono/IL2CPP), UnityFS, Godot,
+Electron/ASAR, .NET, Android, Apple, binário nativo, WASM, ROMs, SQLite, capturas
+de rede e firmware. Silksong é só um caso de teste; o processo é o mesmo para
+qualquer aplicativo ou jogo que você tenha o direito de analisar.
 
 > **Escopo.** Este kit é para interoperabilidade, preservação, pesquisa e
 > aprendizado com software que você possui ou está autorizado a examinar. Ele
@@ -35,8 +40,31 @@ quem analisa o original.
 A única coisa que atravessa é **`spec.md` + `golden.json` + `manifest.json`**,
 selados em somente-leitura, com hashes e declaração de independência. O portão
 barra código, trechos de binário, dumps, assets e vocabulário de engenharia
-reversa. O hook do agente barra a sala limpa de tocar no REA, no alvo ou na
+reversa. O hook do agente impede a sala limpa de tocar no REA, no alvo ou na
 análise.
+
+## Funciona com qualquer alvo
+
+```bash
+./scripts/detect-target.sh meu-alvo
+```
+
+O detector lê nomes, extensões e alguns bytes de cabeçalho (sem executar nada) e
+recomenda a rota, o provedor e as famílias de ferramentas do MCP:
+
+| Detecta | Rota recomendada | Provedor nativo |
+| --- | --- | --- |
+| Unity IL2CPP (`GameAssembly` + `global-metadata.dat`) | `inspect_il2cpp_metadata` → binário | sim |
+| Unity Mono (`Assembly-CSharp.dll`) | `inspect_managed_artifact` | não |
+| UnityFS AssetBundle (`.bundle`, `.assets`) | `inspect_artifact` | não |
+| Godot PCK (`.pck`) | `inspect_artifact` | não |
+| Electron/ASAR | `analyze_javascript_application` | não |
+| .NET (PE com cabeçalho CLI) | `inspect_managed_artifact` | não |
+| Android (`.apk`, `.aab`) | `inspect_android_package` | opcional (JADX) |
+| Apple (`.app`, `.ipa`, `Info.plist`) | `open_bundle_resources` | opcional |
+| Nativo (ELF/PE/Mach-O) | `open_binary` | sim |
+| WASM, ROMs, SQLite, PCAP, firmware | rota específica | conforme o caso |
+| Web (`index.html` + JS, `.har`) | observação de navegador | não |
 
 ## O que dá e o que não dá para reimplementar
 
@@ -63,7 +91,7 @@ análise.
 ## Instalação rápida (macOS/Linux)
 
 ```bash
-git clone <este-repo> silksongrea && cd silksongrea
+git clone <este-repo> cleanroom-rea && cd cleanroom-rea
 
 ./scripts/bootstrap.sh
 #   ou: ./scripts/bootstrap.sh --clients claude_code,codex
@@ -83,38 +111,41 @@ O bootstrap:
 **Windows:** use WSL2 (recomendado) e rode os scripts dentro dele. Para
 PowerShell nativo, veja `docs/01-instalacao-rea.md`.
 
-## Uso em 6 passos
+## Uso em 7 passos
 
 ```bash
-# 1. crie um alvo
-./scripts/new-target.sh silksong --name "Hollow Knight: Silksong" --version "1.0.0"
+# 1. crie um alvo (qualquer jogo ou app)
+./scripts/new-target.sh meu-jogo --name "Meu Jogo" --version "1.0.0"
 
 # 2. coloque sua cópia do alvo e registre os hashes
-cp -R /caminho/do/jogo targets/silksong/analysis/artifacts/
-./scripts/hash-artifacts.sh silksong
+cp -R /caminho/do/alvo targets/meu-jogo/analysis/artifacts/
+./scripts/hash-artifacts.sh meu-jogo
 
-# 3. sala de análise: investigue e escreva a spec
+# 3. descubra o tipo e a rota
+./scripts/detect-target.sh meu-jogo
+
+# 4. sala de análise: investigue e escreva a spec
 cd rooms/analysis && claude      # ou: codex
 
-# 4. portão + handoff selado
+# 5. portão + handoff selado
 cd ../..
-node scripts/check-spec.mjs targets/silksong/analysis/spec/spec.md --strict
-./scripts/handoff.sh silksong 0.1.0
+node scripts/check-spec.mjs targets/meu-jogo/analysis/spec/spec.md --strict
+./scripts/handoff.sh meu-jogo 0.1.0
 
-# 5. sala limpa: implemente só com a spec (sessão nova, de preferência outro agente)
+# 6. sala limpa: implemente só com a spec (sessão nova, de preferência outro agente)
 cd rooms/impl && claude          # ou: codex
 
-# 6. audite
-cd ../.. && ./scripts/verify-isolation.sh silksong
+# 7. audite
+cd ../.. && ./scripts/verify-isolation.sh meu-jogo
 ```
 
 ### Prompt para a sala de análise
 
 ```text
 Leia AGENTS.md e a skill clean-room-spec.
-Alvo: ../../targets/silksong/analysis/artifacts (versão 1.0.0).
+Alvo: ../../targets/meu-jogo/analysis/artifacts (versão 1.0.0).
 Quero entender <comportamento específico>. Produza a spec em
-../../targets/silksong/analysis/spec/spec.md e os vetores em golden.json.
+../../targets/meu-jogo/analysis/spec/spec.md e os vetores em golden.json.
 Registre evidência e incertezas. Não escreva código de produto.
 ```
 
@@ -122,7 +153,7 @@ Registre evidência e incertezas. Não escreva código de produto.
 
 ```text
 Leia AGENTS.md e a skill clean-room-impl.
-Implemente ../../targets/silksong/handoff/v0.1.0 com <stack>.
+Implemente ../../targets/meu-jogo/handoff/v0.1.0 com <stack>.
 Comece transformando cada caso de golden.json em teste.
 Se a spec for ambígua, crie um pedido de esclarecimento; não invente.
 ```
@@ -134,33 +165,39 @@ Se a spec for ambígua, crie um pedido de esclarecimento; não invente.
 | `./scripts/bootstrap.sh` | instala/atualiza REA, registra MCP, cria guards |
 | `./scripts/new-target.sh <slug>` | cria a estrutura de um alvo |
 | `./scripts/hash-artifacts.sh <slug>` | registra sha256 dos artefatos |
+| `./scripts/detect-target.sh <slug>` | detecta o tipo e recomenda a rota no REA |
 | `node scripts/check-spec.mjs <spec> --strict` | portão: bloqueia material contaminado |
 | `./scripts/handoff.sh <slug> <versão>` | sela spec + vetores + manifesto |
 | `./scripts/verify-isolation.sh [slug]` | audita separação e integridade |
+| `./scripts/doctor.sh [--deep]` | diagnóstico completo do kit |
 | `npm test` | testa as ferramentas do kit |
 | `make help` | atalhos |
+
+## Skills incluídas
+
+| Skill | Onde | Para quem |
+| --- | --- | --- |
+| `clean-room-orchestrator` | `.claude/skills/` | você, operando na raiz |
+| `clean-room-spec` | `rooms/analysis/.claude/skills/` | agente da análise |
+| `clean-room-impl` | `rooms/impl/.claude/skills/` | agente da implementação |
+
+Cada sala tem também `AGENTS.md` (Codex) e `CLAUDE.md` (Claude Code). A skill
+oficial `reverse-engineer-anything` é instalada pelo `rea setup`. Detalhes:
+`docs/08-skills.md`.
 
 ## Estrutura
 
 ```
 rooms/analysis/        sala suja: AGENTS.md, CLAUDE.md, skill clean-room-spec
 rooms/impl/            sala limpa: AGENTS.md, CLAUDE.md, skill clean-room-impl
+.claude/skills/        skill do operador (orquestração)
 targets/<slug>/        um alvo: artifacts, evidence, spec, golden, handoff
-scripts/               bootstrap, portão, handoff, guards, verificação
-templates/             spec, vetores, pedido de esclarecimento, ficha do alvo
+scripts/               bootstrap, detecção, portão, handoff, guards, doctor
+templates/             spec, vetores, pedido, ficha do alvo, proveniência
 examples/pan-mechanic/ exemplo completo (mecânica fictícia) que passa no portão
 docs/                  método, instalação, fluxos, alvos, limites, auditoria
 docker/impl/           container opcional para a sala limpa
 ```
-
-## Alvos suportados pelo REA
-
-Jogos: binários nativos, Unity IL2CPP (`global-metadata.dat`), UnityFS
-AssetBundles, Godot PCK, WASM, Android, Flutter, Harmony, DOS/N64/PSP/PPC/MIPS
-via Ghidra. Apps: Electron/ASAR e JavaScript, .NET gerenciado, Android/JADX,
-Apple, Python empacotado, firmware, web/capturas.
-
-Roteiro por tipo de alvo: `docs/03-alvos-jogos.md` e `docs/04-alvos-apps.md`.
 
 ## Documentação
 
@@ -174,6 +211,7 @@ Roteiro por tipo de alvo: `docs/03-alvos-jogos.md` e `docs/04-alvos-apps.md`.
 | [docs/05-limites-legais-e-politica.md](docs/05-limites-legais-e-politica.md) | o que pode, o que não pode, direito brasileiro |
 | [docs/06-verificacao-e-auditoria.md](docs/06-verificacao-e-auditoria.md) | provar equivalência e independência |
 | [docs/07-solucao-de-problemas.md](docs/07-solucao-de-problemas.md) | erros comuns do REA, dos hooks e do portão |
+| [docs/08-skills.md](docs/08-skills.md) | skills, como carregam e como editar |
 
 ## FAQ curto
 
@@ -187,6 +225,11 @@ reforça a independência (ex.: Claude na análise, Codex na implementação).
 **Preciso de Ghidra?** Só para binários nativos. Unity IL2CPP e análise de
 JavaScript/Electron, .NET, Godot e containers funcionam sem engine nativa — mas
 IL2CPP profundo normalmente pede um provedor para o binário.
+
+**O kit funciona com qualquer jogo/app?** Sim: o processo é por comportamento.
+O detector cobre os empacotamentos mais comuns; se o tipo não for reconhecido,
+ele sugere inventariar o container primeiro e rodar a detecção no arquivo
+principal.
 
 **O clean room garante que não há violação?** Não. Ele reduz risco e produz
 trilha de auditoria. A decisão jurídica é sempre do seu advogado.

@@ -10,8 +10,10 @@
   },
   "scripts": {
     "check-spec": "node scripts/check-spec.mjs",
+    "detect": "node scripts/detect-target.mjs",
+    "doctor": "./scripts/doctor.sh",
     "test": "node --test tests/*.test.mjs",
-    "lint:scripts": "node --check scripts/check-spec.mjs && node --check scripts/guard-impl.mjs && node --check scripts/verify-handoff.mjs",
+    "lint:scripts": "node --check scripts/check-spec.mjs && node --check scripts/guard-impl.mjs && node --check scripts/verify-handoff.mjs && node --check scripts/detect-target.mjs",
     "verify:example": "node --test examples/pan-mechanic/impl/solution.test.mjs"
   }
 }

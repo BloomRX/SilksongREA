@@ -4,6 +4,7 @@
 - Slug: {{SLUG}}
 - Versão analisada: {{VERSION}}
 - Criado em: {{DATE}}
+- Tipo detectado: (rodar `./scripts/detect-target.sh {{SLUG}}`)
 
 ## Ficha de entrada (preencha antes de analisar)
 

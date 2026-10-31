@@ -48,3 +48,4 @@ EOF
 
 ok "$count arquivo(s) hasheado(s) em targets/$SLUG/analysis/artifacts.sha256"
 (( skipped == 0 )) || warn "$skipped arquivo(s) grande(s) ficaram de fora"
+dim "  próximo passo: ./scripts/detect-target.sh $SLUG"

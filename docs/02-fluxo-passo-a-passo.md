@@ -6,8 +6,8 @@ Roteiro completo, do clone ao relatório de entrega. Exemplo com um alvo chamado
 ## Fase 0 — Preparar a máquina
 
 ```bash
-git clone <este-repo> silksongrea
-cd silksongrea
+git clone <este-repo> cleanroom-rea
+cd cleanroom-rea
 ./scripts/bootstrap.sh
 ```
 
@@ -35,6 +35,24 @@ Preencha `targets/meu-jogo/README.md`:
 **Decisão de escopo.** Se a resposta para "o que eu quero" for "o jogo inteiro,
 igual", pare e reduza: escolha **uma mecânica** ou **um formato**. Clean room
 funciona por comportamento delimitado.
+
+## Fase 1.5 — Detectar o tipo do alvo
+
+```bash
+./scripts/detect-target.sh meu-jogo
+```
+
+A saída traz o tipo (Unity IL2CPP, Unity Mono, UnityFS, Godot, Electron, .NET,
+Android, Apple, nativo, WASM, ROM, SQLite, PCAP, firmware ou web), o primeiro
+passo no REA, se precisa de provedor nativo e as famílias de ferramentas do MCP.
+Use isso no prompt da Fase 2 e, se quiser, limite o catálogo:
+
+```bash
+rea setup --client claude_code --tool-families native,artifact,session
+```
+
+Se o tipo vier como "não reconhecido", rode `inspect_artifact` no container e
+detecte de novo no arquivo principal.
 
 ## Fase 2 — Análise
 

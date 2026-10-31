@@ -2,8 +2,10 @@
 /**
  * Guard de sala para hooks do Claude Code (PreToolUse).
  *
- * Instalado pelo bootstrap em rooms/<sala>/.claude/settings.local.json.
- * A variável CLEANROOM_ROOM decide as regras:
+ * Instalado pelo bootstrap em rooms/<sala>/.claude/settings.local.json (e na
+ * raiz). A sala é detectada por CLEANROOM_ROOM, pelo diretório da sessão ou
+ * pelo caminho acessado — por isso abrir o agente na raiz também respeita as
+ * regras ao escrever dentro de targets/<slug>/analysis. As regras:
  *
  *   analysis: pode ler o alvo e o REA; NÃO pode escrever código de produto
  *             nem entrar na sala de implementação.
@@ -18,6 +20,7 @@ import { resolve } from "node:path";
 
 const ENV_ROOM = process.env.CLEANROOM_ROOM || "";
 
+const HARNESS = /(^|\/)analysis\/(tools|harness)(\/|$)/;
 const CODE_EXT = /\.(cs|gd|gdscript|cpp|cc|cxx|c|h|hpp|js|mjs|cjs|jsx|ts|tsx|py|rs|go|java|kt|kts|lua|swift|m|mm|asm|s|shader|hlsl|glsl|wgsl|sol)$/i;
 
 const IMPL_BASH_DENY = [
@@ -79,22 +82,32 @@ const tool = String(payload.tool_name || payload.toolName || "");
 const input = payload.tool_input || payload.toolInput || {};
 const cwd = payload.cwd || process.cwd();
 
-/** Sala: env > diretório da sessão > diretório do processo. */
-function detectRoom(base) {
+const ANALYSIS_SCOPE = /(^|\/)targets\/[^/]+\/analysis($|\/)/;
+const IMPL_SCOPE = /(^|\/)(rooms\/impl|targets\/[^/]+\/impl-src)($|\/)/;
+
+/**
+ * Sala: env > diretório da sessão > diretório do processo > escopo do caminho.
+ * O último caso cobre o agente aberto na raiz do kit: escrever código dentro de
+ * targets/<slug>/analysis continua bloqueado mesmo fora da pasta da sala.
+ */
+function detectRoom(base, absPaths) {
   if (ENV_ROOM === "analysis" || ENV_ROOM === "impl") return ENV_ROOM;
   for (const candidate of [base, process.cwd()]) {
     const abs = resolve(candidate);
-    if (/(^|\/)rooms\/impl($|\/)/.test(abs)) return "impl";
-    if (/(^|\/)rooms\/analysis($|\/)/.test(abs)) return "analysis";
+    if (IMPL_SCOPE.test(abs)) return "impl";
+    if (ANALYSIS_SCOPE.test(abs)) return "analysis";
   }
+  if (absPaths.some((p) => IMPL_SCOPE.test(p))) return "impl";
+  if (absPaths.some((p) => ANALYSIS_SCOPE.test(p))) return "analysis";
   return "";
 }
-const ROOM = detectRoom(cwd);
 
 const fields = ["command", "path", "file_path", "notebook_path", "pattern", "url", "query", "glob"];
 const values = fields.map((f) => input[f]).filter((v) => typeof v === "string");
 const joined = values.join("\n");
 const paths = values.filter((v) => v === input.path || v === input.file_path || v === input.notebook_path || v === input.glob);
+const absPaths = paths.map((p) => resolve(cwd, p));
+const ROOM = detectRoom(cwd, absPaths);
 
 if (ROOM === "impl") {
   for (const [re, why] of IMPL_BASH_DENY) {
@@ -127,7 +140,6 @@ if (ROOM === "analysis") {
     }
   }
   const writing = ["Write", "Edit", "MultiEdit", "NotebookEdit"].includes(tool);
-  const HARNESS = /(^|\/)analysis\/(tools|harness)(\/|$)/;
   if (writing) {
     for (const p of paths) {
       const abs = resolve(cwd, p);

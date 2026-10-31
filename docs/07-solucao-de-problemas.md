@@ -108,6 +108,23 @@ Reinicie o cliente.
 
 ## 2. Kit / scripts
 
+### `doctor.sh` do kit (diagnóstico completo)
+
+```bash
+./scripts/doctor.sh            # ambiente, REA, skills, hooks, handoffs, higiene
+./scripts/doctor.sh --deep     # também roda o doctor completo do REA
+```
+
+Ele aponta o caminho exato do problema (Node fora da faixa, hook apontando para
+arquivo movido, handoff adulterado, artefato versionado).
+
+### Detector não reconhece o alvo
+
+`./scripts/detect-target.sh <slug>` retorna "Tipo não reconhecido" quando o
+arquivo principal está dentro de um container. Rode `inspect_artifact` no
+container, identifique o executável e detecte de novo apontando para ele — ou
+copie o arquivo principal para os artefatos.
+
 ### `bootstrap.sh` para na checagem de Node com `--skip-rea`
 
 Só é bloqueante quando o REA será instalado. Com `--skip-rea` ele avisa e continua.
