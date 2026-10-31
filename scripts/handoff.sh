@@ -2,7 +2,7 @@
 # Fecha o portão e empacota o handoff da sala de análise para a sala limpa.
 #
 # Uso:
-#   ./scripts/handoff.sh <slug> <versão> [--strict] [--force]
+#   ./scripts/handoff.sh <slug> <versão> [--strict] [--force] [--allow-partial]
 #
 # Só entram no pacote: spec.md, golden.json e manifest.json.
 # Nada de código, evidência bruta, artefatos ou assets.
@@ -10,11 +10,12 @@
 
 source "$(cd "$(dirname "$0")" && pwd)/lib/common.sh"
 
-SLUG=""; VERSION=""; STRICT=0; FORCE=0
+SLUG=""; VERSION=""; STRICT=0; FORCE=0; ALLOW_PARTIAL=0
 while (($# > 0)); do
   case "$1" in
     --strict) STRICT=1; shift ;;
     --force) FORCE=1; shift ;;
+    --allow-partial) ALLOW_PARTIAL=1; shift ;;
     -h|--help) sed -n '2,10p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
     -*) die "opção desconhecida: $1" ;;
     *) if [[ -z "$SLUG" ]]; then SLUG="$1"; elif [[ -z "$VERSION" ]]; then VERSION="$1"; else die "argumentos demais: $1"; fi; shift ;;
@@ -50,18 +51,19 @@ fi
 node "$ROOT/scripts/check-spec.mjs" "$spec" --kind spec
 
 info "Validando vetores de teste"
-node - "$golden" <<'NODE' || die "golden.json inválido: precisa de {\"cases\": [...]} com ao menos 1 caso"
-const fs = require("node:fs");
-const d = JSON.parse(fs.readFileSync(process.argv[2], "utf8"));
-if (!Array.isArray(d.cases) || d.cases.length === 0) process.exit(1);
-for (const [i, c] of d.cases.entries()) {
-  if (!c || typeof c !== "object" || !c.id || !c.input) {
-    console.error(`caso ${i} sem "id" ou "input"`);
-    process.exit(1);
-  }
-}
-NODE
+golden_args=(--json)
+[[ $ALLOW_PARTIAL -eq 1 ]] && golden_args+=(--allow-partial)
+if ! golden_report="$(node "$ROOT/scripts/lib/golden.mjs" "$golden" "${golden_args[@]}")"; then
+  node "$ROOT/scripts/lib/golden.mjs" "$golden" || true
+  die "golden.json inválido ou com vetores sem saída esperada (corrija os vetores; --allow-partial só para handoff explicitamente parcial)."
+fi
+unresolved_ids="$(node -e 'const d=JSON.parse(process.argv[1]);process.stdout.write(d.unresolved.join(","))' "$golden_report")"
+partial=0
+[[ -n "$unresolved_ids" ]] && partial=1
 ok "$(node -e 'const d=require(process.argv[1]);process.stdout.write(d.cases.length+" vetor(es)")' "$(abspath "$golden")")"
+if [[ $partial -eq 1 ]]; then
+  warn "handoff PARCIAL: ${unresolved_ids} sem saída esperada (marcado no manifesto)"
+fi
 
 if [[ -e "$out" ]]; then
   if [[ $FORCE -eq 1 ]]; then
@@ -78,13 +80,14 @@ cp "$spec" "$out/spec.md"
 cp "$golden" "$out/golden.json"
 
 info "Gerando manifesto"
-node - "$SLUG" "$VERSION" "$out" "$gate_json" "$artifacts_hash" "$ROOT" <<'NODE'
+node - "$SLUG" "$VERSION" "$out" "$gate_json" "$artifacts_hash" "$ROOT" "$unresolved_ids" "$partial" <<'NODE'
 const fs = require("node:fs");
 const path = require("node:path");
 const crypto = require("node:crypto");
 const { execFileSync } = require("node:child_process");
 
-const [slug, version, out, gateJson, artifactsHashPath, root] = process.argv.slice(2);
+const [slug, version, out, gateJson, artifactsHashPath, root, unresolvedIds, partialFlag] = process.argv.slice(2);
+const unresolved = String(unresolvedIds || "").split(",").filter(Boolean);
 const sha = (p) => crypto.createHash("sha256").update(fs.readFileSync(p)).digest("hex");
 const gateParsed = JSON.parse(gateJson);
 const specPath = path.join(out, "spec.md");
@@ -145,6 +148,8 @@ const manifest = {
   artifacts_sha256: artifacts,
   files,
   independence_declaration: declaration,
+  partial: partialFlag === "1",
+  unresolved_cases: unresolved,
   included: ["spec.md", "golden.json", "manifest.json"],
   excluded: ["binários e artefatos do alvo", "evidências do REA", "código-fonte", "assets de qualquer tipo"],
 };

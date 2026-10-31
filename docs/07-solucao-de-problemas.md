@@ -250,9 +250,19 @@ vez" em trabalho sério — o valor dele é justamente não ser opcional.
 Avisos comuns: offsets `0x…` (só se forem formato público observável), caminhos
 `artifacts/`, extensões de código citadas. Resolva ou justifique.
 
-### `handoff.sh` recusa golden vazio
+### `handoff.sh` recusa golden vazio ou com `expected: null`
 
-Intencional: handoff sem vetores não é handoff. Produza casos reais.
+Intencional: handoff sem vetores — ou com saídas desconhecidas — não é handoff;
+a sala limpa não teria como testar. Complete as saídas antes de selar.
+
+Se você precisa registrar um avanço parcial de propósito:
+
+```bash
+./scripts/handoff.sh <slug> <versão> --strict --allow-partial
+```
+
+O manifesto sai com `"partial": true` e a lista em `unresolved_cases`, então
+ninguém confunde com um pacote pronto.
 
 ### "Permission denied" ao apagar um handoff
 

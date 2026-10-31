@@ -51,6 +51,21 @@ e o comportamento fica explícito — **mas lembre que ler o código do original
 justamente o que contamina a spec**. Use para **entender**, e registre apenas o
 comportamento observável.
 
+**Onde ficam os números.** O assembly dá a *estrutura* (tipos, campos, métodos),
+não os valores ajustados no editor. Constantes como velocidade, aceleração e
+cooldown costumam estar serializadas em assets do jogo:
+
+| Origem | O que tem |
+| --- | --- |
+| `*_Data/Managed/*.dll` | classes, campos e nomes de métodos |
+| `*_Data/resources.assets`, `sharedassets*.assets`, `level*` | componentes e ScriptableObjects com os valores |
+| PlayMaker FSMs (comuns em Unity) | parte da lógica e dos parâmetros vive nos estados, também serializada |
+
+Se o REA não abrir esse formato, as opções são medir o comportamento em jogo ou
+usar um leitor de assets (UnityPy/AssetRipper) só para ler configuração — os
+valores entram na spec como observação, nunca como código copiado. Handoff com
+`expected: null` é recusado: sem números não há vetor.
+
 ### IL2CPP
 
 | Passo | Ferramenta |
