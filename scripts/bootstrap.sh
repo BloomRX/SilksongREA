@@ -217,7 +217,8 @@ ${C_BOLD}Pronto.${C_RESET} Próximos passos:
        ./scripts/verify-isolation.sh meu-jogo
 
   Diagnóstico a qualquer momento:
-       ./scripts/doctor.sh
+       node scripts/preflight.mjs     # ambiente: SO, branch, Node, REA, agentes
+       ./scripts/doctor.sh            # kit: hooks, skills, portão
 
   Documentação: docs/00-metodo-clean-room.md (comece por aqui).
 EOF

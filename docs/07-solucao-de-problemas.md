@@ -1,5 +1,17 @@
 # Solução de problemas
 
+## 0. Comece pelo pré-voo
+
+Antes de caçar o erro à mão:
+
+```bash
+node scripts/preflight.mjs
+```
+
+Ele lista plataforma, branch, Node, npm, git, bash, REA, agentes, registro MCP,
+guards, skills, Ghidra e disco — com a correção de cada falha. Para o agente
+consertar sozinho, use o prompt de [09-reparo-com-codex.md](09-reparo-com-codex.md).
+
 ## 1. REA / instalação
 
 ### Node.js incompatível

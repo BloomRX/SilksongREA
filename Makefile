@@ -5,7 +5,7 @@ TARGET ?=
 VERSION ?= 0.1.0
 
 .DEFAULT_GOAL := help
-.PHONY: help bootstrap target hash detect check handoff verify doctor test lint demo clean-demo rooms
+.PHONY: help preflight bootstrap target hash detect check handoff verify doctor test lint demo clean-demo rooms
 
 help: ## Mostra esta ajuda
 	@echo "Kit de clean room com REA"
@@ -14,6 +14,9 @@ help: ## Mostra esta ajuda
 	@echo
 	@echo "Variáveis: TARGET=<slug> VERSION=<x.y.z>"
 	@echo "Exemplo:   make check TARGET=meu-jogo"
+
+preflight: ## Confere SO, branch, Node, REA, agentes e registros
+	@node scripts/preflight.mjs
 
 bootstrap: ## Instala REA, registra MCP e cria os guards
 	./scripts/bootstrap.sh

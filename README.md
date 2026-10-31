@@ -91,7 +91,9 @@ recomenda a rota, o provedor e as famílias de ferramentas do MCP:
 ## Instalação rápida (macOS/Linux)
 
 ```bash
-git clone <este-repo> cleanroom-rea && cd cleanroom-rea
+git clone -b arena/caee944a-silksongrea https://github.com/BloomRX/SilksongREA.git cleanroom-rea
+cd cleanroom-rea
+node scripts/preflight.mjs          # diz o que falta, sem alterar nada
 
 ./scripts/bootstrap.sh
 #   ou: ./scripts/bootstrap.sh --clients claude_code,codex
@@ -162,6 +164,7 @@ Se a spec for ambígua, crie um pedido de esclarecimento; não invente.
 
 | Comando | O que faz |
 | --- | --- |
+| `node scripts/preflight.mjs [--json]` | confere SO, branch, Node, REA, agentes e registros |
 | `./scripts/bootstrap.sh` | instala/atualiza REA, registra MCP, cria guards |
 | `./scripts/new-target.sh <slug>` | cria a estrutura de um alvo |
 | `./scripts/hash-artifacts.sh <slug>` | registra sha256 dos artefatos |
@@ -192,7 +195,7 @@ rooms/analysis/        sala suja: AGENTS.md, CLAUDE.md, skill clean-room-spec
 rooms/impl/            sala limpa: AGENTS.md, CLAUDE.md, skill clean-room-impl
 .claude/skills/        skill do operador (orquestração)
 targets/<slug>/        um alvo: artifacts, evidence, spec, golden, handoff
-scripts/               bootstrap, detecção, portão, handoff, guards, doctor
+scripts/               pré-voo, bootstrap, detecção, portão, handoff, guards, doctor
 templates/             spec, vetores, pedido, ficha do alvo, proveniência
 examples/pan-mechanic/ exemplo completo (mecânica fictícia) que passa no portão
 docs/                  método, instalação, fluxos, alvos, limites, auditoria
@@ -212,12 +215,19 @@ docker/impl/           container opcional para a sala limpa
 | [docs/06-verificacao-e-auditoria.md](docs/06-verificacao-e-auditoria.md) | provar equivalência e independência |
 | [docs/07-solucao-de-problemas.md](docs/07-solucao-de-problemas.md) | erros comuns do REA, dos hooks e do portão |
 | [docs/08-skills.md](docs/08-skills.md) | skills, como carregam e como editar |
+| [docs/09-reparo-com-codex.md](docs/09-reparo-com-codex.md) | prompt para o Codex consertar a instalação sozinho |
 
 ## FAQ curto
 
 **Claude e Codex na web servem?** Não para o REA: ele é um servidor MCP local.
 Use **Claude Code** (CLI/IDE) ou **Codex CLI**. O Claude Desktop também é
 suportado pelo `rea setup`, mas ainda é local.
+
+**Clonei e só apareceu o README.** Você pegou o branch `main`, que é só o
+ponto de partida. Rode `git fetch origin && git checkout arena/caee944a-silksongrea`
+ou clone com `-b arena/caee944a-silksongrea`. Para diagnosticar o resto,
+`node scripts/preflight.mjs` e, se quiser que o agente conserte,
+`docs/09-reparo-com-codex.md`.
 
 **Preciso dos dois agentes?** Não, mas usar agentes diferentes nas duas salas
 reforça a independência (ex.: Claude na análise, Codex na implementação).
