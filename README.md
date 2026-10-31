@@ -164,7 +164,7 @@ Se a spec for ambígua, crie um pedido de esclarecimento; não invente.
 
 | Comando | O que faz |
 | --- | --- |
-| `node scripts/preflight.mjs [--json]` | confere SO, branch, Node, REA, agentes e registros |
+| `node scripts/preflight.mjs [--json] [--deep]` | confere SO, branch, Node, REA, agentes e registros |
 | `./scripts/bootstrap.sh` | instala/atualiza REA, registra MCP, cria guards |
 | `./scripts/new-target.sh <slug>` | cria a estrutura de um alvo |
 | `./scripts/hash-artifacts.sh <slug>` | registra sha256 dos artefatos |

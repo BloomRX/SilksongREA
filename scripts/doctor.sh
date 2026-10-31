@@ -52,7 +52,12 @@ if command -v rea >/dev/null 2>&1; then
   pass "rea $(rea --version 2>/dev/null | head -1)"
   if [[ $DEEP -eq 1 ]]; then
     echo
-    rea doctor || note "rea doctor reportou problemas (veja acima)"
+    if rea doctor; then
+      pass "rea doctor sem falhas"
+    else
+      note "rea doctor global saiu != 0: ele inclui provedores ausentes e clientes que você não usa."
+      note "  gate do kit: rea doctor --client codex --skill   (ou --client claude_code)"
+    fi
   else
     dim "  use --deep para rodar o doctor completo do REA"
   fi

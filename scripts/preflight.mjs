@@ -19,9 +19,12 @@ import { fileURLToPath } from "node:url";
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const EXPECTED_BRANCH = "arena/caee944a-silksongrea";
 const JSON_OUT = process.argv.includes("--json");
+const DEEP = process.argv.includes("--deep");
 
 if (process.argv.includes("-h") || process.argv.includes("--help")) {
-  console.log("uso: node scripts/preflight.mjs [--json]");
+  console.log("uso: node scripts/preflight.mjs [--json] [--deep]");
+  console.log("  --json   relatório legível por agente/CI");
+  console.log("  --deep   também roda `rea doctor --client <id> --skill` de cada agente presente");
   process.exit(0);
 }
 
@@ -216,6 +219,29 @@ if (claude.ok) {
     registered ? `registrado em ${cfg}` : `sem registro em ${cfg}`,
     registered ? null : "rea setup --client claude_code --dry-run"
   );
+}
+
+// --------------------------------------------------- doctor com escopo (opcional)
+// O `rea doctor` sem filtro reprova clientes que você não usa e provedores
+// ausentes; aqui o gate é por cliente, que é o que o kit realmente exige.
+if (DEEP && rea.ok) {
+  const targets = [];
+  if (codex.ok) targets.push(["codex", "codex"]);
+  if (claude.ok) targets.push(["claude_code", "Claude Code"]);
+  for (const [id, label] of targets) {
+    const r = cmd("rea", ["doctor", "--client", id, "--skill", "--json"]);
+    const healthy = r.ok && !/"(healthy|ok)"\s*:\s*false/.test(r.out);
+    add(
+      `rea-doctor-${id}`,
+      `Doctor ${label}`,
+      healthy ? "ok" : "fail",
+      healthy ? "registro e skill saudáveis" : `saiu ${r.status ?? "erro"}: ${r.err || r.out || "sem saída"}`,
+      healthy ? null : `rea doctor --client ${id} --skill   (veja docs/07-solucao-de-problemas.md)`
+    );
+  }
+  if (targets.length === 0) {
+    add("rea-doctor", "Doctor do REA", "warn", "nenhum agente presente para escopar o doctor", null);
+  }
 }
 
 // ------------------------------------------------------------------ hooks/skills

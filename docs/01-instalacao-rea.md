@@ -251,3 +251,8 @@ rea doctor --provider ghidra --json
 
 O `doctor` verifica arquivos e pré-requisitos, não a conexão viva do agente. Se as
 ferramentas não aparecerem mesmo com tudo verde, reinicie o cliente.
+
+Rode sempre **com escopo** (`--client`, `--skill`, `--provider`). O `rea doctor`
+sem filtro avalia todos os clientes detectados e todos os provedores: um cliente
+que você não usa ou um Ghidra ausente já derrubam o código de saída, sem que o seu
+registro tenha problema.

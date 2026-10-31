@@ -9,7 +9,8 @@ node scripts/preflight.mjs
 ```
 
 Ele lista plataforma, branch, Node, npm, git, bash, REA, agentes, registro MCP,
-guards, skills, Ghidra e disco — com a correção de cada falha. Para o agente
+guards, skills, Ghidra e disco — com a correção de cada falha. Com `--deep`, roda
+também `rea doctor --client <id> --skill` de cada agente presente. Para o agente
 consertar sozinho, use o prompt de [09-reparo-com-codex.md](09-reparo-com-codex.md).
 
 ## 1. REA / instalação
@@ -53,6 +54,24 @@ codex plugin list
 ```
 
 E **não** rode `rea setup` para "consertar" — você acabaria com dois servidores.
+
+### `rea doctor` sai com código 1 mesmo com tudo certo
+
+`rea doctor` sem filtro é um relatório **global**: ele avalia todos os clientes
+detectados na máquina e todos os provedores conhecidos. Um cliente que você não
+usa (e nunca registrou) e um provedor ausente (Ghidra, IDA, Hopper) entram como
+problema e derrubam o código de saída — mesmo que o seu registro esteja perfeito.
+
+Use o gate com escopo, que é o que o kit exige:
+
+```bash
+rea doctor --client codex --skill --json        # ou --client claude_code
+rea doctor --provider ghidra --json             # só quando for usar binário nativo
+```
+
+`./scripts/doctor.sh` roda o `rea doctor` completo apenas com `--deep` e trata a
+saída como aviso; `./scripts/preflight.mjs` nem chama o `rea doctor`, para não
+confundir "cliente que eu não uso" com "instalação quebrada".
 
 ### MCP registrado, mas ferramentas não aparecem
 

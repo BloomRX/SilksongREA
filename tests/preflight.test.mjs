@@ -65,4 +65,16 @@ test("preflight --help explica o uso sem tocar no ambiente", () => {
   const r = run(["--help"]);
   assert.equal(r.status, 0);
   assert.match(r.stdout, /uso: node scripts\/preflight\.mjs/);
+  assert.match(r.stdout, /--deep/);
+});
+
+test("preflight --deep mantém o relatório válido", () => {
+  const r = run(["--deep", "--json"]);
+  assert.ok([0, 1].includes(r.status), `código inesperado: ${r.status} (${r.stderr})`);
+  const data = JSON.parse(r.stdout);
+  assert.equal(data.schema, "cleanroom-preflight/v1");
+  assert.equal(data.ok, data.summary.fail === 0);
+  for (const c of data.checks) {
+    assert.ok(["ok", "warn", "fail"].includes(c.status));
+  }
 });

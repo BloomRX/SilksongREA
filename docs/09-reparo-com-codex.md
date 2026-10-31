@@ -43,10 +43,11 @@ node scripts/preflight.mjs
 ```
 
 Ele não altera nada. Mostra, item por item, o que está ok, o que é aviso e o que
-bloqueia, e imprime as correções na ordem. Versão para agente/CI:
+bloqueia, e imprime as correções na ordem. Versões para agente/CI:
 
 ```bash
-node scripts/preflight.mjs --json
+node scripts/preflight.mjs --json     # relatório estruturado
+node scripts/preflight.mjs --deep     # + `rea doctor --client <id> --skill` de cada agente
 ```
 
 Se `node` nem existir, instale o Node 24 primeiro (dentro do WSL, se for o caso):
@@ -122,9 +123,10 @@ PASSOS
 5. Registre o REA no meu cliente: `rea setup --client codex --dry-run --json`,
    mostre o plano, e só então `rea setup --client codex --yes`. Se o cliente for
    Claude Code, use `--client claude_code`.
-6. Rode `rea doctor` e `./scripts/doctor.sh` e me mostre a saída. Os dois devem
-   terminar sem FALHA de ambiente (o doctor.sh pode reclamar de Docker/Ghidra;
-   isso é aviso).
+6. Rode `rea doctor --client codex --skill` (ou `--client claude_code`) e
+   `./scripts/doctor.sh`, e me mostre a saída. Esses dois são o gate: devem sair 0.
+   Não use `rea doctor` sem filtro como critério — ele reprova provedores ausentes
+   e clientes que eu não uso; se você rodar, explique isso em vez de "consertar".
 7. Rode `node scripts/preflight.mjs` de novo e cole o resumo final.
 8. Encerre com um relatório curto:
    - o que estava quebrado e a causa;
@@ -147,9 +149,9 @@ abra o Codex de novo; só então as ferramentas `rea` aparecem. O mesmo vale par
 ## 4. Depois que o Codex terminar
 
 ```bash
-node scripts/preflight.mjs        # tudo ok, ou só avisos
-rea doctor                        # providers e instalação
-./scripts/doctor.sh               # kit, hooks, skills, Node
+node scripts/preflight.mjs --deep          # tudo ok, ou só avisos
+rea doctor --client codex --skill          # registro + skill do cliente que você usa
+./scripts/doctor.sh                        # kit, hooks, skills, Node
 ```
 
 Com isso pronto, o fluxo normal é o de [docs/02-fluxo-passo-a-passo.md](02-fluxo-passo-a-passo.md):
