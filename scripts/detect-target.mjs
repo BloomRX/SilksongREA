@@ -486,6 +486,17 @@ if (detections.length === 0) {
   });
 }
 
+// ------------------------------------------------------------------- avisos
+const warnings = [];
+const unityPlayer = files.find((f) => /^UnityPlayer\.(dll|so|dylib)$/i.test(f.name));
+if (unityPlayer && !hasUnityMono && !hasIl2cppBinary && !hasIl2cppMeta) {
+  warnings.push({
+    id: "unity-dados-ausentes",
+    message:
+      "UnityPlayer.dll encontrado, mas sem *_Data/Managed nem il2cpp_data: copie a pasta *_Data do jogo (ou só Managed/il2cpp_data) para os artefatos.",
+  });
+}
+
 // ---------------------------------------------------------------------- saída
 const result = {
   schema: "cleanroom-target-detection/v1",
@@ -493,6 +504,7 @@ const result = {
   scanned: { files: files.length, truncated },
   primary: detections[0].id,
   detections,
+  warnings,
 };
 
 if (jsonOut) {
@@ -512,6 +524,7 @@ if (d.tool_families?.length) console.log(`  famílias MCP: ${d.tool_families.joi
 console.log(`  guia: ${d.guide}`);
 for (const s of d.next_steps ?? []) console.log(`  - ${s}`);
 for (const n of d.notes ?? []) console.log(`  ! ${n}`);
+for (const w of warnings) console.log(`  ! ${w.message}`);
 
 if (detections.length > 1) {
   console.log("");

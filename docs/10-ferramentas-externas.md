@@ -7,7 +7,7 @@ SHA-256 e a configuração que o REA espera.
 | Ferramenta | Para quê | Obrigatória? | Tamanho |
 | --- | --- | --- | --- |
 | **JDK 21** (Temurin) | rodar o Ghidra | sim, junto com o Ghidra | ~200 MB |
-| **Ghidra 12.1.4** | binários nativos e Unity IL2CPP | sim, para Silksong e afins | 543 MB (zip) |
+| **Ghidra 12.1.4** | binários nativos e Unity IL2CPP | só se o build for IL2CPP ou nativo | 543 MB (zip) |
 | **Docker Desktop** | isolamento nível L3 da sala limpa | não (L1/L2 funcionam sem) | ~1,5 GB |
 | **JADX** | APK/Android | não (só alvos Android) | 70 MB |
 | Hopper / IDA / Kuna | engines alternativas | não (pagos; Hopper é macOS) | — |
@@ -184,7 +184,7 @@ if ($userPath -notlike "*$jadx\bin*") {
 ```
 
 Versão com JRE embutido (não depende do JDK): `jadx-gui-1.5.6-with-jre-win.zip`.
-Para Silksong (Unity IL2CPP) isso não é usado.
+Para Unity Mono (build com `*_Data/Managed/Assembly-CSharp.dll`) isso não é usado.
 
 ---
 
@@ -216,4 +216,4 @@ rea providers --json
 | Docker instalado sem reiniciar a sessão | `docker` não aparece | faça logoff/login |
 
 O provider Ghidra no Windows é **P0: somente leitura** e cobre PE nativo x86,
-x86-64, ARMNT e ARM64. Para Silksong (`GameAssembly.dll`, PE x64) é o suficiente.
+x86-64, ARMNT e ARM64. Para um build IL2CPP (ex.: `GameAssembly.dll`, PE x64) é o suficiente; build Mono não precisa de Ghidra.

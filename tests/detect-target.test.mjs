@@ -67,6 +67,26 @@ test("detecta Unity IL2CPP por binário + metadados", () => {
   assert.equal(out.detections[0].first_tool, "inspect_il2cpp_metadata");
 });
 
+test("avisa quando só o UnityPlayer foi copiado", () => {
+  const dir = fixture({
+    "Game.exe": peWithCli(false),
+    "UnityPlayer.dll": Buffer.from("MZ"),
+  });
+  const out = detect(dir);
+  assert.ok(Array.isArray(out.warnings));
+  assert.ok(out.warnings.some((w) => w.id === "unity-dados-ausentes"));
+});
+
+test("não avisa quando os assemblies Mono estão presentes", () => {
+  const dir = fixture({
+    "Game.exe": peWithCli(false),
+    "UnityPlayer.dll": Buffer.from("MZ"),
+    "Game_Data/Managed/Assembly-CSharp.dll": Buffer.from("MZ"),
+  });
+  const out = detect(dir);
+  assert.equal(out.warnings.length, 0);
+});
+
 test("detecta Unity Mono por Assembly-CSharp.dll", () => {
   const dir = fixture({ "Game_Data/Managed/Assembly-CSharp.dll": peWithCli(true) });
   const out = detect(dir);

@@ -25,6 +25,10 @@ Primeiro descubra se o build é **Mono** ou **IL2CPP**: procure
 `*_Data/Managed/Assembly-CSharp.dll` (Mono) ou
 `*_Data/il2cpp_data/Metadata/global-metadata.dat` + `GameAssembly.dll` (IL2CPP).
 
+Copiar só o `.exe` e o `UnityPlayer.dll` não basta: o detector classifica isso
+como binário nativo. Copie a pasta `*_Data` (ou ao menos `Managed/` no Mono,
+`il2cpp_data/` + `GameAssembly.dll` no IL2CPP) para `analysis/artifacts/`.
+
 ### Mono (gerenciado)
 
 | Passo | Ferramenta |
