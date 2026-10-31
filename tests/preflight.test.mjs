@@ -32,7 +32,7 @@ test("preflight --json devolve relatório válido e consistente", () => {
     ids.add(c.id);
   }
 
-  for (const required of ["node", "repo", "kit-files", "rea", "clients", "skills", "hooks"]) {
+  for (const required of ["node", "repo", "kit-files", "rea", "clients", "skills", "hooks", "java"]) {
     assert.ok(ids.has(required), `check obrigatório ausente: ${required}`);
   }
 

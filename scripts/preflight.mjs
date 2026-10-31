@@ -276,7 +276,7 @@ add(
   skills.length === 3 ? null : `git checkout ${EXPECTED_BRANCH}`
 );
 
-// ----------------------------------------------------------------------- Ghidra
+// ------------------------------------------------------------ Ghidra + Java
 const ghidraEnv = process.env.GHIDRA_INSTALL_DIR;
 const ghidraCmd = cmd("ghidraRun", ["--help"]);
 const ghidraOk = Boolean(ghidraEnv && existsSync(ghidraEnv)) || ghidraCmd.ok;
@@ -285,7 +285,27 @@ add(
   "Ghidra",
   ghidraOk ? "ok" : "warn",
   ghidraOk ? ghidraEnv || "no PATH" : "não detectado (necessário para Unity IL2CPP e binários nativos)",
-  ghidraOk ? null : "instale o Ghidra, exporte GHIDRA_INSTALL_DIR e rode rea setup novamente"
+  ghidraOk ? null : "instale o Ghidra e o JDK uma vez: docs/10-ferramentas-externas.md"
+);
+
+// Ghidra 12.1.x pede JDK 21+; 12.2 pede 25+. Sem JDK o provider não sobe.
+const java = cmd("java", ["-version"]);
+const javaText = `${java.out} ${java.err}`.trim();
+const javaMajor = Number((javaText.match(/version "(\d+)/) || [])[1] || 0);
+const javaOk = java.ok && javaMajor >= 21;
+const javaFix = isWin
+  ? "winget install -e --id EclipseAdoptium.Temurin.21.JDK   (reabra o terminal depois)"
+  : "sudo apt install openjdk-21-jdk   (ou: brew install openjdk@21)";
+add(
+  "java",
+  "Java (JDK)",
+  javaOk ? "ok" : ghidraOk ? "fail" : "warn",
+  javaOk
+    ? `${javaText.split("\n")[0]}${process.env.JAVA_HOME ? "" : " (JAVA_HOME ausente)"}`
+    : java.ok
+      ? `Java ${javaMajor} é antigo; Ghidra 12.x pede 21+`
+      : "não encontrado (Ghidra precisa de um JDK)",
+  javaOk ? null : javaFix
 );
 
 // ------------------------------------------------------------------------ disco

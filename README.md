@@ -86,7 +86,8 @@ recomenda a rota, o provedor e as famílias de ferramentas do MCP:
   veja a FAQ no fim).
 - Um provedor para binários nativos: **Ghidra** (grátis, recomendado),
   **Hopper**, **IDA** ou **Kuna**. Para JavaScript/Electron, .NET, Godot PCK,
-  UnityFS e containers, não precisa de engine nativa.
+  UnityFS e containers, não precisa de engine nativa. Downloads, versões e
+  conferência de SHA-256: `docs/10-ferramentas-externas.md`.
 
 ## Instalação rápida (macOS/Linux)
 
@@ -216,6 +217,7 @@ docker/impl/           container opcional para a sala limpa
 | [docs/07-solucao-de-problemas.md](docs/07-solucao-de-problemas.md) | erros comuns do REA, dos hooks e do portão |
 | [docs/08-skills.md](docs/08-skills.md) | skills, como carregam e como editar |
 | [docs/09-reparo-com-codex.md](docs/09-reparo-com-codex.md) | prompt para o Codex consertar a instalação sozinho |
+| [docs/10-ferramentas-externas.md](docs/10-ferramentas-externas.md) | Ghidra, JDK, Docker, JADX: o que baixar e como configurar |
 
 ## FAQ curto
 

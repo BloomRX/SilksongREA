@@ -45,6 +45,8 @@ cache. Não limpe o cache do npm; ou reinstale global e rode o setup de novo.
 
 ### `doctor` diz `missing` mas o plugin está instalado
 
+Faltando Ghidra/JDK, veja [10-ferramentas-externas.md](10-ferramentas-externas.md).
+
 `rea doctor` **não vê** estado de plugin. Verifique no cliente:
 
 ```

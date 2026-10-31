@@ -168,10 +168,11 @@ O `detect-target.sh` termina sugerindo o `rea setup --client codex --tool-famili
 adequado ao tipo detectado. Rode esse comando, reinicie o Codex e só então
 entre na sala de análise.
 
-**Ghidra (quando o alvo for Unity IL2CPP ou binário nativo):** instale a versão
-mais recente, exporte `GHIDRA_INSTALL_DIR` no seu shell (`~/.bashrc` ou
-`~/.zshrc`) e rode `rea setup --client codex` outra vez. Sem isso o provider de
-IL2CPP não é registrado e a análise para no primeiro passo.
+**Ghidra (quando o alvo for Unity IL2CPP ou binário nativo):** instale o combo
+verificado (Ghidra 12.1.4 + JDK 21), defina `GHIDRA_INSTALL_DIR` e `JAVA_HOME` e
+rode `rea setup --client codex` outra vez. Os comandos prontos, com SHA-256, estão
+em [10-ferramentas-externas.md](10-ferramentas-externas.md). Sem isso o provider
+de IL2CPP não é registrado e a análise para no primeiro passo.
 
 ---
 
