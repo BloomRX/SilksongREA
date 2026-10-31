@@ -3,6 +3,12 @@
 Roteiro completo, do clone ao relatório de entrega. Exemplo com um alvo chamado
 `meu-jogo`; troque pelo seu slug.
 
+> **Windows/PowerShell:** os comandos desta página são bash. No PowerShell,
+> prefixe `bash` (`bash ./scripts/new-target.sh ...`) e troque `cp` por
+> `Copy-Item`. `GAME=...`, `cp` e `\` no fim da linha **não** funcionam lá — o
+> PowerShell lê `GAME=...` como nome de comando. No Git Bash/WSL, os blocos
+> rodam como estão.
+
 ## Fase 0 — Preparar a máquina
 
 ```bash

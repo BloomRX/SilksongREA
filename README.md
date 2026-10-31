@@ -111,8 +111,10 @@ O bootstrap:
 5. cria as pastas de trabalho e instala os guards das salas;
 6. roda `rea doctor` e o verificador de isolamento.
 
-**Windows:** use WSL2 (recomendado) e rode os scripts dentro dele. Para
-PowerShell nativo, veja `docs/01-instalacao-rea.md`.
+**Windows:** use WSL2 (recomendado) e rode os scripts dentro dele. No PowerShell
+nativo, chame os scripts com `bash` na frente (`bash ./scripts/bootstrap.sh`) e
+use `Copy-Item` para copiar artefatos; os blocos bash do README não rodam direto
+lá. Detalhes em `docs/01-instalacao-rea.md`.
 
 ## Uso em 7 passos
 

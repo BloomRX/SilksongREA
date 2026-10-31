@@ -249,6 +249,10 @@ Prefira gerar nova versão em vez de apagar.
 ## 3. Windows
 
 - **WSL2** evita 90% dos problemas: rode tudo dentro dele.
+- **No PowerShell, prefixe `bash`** nos scripts: `bash ./scripts/new-target.sh silksong`.
+  Blocos bash (`GAME=...`, `cp`, `\` no fim da linha) não funcionam no PowerShell —
+  ele tenta executar `GAME=...` como comando e traduz `cp` para `Copy-Item`.
+  Para copiar artefatos, use `Copy-Item "$GAME\*.exe" targets\silksong\analysis\artifacts\`.
 - Em PowerShell, variáveis de ambiente valem por sessão; use `$env:NOME`.
 - Caminhos com espaço: sempre entre aspas.
 - Mover instalações invalida registros que guardam caminho absoluto.
