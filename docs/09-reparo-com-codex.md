@@ -123,10 +123,11 @@ PASSOS
 5. Registre o REA no meu cliente: `rea setup --client codex --dry-run --json`,
    mostre o plano, e só então `rea setup --client codex --yes`. Se o cliente for
    Claude Code, use `--client claude_code`.
-6. Rode `rea doctor --client codex --skill` (ou `--client claude_code`) e
-   `./scripts/doctor.sh`, e me mostre a saída. Esses dois são o gate: devem sair 0.
-   Não use `rea doctor` sem filtro como critério — ele reprova provedores ausentes
-   e clientes que eu não uso; se você rodar, explique isso em vez de "consertar".
+6. Rode `rea doctor --client codex --skill --json` (ou `--client claude_code`) e
+   `./scripts/doctor.sh`, e me mostre a saída. O gate é `healthy: true` com todos
+   os `scope_checks` ok — o código de saída pode ser 1 por provedores ausentes e
+   clientes que eu não uso. Não use `rea doctor` sem filtro como critério; se
+   rodar, explique isso em vez de "consertar".
 7. Rode `node scripts/preflight.mjs` de novo e cole o resumo final.
 8. Encerre com um relatório curto:
    - o que estava quebrado e a causa;

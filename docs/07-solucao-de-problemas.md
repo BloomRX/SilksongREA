@@ -71,9 +71,19 @@ rea doctor --client codex --skill --json        # ou --client claude_code
 rea doctor --provider ghidra --json             # só quando for usar binário nativo
 ```
 
+Isso vale também para o doctor **escopado**: `rea doctor --client codex --skill`
+pode sair com código 1 mesmo com `healthy: true`, porque `environment_healthy`
+continua avaliando Hopper/IDA/JADX/Kuna e os registros dos outros clientes. O que
+importa é `healthy` e o bloco `scope_checks`:
+
+```bash
+rea doctor --client codex --skill --json | jq '{healthy, scope_checks: [.scope_checks[] | {name, ok}]}'
+```
+
 `./scripts/doctor.sh` roda o `rea doctor` completo apenas com `--deep` e trata a
-saída como aviso; `./scripts/preflight.mjs` nem chama o `rea doctor`, para não
-confundir "cliente que eu não uso" com "instalação quebrada".
+saída como aviso. O `./scripts/preflight.mjs --deep` interpreta o JSON: passa
+quando `healthy` é true e todos os `scope_checks` estão ok, ignorando provedores
+e clientes fora do escopo.
 
 ### O primeiro `rea inspect` parece travado
 

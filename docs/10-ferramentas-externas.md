@@ -197,7 +197,9 @@ rea providers --json
 ```
 
 - `Ghidra` e `Java (JDK)` devem sair **ok** no pré-voo.
-- `rea doctor --provider ghidra` deve sair **0**.
+- `rea doctor --provider ghidra --json` deve trazer `"healthy": true` e todos os
+  `scope_checks` ok. O **código de saída pode ser 1**: `environment_healthy`
+  também conta Hopper/IDA/JADX/Kuna e os registros dos outros clientes.
 - Reinicie Codex/PowerShell e confirme as ferramentas `rea` dentro do agente.
 
 ---
@@ -210,7 +212,7 @@ rea providers --json
 | `JAVA_HOME` apontando para JRE, não JDK | doctor falha | aponte para a pasta com `bin\javac.exe` |
 | Ghidra 12.2 com JDK 21 | provider não sobe | use JDK 25, ou fique no 12.1.4 |
 | pasta com espaço/OneDrive "Files On-Demand" | arquivo vira placeholder, leitura falha | instale em `C:\Users\<você>\cleanroom-tools` e marque "manter neste dispositivo" |
-| artefato em `\\wsl$\...`, rede ou pendrive | Windows P0 recusa (exige NTFS local fixo) | copie para `C:\...` antes de `detect-target.sh` |
+| artefato em `\\wsl$\...`, rede, SUBST ou pendrive | Windows P0 recusa (exige NTFS local fixo) | `fsutil fsinfo drivetype J:\` deve dizer "Fixed Drive"; senão copie para `C:\` |
 | Docker instalado sem reiniciar a sessão | `docker` não aparece | faça logoff/login |
 
 O provider Ghidra no Windows é **P0: somente leitura** e cobre PE nativo x86,

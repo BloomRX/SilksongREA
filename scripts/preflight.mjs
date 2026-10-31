@@ -15,6 +15,7 @@ import { spawnSync } from "node:child_process";
 import { homedir, release, arch, platform } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { summarizeDoctorScope } from "./lib/doctor-scope.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const EXPECTED_BRANCH = "arena/caee944a-silksongrea";
@@ -37,22 +38,25 @@ const checks = [];
 function add(id, label, status, detail, fix = null) {
   checks.push({ id, label, status, detail, fix: fix || null });
 }
-function cmd(command, args = []) {
+function cmd(command, args = [], timeout = 20000) {
   try {
     const r = spawnSync(command, args, {
       encoding: "utf8",
       shell: isWin,
-      timeout: 20000,
+      timeout,
       windowsHide: true,
     });
+    const stdout = String(r.stdout || "");
     return {
       ok: r.status === 0,
-      out: String(r.stdout || "").trim().split("\n")[0],
+      status: r.status,
+      out: stdout.trim().split("\n")[0],
+      raw: stdout,
       err: String(r.stderr || "").trim().split("\n")[0],
       missing: r.error && r.error.code === "ENOENT",
     };
   } catch {
-    return { ok: false, out: "", err: "", missing: true };
+    return { ok: false, status: null, out: "", raw: "", err: "", missing: true };
   }
 }
 function nodeSupported(version) {
@@ -178,11 +182,12 @@ add(
 const codex = cmd("codex", ["--version"]);
 const claude = cmd("claude", ["--version"]);
 const clientCount = [codex.ok, claude.ok].filter(Boolean).length;
+const versionOf = (text) => (String(text).match(/\d+\.\d+\.\d+([-.+]\d+)?/) || [])[0] || String(text).trim();
 add(
   "clients",
   "Agentes",
   clientCount > 0 ? "ok" : "fail",
-  [codex.ok ? `codex ${codex.out.split(" ").pop()}` : null, claude.ok ? `claude ${claude.out.split(" ").pop()}` : null]
+  [codex.ok ? `codex ${versionOf(codex.out)}` : null, claude.ok ? `claude ${versionOf(claude.out)}` : null]
     .filter(Boolean)
     .join(" · ") || "nem Codex nem Claude Code encontrados",
   clientCount > 0 ? null : "npm install --global @openai/codex  (e/ou @anthropic-ai/claude-code)"
@@ -229,14 +234,16 @@ if (DEEP && rea.ok) {
   if (codex.ok) targets.push(["codex", "codex"]);
   if (claude.ok) targets.push(["claude_code", "Claude Code"]);
   for (const [id, label] of targets) {
-    const r = cmd("rea", ["doctor", "--client", id, "--skill", "--json"]);
-    const healthy = r.ok && !/"(healthy|ok)"\s*:\s*false/.test(r.out);
+    const r = cmd("rea", ["doctor", "--client", id, "--skill", "--json"], 60000);
+    // O exit code do REA inclui provedores e clientes fora do escopo; o gate é
+    // healthy + scope_checks (ver scripts/lib/doctor-scope.mjs).
+    const verdict = summarizeDoctorScope(r.raw, r.status);
     add(
       `rea-doctor-${id}`,
       `Doctor ${label}`,
-      healthy ? "ok" : "fail",
-      healthy ? "registro e skill saudáveis" : `saiu ${r.status ?? "erro"}: ${r.err || r.out || "sem saída"}`,
-      healthy ? null : `rea doctor --client ${id} --skill   (veja docs/07-solucao-de-problemas.md)`
+      verdict.ok ? "ok" : "fail",
+      verdict.detail,
+      verdict.ok ? null : `rea doctor --client ${id} --skill   (veja docs/07-solucao-de-problemas.md)`
     );
   }
   if (targets.length === 0) {
