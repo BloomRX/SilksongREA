@@ -194,6 +194,20 @@ O `bootstrap.sh` grava `rooms/<sala>/.claude/settings.local.json` com o caminho
 
 Confira o JSON gerado e reinicie o Claude Code.
 
+### Colei o prompt e o terminal respondeu "não é reconhecido como comando"
+
+O prompt é texto para o **agente**, não para o shell. No `cmd.exe`/PowerShell,
+cada linha vira comando (`Leia`, `Regras:`, `-`). Abra o agente na pasta da sala e
+cole lá:
+
+```powershell
+cd J:\cleanroom-rea\rooms\impl
+codex
+```
+
+Também não cole o prompt na raiz se o texto fala em `../../targets/...`: a partir
+da raiz esse caminho aponta para fora do repositório.
+
 ### Codex mostra `Hook failed` a cada ação
 
 O `settings.json` do projeto declara um hook do Claude Code; o Codex também tenta

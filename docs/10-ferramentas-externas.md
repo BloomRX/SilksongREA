@@ -188,7 +188,45 @@ Para Unity Mono (build com `*_Data/Managed/Assembly-CSharp.dll`) isso não é us
 
 ---
 
-## 5. Checklist final
+## 5. Godot (opcional, para a sala limpa)
+
+Só é necessário se você for implementar em Godot. Não tem relação com o REA: a
+sala limpa não vê o alvo nem a análise.
+
+```powershell
+winget install -e --id GodotEngine.GodotEngine --accept-source-agreements --accept-package-agreements
+godot --version
+```
+
+Alternativa sem winget (portátil, sem admin):
+
+```powershell
+$tools = "$env:USERPROFILE\cleanroom-tools\godot"
+New-Item -ItemType Directory -Force $tools | Out-Null
+Invoke-WebRequest "https://github.com/godotengine/godot/releases/download/4.7.2-stable/Godot_v4.7.2-stable_win64.exe.zip" `
+  -OutFile "$env:TEMP\godot.zip"
+Expand-Archive "$env:TEMP\godot.zip" -DestinationPath $tools -Force
+Rename-Item "$tools\Godot_v4.7.2-stable_win64.exe" "godot.exe"
+
+$userPath = [Environment]::GetEnvironmentVariable("Path", "User")
+if ($userPath -notlike "*$tools*") {
+  [Environment]::SetEnvironmentVariable("Path", "$tools;$userPath", "User")
+}
+```
+
+Feche e reabra o terminal e confirme com `godot --version`.
+
+Crie o projeto em `targets/<slug>/impl-src/godot/` (pasta ignorada pelo Git do
+kit), renderer *Compatibility* para 2D, e abra uma vez no editor para gerar
+`.godot/`. Testes rodam sem interface:
+
+```bash
+godot --headless --path targets/<slug>/impl-src/godot --script res://tests/run_tests.gd
+```
+
+Use a mesma versão maior que você pretende no projeto final.
+
+## 6. Checklist final
 
 ```powershell
 node scripts/preflight.mjs --deep
@@ -204,7 +242,7 @@ rea providers --json
 
 ---
 
-## 6. Armadilhas específicas do Windows
+## 7. Armadilhas específicas do Windows
 
 | Situação | Efeito | Correção |
 | --- | --- | --- |
