@@ -1,0 +1,7 @@
+{"at":"2026-10-31T20:53:20Z","event":"target-created","slug":"silksong","name":"Hollow Knight Silksong","version":"1.0.0","by":"Lucas"}
+{"at":"2026-10-31T20:53:22Z","event":"artifacts-hashed","count":3,"skipped":0,"file":"analysis/artifacts.sha256"}
+{"at":"2026-10-31T20:56:59Z","event":"artifacts-hashed","count":155,"skipped":0,"file":"analysis/artifacts.sha256"}
+{"at":"2026-10-31T21:29:20Z","event":"handoff","version":"v0.1.0","dir":"handoff/v0.1.0","spec_sha256":"b524b7e255a069c9902eb32686081f7f3e31d6bd997fac8e048073d119d2d940","golden_sha256":"929476c9a821fd1c9b9fbcfb2568547f0cc3817fa763ace1c614c78e76b2fb40"}
+{"at":"2026-10-31T21:47:04.9445421Z","event":"static_revision_prepared","version":"0.1.1","artifact_sha256":"70713bb2b1f1b0c4c6b7007fa6a8446cf79818cb5e308c48c094c4d1de7114bb","bundle_sha256":"edc54cff79d06989ae1c9cbb1ad1ff0f651ae54329d4c8705c521e97872c2a1a","reference_executions":0,"pogo":"separate_partial_spec","gate":"both_specs_strict_pass","scripts_modified":false}
+{"at":"2026-11-01T02:25:51Z","event":"handoff","version":"v0.1.1","dir":"handoff/v0.1.1","spec_sha256":"2217f188e34f6b586dc54380a5c3103aaaf36e18a8cd7ddf63c0c129d1105fad","golden_sha256":"bbeacd3bad7027a6387f350d4314175493cb85a007b668c2736e8d31723ed778"}
+{"at":"2026-11-01T02:26:05.5095235Z","event":"handoff_verified","version":"v0.1.1","old_version_unchanged":true,"files_read_only":true,"reference_execution":false}

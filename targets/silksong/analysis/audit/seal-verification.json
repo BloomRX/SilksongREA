@@ -1,0 +1,31 @@
+{
+  "at": "2026-11-01T02:26:05.4863685Z",
+  "version": "0.1.1",
+  "integrity_pass": true,
+  "old_version_unchanged": true,
+  "all_files_read_only": true,
+  "sensitive_material_tracked": false,
+  "files": [
+    {
+      "name": "golden.json",
+      "read_only": true,
+      "sha256": "bbeacd3bad7027a6387f350d4314175493cb85a007b668c2736e8d31723ed778",
+      "bytes": 5278
+    },
+    {
+      "name": "manifest.json",
+      "read_only": true,
+      "sha256": "3b9fe0c4af2b2f9194f93b3d13f71de2ce27c684b49b1c2f90164d4e093b14a9",
+      "bytes": 24897
+    },
+    {
+      "name": "spec.md",
+      "read_only": true,
+      "sha256": "2217f188e34f6b586dc54380a5c3103aaaf36e18a8cd7ddf63c0c129d1105fad",
+      "bytes": 11987
+    }
+  ],
+  "full_clean_room_environment_audit": "not_run_from_analysis_room",
+  "pogo_included": false,
+  "reference_execution": false
+}

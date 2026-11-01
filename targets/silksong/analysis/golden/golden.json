@@ -1,0 +1,214 @@
+{
+  "schema": "cleanroom-golden/v1",
+  "target": "silksong",
+  "target_version": "1.0.0 (informada)",
+  "handoff_version": "0.1.1",
+  "prepared_at": "2026-10-31",
+  "status": "static_invariants_not_executed",
+  "reference_executions": 0,
+  "test_parameters": {
+    "max_speed_values": [
+      1,
+      2.5
+    ],
+    "origin": "protocol_choices_not_original_measurements",
+    "apply_each_value_to_every_case": true
+  },
+  "sampling_point": "S: after accepted normal horizontal command, before external adjustments and physics",
+  "notes": "Five cases, ten planned parameter instances. No reference execution. Frames are controller evaluations, not measured render frames. Assert section 4 relation at every step and expected fields per section 6.",
+  "cases": [
+    {
+      "id": "mov-parado-anda",
+      "status": "specified_not_executed",
+      "source": {
+        "kind": "static_inspection_not_executed",
+        "evidence_ids": [
+          "EV-MOV-012",
+          "EV-MOV-013"
+        ],
+        "artifact_sha256": "70713bb2b1f1b0c4c6b7007fa6a8446cf79818cb5e308c48c094c4d1de7114bb",
+        "confidence": "medium"
+      },
+      "input": {
+        "direction_by_step": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "frames": 4,
+        "assertion_steps": [
+          1,
+          2,
+          3
+        ],
+        "transition_step": 1
+      },
+      "initial_state": {
+        "velocity": 0,
+        "grounded": true,
+        "normal_branch_preconditions": true
+      },
+      "expected": {
+        "velocity_sign": 1,
+        "velocity_is_constant_after_input": true
+      },
+      "tolerance": 0
+    },
+    {
+      "id": "mov-solta",
+      "status": "specified_not_executed",
+      "source": {
+        "kind": "static_inspection_not_executed",
+        "evidence_ids": [
+          "EV-MOV-012",
+          "EV-MOV-013"
+        ],
+        "artifact_sha256": "70713bb2b1f1b0c4c6b7007fa6a8446cf79818cb5e308c48c094c4d1de7114bb",
+        "confidence": "medium"
+      },
+      "input": {
+        "direction_by_step": [
+          1,
+          1,
+          0,
+          0
+        ],
+        "frames": 4,
+        "assertion_steps": [
+          2,
+          3
+        ],
+        "transition_step": 2
+      },
+      "initial_state": {
+        "velocity": 0,
+        "grounded": true,
+        "normal_branch_preconditions": true
+      },
+      "expected": {
+        "velocity": 0
+      },
+      "tolerance": 0
+    },
+    {
+      "id": "mov-vira-esq",
+      "status": "specified_not_executed",
+      "source": {
+        "kind": "static_inspection_not_executed",
+        "evidence_ids": [
+          "EV-MOV-012",
+          "EV-MOV-013"
+        ],
+        "artifact_sha256": "70713bb2b1f1b0c4c6b7007fa6a8446cf79818cb5e308c48c094c4d1de7114bb",
+        "confidence": "medium"
+      },
+      "input": {
+        "direction_by_step": [
+          1,
+          1,
+          -1,
+          -1
+        ],
+        "frames": 4,
+        "assertion_steps": [
+          2,
+          3
+        ],
+        "transition_step": 2
+      },
+      "initial_state": {
+        "velocity": 0,
+        "grounded": true,
+        "normal_branch_preconditions": true
+      },
+      "expected": {
+        "velocity_sign": -1,
+        "sign_changed_immediately": true
+      },
+      "tolerance": 0
+    },
+    {
+      "id": "mov-vira-dir",
+      "status": "specified_not_executed",
+      "source": {
+        "kind": "static_inspection_not_executed",
+        "evidence_ids": [
+          "EV-MOV-012",
+          "EV-MOV-013"
+        ],
+        "artifact_sha256": "70713bb2b1f1b0c4c6b7007fa6a8446cf79818cb5e308c48c094c4d1de7114bb",
+        "confidence": "medium"
+      },
+      "input": {
+        "direction_by_step": [
+          -1,
+          -1,
+          1,
+          1
+        ],
+        "frames": 4,
+        "assertion_steps": [
+          2,
+          3
+        ],
+        "transition_step": 2
+      },
+      "initial_state": {
+        "velocity": 0,
+        "grounded": true,
+        "normal_branch_preconditions": true
+      },
+      "expected": {
+        "velocity_sign": 1,
+        "sign_changed_immediately": true
+      },
+      "tolerance": 0
+    },
+    {
+      "id": "mov-max",
+      "status": "specified_not_executed",
+      "source": {
+        "kind": "static_inspection_not_executed",
+        "evidence_ids": [
+          "EV-MOV-012",
+          "EV-MOV-013"
+        ],
+        "artifact_sha256": "70713bb2b1f1b0c4c6b7007fa6a8446cf79818cb5e308c48c094c4d1de7114bb",
+        "confidence": "medium"
+      },
+      "input": {
+        "direction_by_step": [
+          0,
+          1,
+          1,
+          0,
+          -1,
+          -1,
+          1,
+          0
+        ],
+        "frames": 8,
+        "assertion_steps": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "initial_state": {
+        "velocity": 0,
+        "grounded": true,
+        "normal_branch_preconditions": true
+      },
+      "expected": {
+        "velocity_lte_max_speed": true
+      },
+      "tolerance": 0
+    }
+  ]
+}

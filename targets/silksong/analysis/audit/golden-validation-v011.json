@@ -1,0 +1,12 @@
+{
+  "at": "2026-10-31T21:47:23.5324750Z",
+  "kind": "document_and_vector_structure_only",
+  "schema": "cleanroom-golden/v1",
+  "case_count": 5,
+  "planned_parameter_instances": 10,
+  "expected_non_null": true,
+  "frames_and_indices_valid": true,
+  "reference_execution": false,
+  "product_execution": false,
+  "artifact_sha256": "70713bb2b1f1b0c4c6b7007fa6a8446cf79818cb5e308c48c094c4d1de7114bb"
+}
