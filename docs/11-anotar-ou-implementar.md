@@ -108,3 +108,7 @@ entrada/saída, não código.
 
 Se você só vai observar (sem REA), pode encurtar: meça no jogo, escreva a spec
 mínima e vá direto para a sala limpa. O que não pode é pular o registro.
+
+Quando a estática não entrega o número — velocidade, recarga, resposta a parede —
+o protocolo de captura e normalização está em
+[docs/12-medir-em-jogo.md](12-medir-em-jogo.md).

@@ -221,6 +221,7 @@ docker/impl/           container opcional para a sala limpa
 | [docs/09-reparo-com-codex.md](docs/09-reparo-com-codex.md) | prompt para o Codex consertar a instalação sozinho |
 | [docs/10-ferramentas-externas.md](docs/10-ferramentas-externas.md) | Ghidra, JDK, Docker, JADX: o que baixar e como configurar |
 | [docs/11-anotar-ou-implementar.md](docs/11-anotar-ou-implementar.md) | quando basta anotar e quando implementar direto, jogos e apps |
+| [docs/12-medir-em-jogo.md](docs/12-medir-em-jogo.md) | protocolo para medir velocidade, tempos e colisão em vídeo, sem tocar no código |
 
 ## FAQ curto
 

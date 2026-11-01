@@ -198,7 +198,8 @@ winget install -e --id GodotEngine.GodotEngine --accept-source-agreements --acce
 godot --version
 ```
 
-Alternativa sem winget (portátil, sem admin):
+Alternativa sem winget (portátil, sem admin). O caminho abaixo é só um exemplo —
+qualquer pasta serve; use a mesma nos comandos seguintes:
 
 ```powershell
 $tools = "$env:USERPROFILE\cleanroom-tools\godot"

@@ -61,10 +61,11 @@ cooldown costumam estar serializadas em assets do jogo:
 | `*_Data/resources.assets`, `sharedassets*.assets`, `level*` | componentes e ScriptableObjects com os valores |
 | PlayMaker FSMs (comuns em Unity) | parte da lógica e dos parâmetros vive nos estados, também serializada |
 
-Se o REA não abrir esse formato, as opções são medir o comportamento em jogo ou
-usar um leitor de assets (UnityPy/AssetRipper) só para ler configuração — os
-valores entram na spec como observação, nunca como código copiado. Handoff com
-`expected: null` é recusado: sem números não há vetor.
+Se o REA não abrir esse formato, as opções são medir o comportamento em jogo
+(protocolo em [docs/12](12-medir-em-jogo.md)) ou usar um leitor de assets
+(UnityPy/AssetRipper) só para ler configuração — e nesse caso registre a leitura
+como contaminação. Os valores entram na spec como observação, nunca como código
+copiado. Handoff com `expected: null` é recusado: sem números não há vetor.
 
 ### IL2CPP
 
